@@ -1,0 +1,42 @@
+.yourSelf {
+  h2 {
+      font-weight: 600;
+      font-size: 18px;
+  }
+  > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 20px;
+  }
+  .splide {
+    padding: 0;
+  }
+  .splide__pagination {
+      bottom: -18px;
+      right: 0;
+      left: unset;
+  }
+  .AssessCard {
+    display: flex;
+    align-items: center;
+    background: #f7d5cf;
+    padding: 18px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    &.card2 {
+      background: #dcedf9;
+    }
+    &Left {
+        min-width: 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        height: 126px;
+        border-radius: 25px;
+    }
+    &Right {
+        padding-left: 21px;
+    }
+  }
+}

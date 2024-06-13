@@ -1,0 +1,38 @@
+.activity {
+  h2 {
+      font-weight: 600;
+      font-size: 18px;
+  }
+  > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 20px;
+  }
+
+  .activity {
+    &Inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &Box {
+        width: 48%;
+        padding: 10px;
+        margin: 0 0 20px;
+        background: #ddd;
+        border-radius: 22px;
+        iframe {
+            width: 100%;
+            height: auto;
+            border-radius: 22px;
+            margin-bottom: 12px;
+        }
+        .timeAudio {
+            color: #666;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }  
+  }
+}

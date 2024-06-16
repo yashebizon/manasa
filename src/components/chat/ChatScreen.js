@@ -114,7 +114,7 @@ const ChatComponent = () => {
               <div className='chatBoxBtn'>
                   <TextField
                       InputProps={{
-                        placeholder: 'Enter your message here',
+                        placeholder: 'Enter your message here...',
                       }}
                       variant="outlined"
                       fullWidth

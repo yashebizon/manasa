@@ -1,18 +1,15 @@
-"use client";
 import React from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
-import Link from 'next/link';
+import LoginForm from '../components/login/LoginForm';
+import { CssBaseline, Container } from '@mui/material';
+import '../app/globals.scss'
 
 const Home = () => {
   return (
-    <Container>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Welcome to the Home Page
-        </Typography>
-        </Box>
+    <Container component="main" maxWidth="100%" className='loginWrap'>
+      <CssBaseline />
+      <LoginForm />
     </Container>
   );
 };
-  
+
 export default Home;

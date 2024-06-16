@@ -7,10 +7,8 @@ export const config = {
 
 export default async function POST(request){
 
-    console.log('yash', process.env.OPENAI_API_KEY);
-
     const openai = new OpenAI({
-        apikey : "sk-proj-TKYTvnTw1riOWOsC3qG1T3BlbkFJRjEZICICBdUfiHoNs0bD"
+        apikey : `${process.env.OPENAI_API_KEY}`
     })
 
     const params = await request.json();

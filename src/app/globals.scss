@@ -90,23 +90,8 @@
   max-width: 400px;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px dashed #555;
-    margin: 0 -15px 25px;
-    padding: 15px 15px 15px;
-    background: #eee;
-    .lefSEc {
-      margin-right: auto;
-      h2 {
-        font-weight: 600;
-      }
-    }
-}
-
 .dashboardWrap {
-  margin-top: 0;
+  margin-top: 105px;
   h1 {
     font-size: 22px;
     margin-bottom: 40px;

@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import ChatScreen from '../components/chat/ChatScreen';
-import { Container } from '@mui/material';
+import Header from '@/components/header';
 
 const Chat = () => {
     return (
         <div>
+          <Header />
           <Head>
             <title>Mental Health Chatbot</title>
             <meta name="description" content="Chat with GPT using Next.js and Material-UI" />
@@ -12,9 +13,7 @@ const Chat = () => {
           </Head>
     
           <main>
-            <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
               <ChatScreen />
-            </Container>
           </main>
         </div>
       );  

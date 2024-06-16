@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed #555;
+    margin: 0 0 25px;
+    padding: 15px 15px 15px;
+    background: #eee;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    .lefSec {
+      margin-right: auto;
+      h2 {
+        font-weight: 600;
+      }
+    }
+    .rightSec {
+        display: flex;
+        align-items: center;
+        a.sos {
+            margin-right: 10px;
+        }
+    }
+}

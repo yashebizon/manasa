@@ -37,7 +37,7 @@
       }
     }
   }  
-  .css-5zfiia-MuiListItem-root,
+  .user-input,
   .css-bfxr4y-MuiListItem-root
   .css-11bd6bo,
   .chatBoxSuggestion  {
@@ -49,12 +49,14 @@
       border-radius: 10px;
     }
   }
-  .css-x74alw
-  .css-bfxr4y-MuiListItem-root,
+  .user-response,
   .chatBoxSuggestion {
     span, li.light {
       background-color: #eff0f4;
       color: #444;
+      padding: 10px 15px;
+      border-radius: 10px;
+      display: inline-block;
     }
   }
   .chatBoxSuggestion {

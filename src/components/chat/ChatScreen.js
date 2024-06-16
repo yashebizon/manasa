@@ -84,14 +84,25 @@ const ChatComponent = () => {
           <div className='chatBoxWrap'>
               <div className='chatBox'>
                   <List>
-                      {messages.map((msg, index) => (
-                          <ListItem key={index} sx={{ textAlign: msg.sender === 'user' ? 'right' : 'left' }}>
-                              <ListItemText
-                                  primary={<Typography variant="body1" component="span">
-                                      <strong>{msg.sender === 'user' ? 'You' : 'Response'}:</strong> {msg.text}
-                                  </Typography>} />
-                          </ListItem>
-                      ))}
+                  {messages.map((msg, index) => (
+                    <ListItem
+                      key={index}
+                      className={index % 2 === 0 ? 'user-input' : 'user-response'}
+                      sx={{
+                        textAlign: msg.sender === 'user' ? 'right' : 'left',
+                        marginBottom: 1,
+                        borderRadius: 1,
+                      }}
+                    >
+                      <ListItemText
+                        primary={
+                          <Typography variant="body1" component="span">
+                            <strong>{msg.sender === 'user' ? 'You' : 'Response'}:</strong> {msg.text}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                   </List>
 
                   {isVisible && (

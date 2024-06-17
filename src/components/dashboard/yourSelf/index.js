@@ -23,7 +23,7 @@ const YourSelf = () => {
                 </div>
                 <div className='yourSelfWrap'>
                     <h2>Personal Screening Modules</h2>
-                    <p>Assess Your Self assess Your Self</p>
+                    <p>Process helps us understand you better</p>
                 </div>
             </div>
             <Splide aria-label="My Favorite Images"   

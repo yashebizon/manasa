@@ -4,6 +4,7 @@ import selfAssess from '../../../images/icon1.png';
 import wellnessActivity from '../../../images/icon3.png'; 
 import expertTherapy from '../../../images/icon2.png'; 
 import miniGuide from '../../../images/icon4.png'; 
+import Link from 'next/link';
 
 const TopCard = () => {
     return(
@@ -21,16 +22,20 @@ const TopCard = () => {
                 <div className='text'>Wellness Activity</div>
             </div>
             <div className='TopCardBox box3'>
+            <Link href="chat">
                 <div className='icon'>
                     <Image src={expertTherapy} alt="Expert Therapy" />
                 </div>
                 <div className='text'>Expert Therapy</div>
+            </Link>
             </div>
             <div className='TopCardBox box4'>
-                <div className='icon'>
+            <Link href="guided-session">
+            <div className='icon'>
                     <Image src={miniGuide} alt="Mini Guide" />
                 </div>
                 <div className='text'>Mini Guide</div>
+            </Link>
             </div>
         </div>
     );

@@ -56,7 +56,7 @@ const Dashboard = () => {
       <Header />
       <Box sx={{ my: 4 }} className="dashboardWrap">
         <Typography variant="h4" component="h1" gutterBottom>
-          General Screening
+          { `General Screening ${id}` }
         </Typography>
         <div className='boxDasBox'>
             {questions.map((question, index) => (

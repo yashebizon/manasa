@@ -55,8 +55,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self 2</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,</p>
+                                <h3>Assess Your Self</h3>
+                                <p>Next few questions will help you know more about your mental well being</p>
                             </div>
                         </div>
                     </Link>
@@ -70,8 +70,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self 2</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,</p>
+                                <h3>Assess Your Self</h3>
+                                <p>Next few questions will help you know more about your mental well being</p>
                             </div>
                         </div>
                     </Link>

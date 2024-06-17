@@ -22,7 +22,7 @@ const YourSelf = () => {
                     <Image src={selfAssess} alt="Self Assess<" />
                 </div>
                 <div className='yourSelfWrap'>
-                    <h2>Assess Your Self</h2>
+                    <h2>Personal Screening Modules</h2>
                     <p>Assess Your Self assess Your Self</p>
                 </div>
             </div>
@@ -40,8 +40,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self</h3>
-                                <p>Next few questions will help you know more about your mental well being</p>
+                                <h3>General Initial Screening</h3>
+                                <p>Next few questions will help to ascertain more about your mental well being</p>
                             </div>
                         </div>
                     </Link>
@@ -55,8 +55,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self</h3>
-                                <p>Next few questions will help you know more about your mental well being</p>
+                                <h3>Strength Weaknesses Screening</h3>
+                                <p>Next few questions will help to conduct a screening of your overall strength and weaknesses and help your counselor help you better.</p>
                             </div>
                         </div>
                     </Link>
@@ -70,8 +70,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self</h3>
-                                <p>Next few questions will help you know more about your mental well being</p>
+                                <h3>Peer Parents Screening</h3>
+                                <p>Next few questions will help to assess an initial impact of the influence of your peers and parents on your mental wellbeing.</p>
                             </div>
                         </div>
                     </Link>

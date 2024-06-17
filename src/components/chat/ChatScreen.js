@@ -97,7 +97,7 @@ const ChatComponent = () => {
                       <ListItemText
                         primary={
                           <Typography variant="body1" component="span">
-                            <strong>{msg.sender === 'user' ? 'You' : 'Response'}:</strong> {msg.text}
+                            <strong>{msg.sender === 'user' ? 'Parth' : 'Manoveda AI'}:</strong> {msg.text}
                           </Typography>
                         }
                       />

@@ -64,11 +64,13 @@ const YourSelf = () => {
                 <SplideSlide>
                     <Link href="/questionnaire/3">
                         <div className='AssessCard card3'>
-                            <div className='iconIn'>
-                                <Image src={selfAssess} alt="Self Assess<" />   
+                            <div className='AssessCardLeft'>
+                                <div className='iconIn'>
+                                    <Image src={selfAssess} alt="Self Assess<" />   
+                                </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Assess Your Self 3</h3>
+                                <h3>Assess Your Self 2</h3>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s,</p>
                             </div>
                         </div>

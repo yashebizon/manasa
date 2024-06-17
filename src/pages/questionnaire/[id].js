@@ -15,22 +15,28 @@ const Dashboard = () => {
   const { id } = router.query;
 
   const [questions, setQuestions] = useState(null);
+  const [pageTitle, setPageTitle] = useState('');
 
   useEffect(() => {
     if (id) {
       let selectedQuestions;
+      let pageTitle;
       switch (id) {
         case '1':
           selectedQuestions = questions1;
+          pageTitle = "General Initial Screening"
           break;
         case '2':
           selectedQuestions = questions2;
+          pageTitle = "Strength Weaknesses Screening"
           break;
         default:
           selectedQuestions = questions3;
+          pageTitle = "Peer Parents Screening"
           break;
       }
       setQuestions(selectedQuestions);
+      setPageTitle(pageTitle);
     }
   }, [id]);
 
@@ -56,7 +62,7 @@ const Dashboard = () => {
       <Header />
       <Box sx={{ my: 4 }} className="dashboardWrap">
         <Typography variant="h4" component="h1" gutterBottom>
-          { `General Screening ${id}` }
+          { pageTitle }
         </Typography>
         <div className='boxDasBox'>
             {questions.map((question, index) => (

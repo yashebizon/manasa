@@ -20,7 +20,7 @@ const TopCard = () => {
                 <div className='icon'>
                     <Image src={wellnessActivity} alt="wellness Activity" />
                 </div>
-                <div className='text'>Wellness Activity</div>
+                <div className='text'>Guided Lessons</div>
             </Link>
             </div>
             <div className='TopCardBox box3'>
@@ -35,7 +35,7 @@ const TopCard = () => {
             <div className='icon'>
                     <Image src={miniGuide} alt="Mini Guide" />
                 </div>
-                <div className='text'>Guided Lessons</div>
+                <div className='text'>Mini Guide</div>
             </div>
         </div>
     );

@@ -58,7 +58,7 @@ const Dashboard = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           General Screening
         </Typography>
-        <div className='boxDas1'>
+        <div className='boxDasBox'>
             {questions.map((question, index) => (
               <Card key={index} question={question} />
             ))}

@@ -3,6 +3,7 @@ import {RadioGroup, Box, FormControl, FormControlLabel, FormLabel, Radio} from '
 
 const Card = ({ question }) => {
     return(
+      <div className='boxDasQs'>
         <FormControl>
           <FormLabel id="demo-radio-buttons-group-label" className='labelTitle'>{ question }</FormLabel>
           <RadioGroup
@@ -17,6 +18,7 @@ const Card = ({ question }) => {
             <FormControlLabel value="Always" control={<Radio />} label="Always" />
           </RadioGroup>
         </FormControl>
+      </div>
     );
 }
 

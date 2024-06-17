@@ -1,4 +1,23 @@
 .yourSelf {
+  .icon {
+      background: #fff;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd;
+      margin-right: 15px;
+      img {
+        width: 28px;
+      }
+  }
+  &Inner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
   h2 {
       font-weight: 600;
       font-size: 18px;
@@ -20,20 +39,21 @@
     display: flex;
     align-items: center;
     background: #f7d5cf;
-    padding: 18px;
+    padding: 16px;
     border: 1px solid #ccc;
     border-radius: 20px;
     &.card2 {
       background: #dcedf9;
     }
     &Left {
-        min-width: 35%;
+        min-width: 40%;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #fff;
-        height: 126px;
+        height: 100%;
         border-radius: 25px;
+        padding: 45px 15px;
     }
     &Right {
         padding-left: 21px;

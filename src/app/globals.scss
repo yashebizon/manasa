@@ -26,61 +26,51 @@
   font-weight: 600;
   font-size: 16px;
 }
-.boxDas1 {
+.boxDasQs {
   border: 1px solid #bbb;
   padding: 20px;
   background: #dcedf9;
   border-radius: 25px;
+  margin-bottom: 20px;
   .radioGroup label {
     border: 1px solid #ddd;
     width: 100%;
     background: #fff;
     border-radius: 14px;
     margin: 6px 0;
+  }
+  &:nth-child(even) {
+    background: #fef0ed;
   }
 }
 
-.boxDas2 {
-  border: 1px solid #bbb;
-  padding: 20px;
-  background: #fef0ed;
-  border-radius: 25px;
-  .radioGroup label {
-    border: 1px solid #ddd;
-    width: 100%;
-    background: #fff;
-    border-radius: 14px;
-    margin: 6px 0;
-  }
-}
+// .boxDas3 {
+//   border: 1px solid #bbb;
+//   padding: 20px;
+//   background: #d4f4d5;
+//   border-radius: 25px;
+//   .radioGroup label {
+//     border: 1px solid #ddd;
+//     width: 100%;
+//     background: #fff;
+//     border-radius: 14px;
+//     margin: 6px 0;
+//   }
+// }
 
-.boxDas3 {
-  border: 1px solid #bbb;
-  padding: 20px;
-  background: #d4f4d5;
-  border-radius: 25px;
-  .radioGroup label {
-    border: 1px solid #ddd;
-    width: 100%;
-    background: #fff;
-    border-radius: 14px;
-    margin: 6px 0;
-  }
-}
-
-.boxDas4 {
-  border: 1px solid #bbb;
-  padding: 20px;
-  background: #f3efcc;
-  border-radius: 25px;
-  .radioGroup label {
-    border: 1px solid #ddd;
-    width: 100%;
-    background: #fff;
-    border-radius: 14px;
-    margin: 6px 0;
-  }
-}
+// .boxDas4 {
+//   border: 1px solid #bbb;
+//   padding: 20px;
+//   background: #f3efcc;
+//   border-radius: 25px;
+//   .radioGroup label {
+//     border: 1px solid #ddd;
+//     width: 100%;
+//     background: #fff;
+//     border-radius: 14px;
+//     margin: 6px 0;
+//   }
+// }
 
 .mobileStepperWrap {
   position: absolute;
@@ -92,9 +82,10 @@
 
 .dashboardWrap {
   margin-top: 105px;
+  padding-bottom: 75px;
   h1 {
     font-size: 22px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 }
 
@@ -102,7 +93,7 @@
   &Top {
     border-bottom: 1px dashed #555;
     margin: 0 -14px;
-    padding: 0 10px 25px;
+    padding: 0 5px 25px;
     margin-bottom: 20px;
   }
   &YourSelf {

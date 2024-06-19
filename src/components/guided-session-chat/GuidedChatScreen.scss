@@ -1,0 +1,74 @@
+.chatBox {
+    padding-bottom: 70px;
+    padding-top: 80px;
+    &Wrap {
+      height: calc(100vh - 104px);
+      position: relative;
+    }
+    &Btn {
+      display: flex;
+      position: fixed;
+      background: #fff;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px 20px 25px;
+      [type='text'] {
+        background-color: #e8ebf4;
+        border-radius: 12px;
+        height: 40px;
+        box-sizing: border-box;
+      }
+      fieldset {
+        border: none;
+      }
+      .sendBtn {
+        background-color: #e8ebf4;
+        border-radius: 50%;
+        border: none; 
+        color: #aaa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 40px;
+        svg {
+          width: 25px;
+        }
+      }
+    }  
+    .user-input,
+    .css-bfxr4y-MuiListItem-root
+    .css-11bd6bo,
+    .chatBoxSuggestion  {
+      span, li {
+        display: inline-block;
+        background-color: #a2a7c4;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+    }
+    .user-response,
+    .chatBoxSuggestion {
+      span, li.light {
+        background-color: #eff0f4;
+        color: #444;
+        padding: 10px 15px;
+        border-radius: 10px;
+        display: inline-block;
+      }
+    }
+    .chatBoxSuggestion {
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px;
+      // position: absolute;
+      // bottom: -10px;
+      li {
+        margin-bottom: 10px;
+        max-width: 265px;
+      }
+    }
+  }
+  

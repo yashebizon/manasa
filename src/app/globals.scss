@@ -130,3 +130,103 @@
     display: flex;
   }
 }
+
+main.miniGuideWrap {
+  margin-top: 90px;
+  padding: 0 8px 65px;
+  .miniGuideTop {
+      display: flex;
+      margin-bottom: 22px;
+      h1 {
+          font-size: 18px;
+          font-weight: 600;
+      }
+      .rlTitle p {
+        font-size: 15px;
+        color: #777;
+      }
+      .lfIcon {
+        background: #fff;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        margin-right: 15px;
+        img {
+          width: 30px;
+        }
+      }
+    }
+    ul.miniGuideCard {
+      li {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 12px;
+        margin-bottom: 15px;
+        .image {
+            width: 90px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 12px;
+            img {
+              border-radius: 12px;
+              display: block;
+            }
+            iframe {
+              width: 100%;
+              height: 90px;
+              border-radius: 12px;
+            }
+        }
+        .rlContent {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .rlContentLf {
+          margin-right: 20px;
+          h3 {
+              font-weight: 500;
+              font-size: 17px;
+          }        
+          p {
+              font-size: 12px;
+              color: #777;
+          }
+          
+          .timeAudo {
+            display: flex;
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+              span {
+                display: flex;
+                align-items: center;
+                svg {
+                  width: 14px;
+                  height: auto;
+                  margin-right: 3px;
+                }
+                &.time {
+                  margin-right: 20px;
+                }
+            }
+          }
+        }        
+        .rlContentRl {
+          width: 45px;
+          margin-left: auto;
+          svg {
+            width: 45px;
+            height: auto;
+            color: #222;
+          }
+        }
+      }
+    }
+}

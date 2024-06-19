@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import { redirect } from 'next/navigation'
 import { Container, TextField, Button, Avatar, Typography, Box, Grid } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import styles from './LoginForm.module.scss'
+import './LoginForm.scss'
 import { toast } from 'react-hot-toast';
-
+import Link from 'next/link';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({});
@@ -77,7 +77,7 @@ const renderLoginForm = () => {
         alignItems="center"
         style={{ minHeight: '100vh' }}
         >
-        <div className={styles.loginBox}>
+        <div className="loginBox">
             <Box
                 sx={{
                 display: 'flex',
@@ -92,47 +92,55 @@ const renderLoginForm = () => {
                 Sign in
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    error={!!errors.email}
-                    helperText={errors.email}
-                    value={formData.email || null}
-                    onChange={handleChange}
-                    />
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    autoFocus
-                    error={!!errors.password}
-                    helperText={errors.password}
-                    value={formData.password || null}
-                    onChange={handleChange}
-                    />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                >
-                    Sign In
-                </Button>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        error={!!errors.email}
+                        helperText={errors.email}
+                        value={formData.email || null}
+                        onChange={handleChange}
+                        />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        autoFocus
+                        error={!!errors.password}
+                        helperText={errors.password}
+                        value={formData.password || null}
+                        onChange={handleChange}
+                        />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Sign In
+                    </Button>
                 </Box>
             </Box>
+            <div className='loginBtnWrap'>
+                <div className='forgetPass'>
+                    <Link href="#">Forget Password?</Link>
+                </div>
+                <div className='signUp'>
+                    Don't have an account? <Link href="/register">Sign Up</Link>
+                </div>
+            </div>
         </div>
         </Grid>
         </Container>

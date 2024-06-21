@@ -138,7 +138,7 @@ const renderLoginForm = () => {
                     <Link href="#">Forget Password?</Link>
                 </div>
                 <div className='signUp'>
-                    Don't have an account? <Link href="/register">Sign Up</Link>
+                    Dont have an account? <Link href="/register">Sign Up</Link>
                 </div>
             </div>
         </div>

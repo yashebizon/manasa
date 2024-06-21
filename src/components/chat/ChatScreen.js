@@ -25,15 +25,15 @@ const ChatComponent = () => {
     isLoading(true);
 
     try {
-      const response = await axios.post('/api/chat-yash', {
-        prompt: input,
+      const response = await axios.post('/api/chat', {
+        input_message: input,
         chatHistory: messages,
         mode: mode,
       });
 
       console.log('yanu11', response);
 
-      const botMessage = { sender: 'bot', text: response.data.text.choices[0].message.content };
+      const botMessage = { sender: 'bot', text: response.data.response_message };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
       isLoading(false);
     } catch (error) {

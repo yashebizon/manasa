@@ -33,7 +33,7 @@ const ChatComponent = () => {
 
       console.log('yanu11', response);
 
-      const botMessage = { sender: 'bot', text: response.data.response_message };
+      const botMessage = { sender: 'assistant', text: response.data.response_message };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
       isLoading(false);
     } catch (error) {

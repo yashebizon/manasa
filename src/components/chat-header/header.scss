@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.header {
+    display: flex;
+    align-items: center;
+    margin: 0 0 25px;
+    padding: 11px 24px;
+    background: #eee;
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    top: 12px;
+    z-index: 9;
+    border-radius: 70px;
+    .lefSec {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      .userIcon {
+        background-image: url(../../images/woman.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+      }
+      .userWrap {
+        line-height: 1.2;
+        .userText {
+          font-weight: 600;
+        }
+        .userActive {
+          font-size: 13px;
+          color: #777;
+        }
+      }
+      .back {
+        svg {
+          width: 25px;
+        }
+      }
+    }
+    .rightSec {
+        display: flex;
+        align-items: center;
+        button.call {
+          background: #9da6f4;
+          padding: 8px 15px;
+          border-radius: 10px;
+          svg {
+            width: 25px;
+            height: auto;
+          }
+      }
+    }
+}

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import ChatScreen from '../components/chat/ChatScreen';
-import Header from '@/components/header';
+import Header from '@/components/chat-header';
 
 const Chat = () => {
     return (

@@ -6,18 +6,18 @@
     position: relative;
   }
   &Btn {
-    display: flex;
     position: fixed;
     background: #fff;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 15px 20px 25px;
+    padding: 15px 15px 20px;
     [type='text'] {
       background-color: #e8ebf4;
-      border-radius: 12px;
-      height: 40px;
+      border-radius: 30px;
+      height: 50px;
       box-sizing: border-box;
+      padding-left: 65px;
     }
     fieldset {
       border: none;
@@ -26,14 +26,40 @@
       background-color: #e8ebf4;
       border-radius: 50%;
       border: none; 
-      color: #aaa;
+      color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
       min-width: 40px;
-      height: 40px;
+      height: 35px;
       svg {
+        width: 30px;
+        margin-top: 8px;
+      }
+    }
+    &Inner {
+      display: flex;
+      position: relative;
+      .closeBtn {
+        background-image: url(../../images/close.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        min-width: 25px;
         width: 25px;
+        height: 25px;
+        position: absolute;
+        left: 20px;
+        top: 13px;
+        z-index: 1;
+      }
+      .sendBtn {
+        position: absolute;
+        right: 8px;
+        top: 4px;
+        z-index: 1;
+      }
+      > div {
+        margin-right: 0;
       }
     }
   }  
@@ -43,20 +69,58 @@
   .chatBoxSuggestion  {
     span, li {
       display: inline-block;
-      background-color: #a2a7c4;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 10px;
+      background-color: #9da6f4;
+      color: #000;
+      padding: 12px 10px;
+      border-radius: 10px 0 10px 10px;
+      font-size: 13.5px;
+      margin-right: 45px;
+      max-width: 65%;
+    }
+  }
+  .user-input  {
+    span {
+      &::after {
+        content: "";
+        width: 35px;
+        height: 35px;
+        background-image: url(../../images/man.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 13px;
+      }
     }
   }
   .user-response,
   .chatBoxSuggestion {
     span, li.light {
-      background-color: #eff0f4;
+      background-color: #d9d9d9;
       color: #444;
-      padding: 10px 15px;
-      border-radius: 10px;
+      padding:12px 10px;
+      border-radius: 0 10px 10px 10px;
       display: inline-block;
+      font-size: 13.5px;
+      margin-left: 45px;
+      max-width: 65%;
+    }
+  }
+  .user-response {
+    span {
+      &::after {
+        content: "";
+        width: 35px;
+        height: 35px;
+        background-image: url(../../images/woman.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 13px;
+      }
     }
   }
   .chatBoxSuggestion {

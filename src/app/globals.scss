@@ -20,16 +20,19 @@
   background-image: linear-gradient(to right, #8360c3, #2ebf91);
 }
 .labelTitle {
-  color: #333 !important;
-  margin-bottom: 15px;
-  margin-bottom: 15px;
-  font-weight: 600;
-  font-size: 16px;
+  color: #000 !important;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: inherit;
+  letter-spacing: 0;
+  line-height: 1.2;
+  padding-right: 55px;
 }
 .boxDasQs {
   border: 1px solid #bbb;
   padding: 20px;
-  background: #dcedf9;
+  // background: #dcedf9;
   border-radius: 25px;
   margin-bottom: 20px;
   .radioGroup label {
@@ -39,8 +42,41 @@
     border-radius: 14px;
     margin: 6px 0;
   }
-  &:nth-child(even) {
-    background: #fef0ed;
+  &:nth-child(5n + 1) {
+    background: #E9F9DC;
+  }  
+  &:nth-child(5n + 2) {
+    background: #FDD6CE;
+  }
+  &:nth-child(5n + 3) {
+    background: #FCEDCA;
+  }
+  &:nth-child(5n + 4) {
+    background: #DCEDF9;
+  }
+  &:nth-child(5n) {
+    background: #262D39;
+    .labelTitle {
+      color: #fff !important;
+    }
+  }
+  .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    color: #000;
+  }
+  .countBox {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: 1px solid #333;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-weight: 500;
   }
 }
 

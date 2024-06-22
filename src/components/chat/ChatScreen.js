@@ -63,21 +63,29 @@ const ChatComponent = () => {
     );
   }
 
+  function resetInput() {
+    setInput('');
+  }
+
   const renderSubmitForm = () => {
         return(
           <div className='chatBoxBtn'>
-          <TextField
-              InputProps={{
-                placeholder: 'Enter your message here...',
-              }}
-              variant="outlined"
-              fullWidth
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              sx={{ mr: 1 }} />
-            <button onClick={handleSend} className='sendBtn'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"/></svg>
-            </button>
+            <div className='chatBoxBtnInner'>
+              <button className='closeBtn' onClick={() => resetInput()}>                
+              </button>
+              <TextField
+                  InputProps={{
+                    placeholder: 'Enter your message here...',
+                  }}
+                  variant="outlined"
+                  fullWidth
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  sx={{ mr: 1 }} />
+                <button onClick={handleSend} className='sendBtn'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"/></svg>
+                </button>
+            </div>
           </div>
         );
   }
@@ -98,7 +106,7 @@ const ChatComponent = () => {
             <ListItemText
               primary={
                 <Typography variant="body1" component="span">
-                  <strong>{msg.sender === 'user' ? 'Parth' : 'Manoveda AI'}:</strong> 
+                  <strong>{msg.sender === 'user' ? 'Parth' : 'Neura AI'}:</strong> 
                   {(loading && msg.sender !== 'user') ? msg.text : msg.text}
                 </Typography>
               }

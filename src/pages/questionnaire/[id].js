@@ -8,6 +8,20 @@ import Header from '@/components/header';
 import { useRouter } from 'next/router';
 import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
+import Modal from 'react-modal';
+import modalAsset from '../../../public/asset-3.png';
+import Image from 'next/image';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 const Dashboard = () => {
 
@@ -16,6 +30,42 @@ const Dashboard = () => {
 
   const [questions, setQuestions] = useState(null);
   const [pageTitle, setPageTitle] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  const renderModal = () => {
+    return( 
+        <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div>
+        <Image src={modalAsset} alt="Mini Guide" />
+        </div>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Thanks for your feedback!</h2>
+        <button onClick={closeModal}>close</button>
+        <p>By making your voice heard, you help us</p>
+        <p>improve Feastify</p>
+        <button>Go home</button>
+      </Modal>
+    );
+  }
 
   useEffect(() => {
     if (id) {
@@ -56,7 +106,10 @@ const Dashboard = () => {
     );
   }
 
-  
+  let subtitle;
+
+  const countTotal = questions.length;  
+
   return (
     <Container>
       <Header />
@@ -66,10 +119,15 @@ const Dashboard = () => {
         </Typography>
         <div className='boxDasBox'>
             {questions.map((question, index) => (
-              <Card key={index} question={question} />
+              <Card key={index} question={question} indx={index} countTotal={countTotal} />
             ))}
         </div>
+        <div>
+          <button onClick={openModal}>Submit</button>
+            {renderModal()}
+        </div>
       </Box>
+        
     </Container>
   );
 };

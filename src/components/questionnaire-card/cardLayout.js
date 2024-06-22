@@ -1,10 +1,14 @@
 import {RadioGroup, Box, FormControl, FormControlLabel, FormLabel, Radio} from '@mui/material';
 
 
-const Card = ({ question }) => {
+const Card = ({ question, indx, countTotal }) => {
+    const count = indx +1;
     return(
-      <div className='boxDasQs'>
+      <div className={`boxDasQs boxQs-${indx}`}>
         <FormControl>
+          <div className='countBox'>
+            {count}/{countTotal}
+          </div>
           <FormLabel id="demo-radio-buttons-group-label" className='labelTitle'>{ question }</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"

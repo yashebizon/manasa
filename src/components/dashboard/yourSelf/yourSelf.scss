@@ -57,6 +57,11 @@
     }
     &Right {
         padding-left: 21px;
+        h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
     }
   }
 }

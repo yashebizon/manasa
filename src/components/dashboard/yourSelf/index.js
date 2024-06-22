@@ -3,6 +3,9 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Image from 'next/image';
 import Link from 'next/link';
 import selfAssess from '../../../images/icon5.png'; 
+import assest_1 from '../../../images/assest-1.png'
+import assest_2 from '../../../images/assest-2.png'
+
 import './yourSelf.scss'
 // Default theme
 import '@splidejs/react-splide/css';
@@ -22,8 +25,8 @@ const YourSelf = () => {
                     <Image src={selfAssess} alt="Self Assess<" />
                 </div>
                 <div className='yourSelfWrap'>
-                    <h2>Personal Screening Modules</h2>
-                    <p>Process helps us understand you better</p>
+                    <h2>General Screening Module</h2>
+                    <p>Pre screening for self reflection</p>
                 </div>
             </div>
             <Splide aria-label="My Favorite Images"   
@@ -41,7 +44,7 @@ const YourSelf = () => {
                             </div>
                             <div className='AssessCardRight'>
                                 <h3>General Initial Screening</h3>
-                                <p>Next few questions will help to ascertain more about your mental well being</p>
+                                <p>Next few questions will help to ascertain more about your mental well being.</p>
                             </div>
                         </div>
                     </Link>
@@ -51,7 +54,7 @@ const YourSelf = () => {
                         <div className='AssessCard card2'>
                             <div className='AssessCardLeft'>
                                 <div className='iconIn'>
-                                    <Image src={selfAssess} alt="Self Assess<" />   
+                                    <Image src={assest_2} alt="Self Assess<" />   
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
@@ -66,7 +69,7 @@ const YourSelf = () => {
                         <div className='AssessCard card3'>
                             <div className='AssessCardLeft'>
                                 <div className='iconIn'>
-                                    <Image src={selfAssess} alt="Self Assess<" />   
+                                    <Image src={assest_1} alt="Self Assess<" />   
                                 </div>
                             </div>
                             <div className='AssessCardRight'>

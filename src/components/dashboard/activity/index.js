@@ -5,8 +5,8 @@ import './activity.scss'
 const Activity = () => {
     return(
         <div className='activity'>
-            <h2>Activities design for you</h2>
-            <p>Activities design for you</p>
+            <h2>Activities designed for you</h2>
+            <p>Learning activities to improve your mental and emotional being</p>
             <div className='activityInner'>
                 <div className='activityBox'>
                     <div class="video-container">

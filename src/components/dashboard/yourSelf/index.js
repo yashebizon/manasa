@@ -3,7 +3,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Image from 'next/image';
 import Link from 'next/link';
 import selfAssess from '../../../images/icon5.png'; 
-import assest_1 from '../../../images/assest-1.png'
+import assest_1 from '../../../images/assest-1.jpeg'
 import assest_2 from '../../../images/assest-2.png'
 
 import './yourSelf.scss'

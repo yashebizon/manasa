@@ -10,13 +10,15 @@ const TopCard = () => {
     return(
         <div className='TopCard'>
             <div className='TopCardBox box1'>
+            <Link href="questionnaire/1">
                 <div className='icon'>
                     <Image src={selfAssess} alt="Self Assess<" />
                 </div>
                 <div className='text'>Screening</div>
+            </Link>
             </div>
             <div className='TopCardBox box2'>
-            <Link href="guided-session">
+            <Link href="guided-session-chat">
                 <div className='icon'>
                     <Image src={wellnessActivity} alt="wellness Activity" />
                 </div>
@@ -32,10 +34,12 @@ const TopCard = () => {
             </Link>
             </div>
             <div className='TopCardBox box4'>
+            <Link href="mini-guide">
             <div className='icon'>
                     <Image src={miniGuide} alt="Mini Guide" />
                 </div>
                 <div className='text'>Mini Guide</div>
+            </Link>
             </div>
         </div>
     );

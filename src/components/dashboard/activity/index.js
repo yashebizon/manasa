@@ -6,7 +6,7 @@ const Activity = () => {
     return(
         <div className='activity'>
             <h2>Activities design for you</h2>
-            <p>activities design for you</p>
+            <p>Activities design for you</p>
             <div className='activityInner'>
                 <div className='activityBox'>
                     <div class="video-container">

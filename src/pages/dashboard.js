@@ -7,10 +7,11 @@ import Activity from '@/components/dashboard/activity';
 import '../app/globals.scss';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import MiniGuidCard from '../components/mini-guide/index';
+import MiniGuidCard, { DashboardMiniGuidCard } from '../components/mini-guide/index';
 import Image from 'next/image';
 import miniGuide from '../images/icon4.png'; 
 import { MiniGuideLinks } from '../constant/miniGuideSession';
+import { DashboardMiniGuideLinks } from '../constant/dashboardMiniGuide';
 import Loader from '../components/loader/loader'
 
 
@@ -29,6 +30,21 @@ const Dashboard = () => {
         />
       ))
     )
+}
+
+const renderDashboardMiniCard = () => {
+  return(
+    DashboardMiniGuideLinks.slice(0, 4).map((card, index) => (
+      <DashboardMiniGuidCard
+        key={index}
+        title={card.title}
+        time={card.time}
+        url={card.link}
+        heading={card.heading}
+        imgSrc={card.imgSrc}
+      />
+    ))
+  )
 }
 
 const renderMiniGuideList = () => {
@@ -50,6 +66,25 @@ const renderMiniGuideList = () => {
   )
 };
 
+const renderDashboardMiniGuideList = () => {
+  return(
+    <main className="miniGuideWrap">
+      <div className='miniGuideTop'>
+        <div className='lfIcon'>
+          <Image src={miniGuide} alt="Mini Guide" />
+        </div>
+        <div className='rlTitle'>
+          <h1>Learn more with Mini guide</h1>
+          <p>Self care made easy with podcast</p>
+        </div>
+      </div>
+      <ul className='miniGuideCard'>
+        {DashboardMiniGuideLinks ? renderDashboardMiniCard() : <Loader/>}
+      </ul>
+    </main>
+  )
+};
+
   return (
     <>
     <Header />
@@ -64,7 +99,7 @@ const renderMiniGuideList = () => {
           <Activity />
         </div>
         <div>
-          { renderMiniGuideList() }
+          { renderDashboardMiniGuideList() }
         </div>
       </Box>
     <Footer />

@@ -1,4 +1,4 @@
-export const MiniGuideLinks = [
+export const DashboardMiniGuideLinksMiniGuideLinks = [
     {
        link: "https://www.youtube.com/embed/Gwed919jYhw?si=QB_tWgNPax7VMDJ7",
        title: "The healing power of gratitude",

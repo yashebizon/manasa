@@ -40,7 +40,7 @@ export const DashboardMiniGuidCard = ({ url, title, time, heading, imgSrc }) => 
   return(
         <li>
           <div className='image'>
-            <Image src={`/../../../images/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
+            <Image src={`/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
           </div>
           <div className='rlContent'>
               <div className='rlContentLf'>

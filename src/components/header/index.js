@@ -1,18 +1,75 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Avatar } from '@mui/material';
 import './header.scss';
+import Modal from 'react-modal';
 import avatar from '../../images/gamer.png';
 import sosImg from '../../images/phone.png';
+import backAsset from '../../images/backAsset.png';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 const Header = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  let subtitle;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+
+  const renderModal = () => {
+    return( 
+        <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={openModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+        id='chatPopup'
+      >
+        <button className="closeBtn" onClick={closeModal}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-2.917 2.925q-.277.275-.704.275t-.704-.275q-.275-.275-.275-.7t.275-.7L10.6 12L7.675 9.108Q7.4 8.831 7.4 8.404t.275-.704q.275-.275.7-.275t.7.275L12 10.625L14.892 7.7q.277-.275.704-.275t.704.275q.3.3.3.713t-.3.687L13.375 12l2.925 2.917q.275.277.275.704t-.275.704q-.3.3-.712.3t-.688-.3z"/></svg>
+        </button>
+        <div className='imgWrap'>
+          <Image src={backAsset} alt="Mini Guide" />
+        </div>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Are you sure?</h2>
+        <p>You want to cancel this screening ?</p>
+        <div className='btnWrap'>
+          <Link href="/dashboard">Yes</Link>
+          <button onClick={closeModal}>No</button>
+        </div>
+      </Modal>
+    );
+  }
+
     return (
         <header className='headerBox'>
           <div className='lefSec'>
-            <button className='back'>
+            <button className='back' onClick={openModal}>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg>
             </button>
+              {renderModal()}
             <div>
               <h2>Hello Parth</h2>
               <p>Welcome to your safe space!</p>

@@ -19,19 +19,19 @@ const EmojiCard = () => {
           <h3>How are you feeling today?</h3>
           <div className='emojiCard'>
             <div className="emojiCardIn">
-              <div className="emojiBox" onClick={() => handleClick('Content 1')}>
+              <div className="emojiBox" onClick={() => handleClick('Sad')}>
                 <Image src={icon1}  alt='icon1' />
               </div>
-              <div className="emojiBox" onClick={() => handleClick('Content 2')}>
+              <div className="emojiBox" onClick={() => handleClick('Disappointed')}>
                 <Image src={icon2}  alt='icon1' />
               </div>
-              <div className="emojiBox" onClick={() => handleClick('Content 3')}>
+              <div className="emojiBox" onClick={() => handleClick('Angry')}>
                 <Image src={icon3}  alt='icon1' />
               </div>
-              <div className="emojiBox" onClick={() => handleClick('Content 4')}>
+              <div className="emojiBox" onClick={() => handleClick('Joyful')}>
                 <Image src={icon4}  alt='icon1' />
               </div>
-              <div className="emojiBox" onClick={() => handleClick('Content 5')}>
+              <div className="emojiBox" onClick={() => handleClick('Blessed')}>
                 <Image src={icon5}  alt='icon1' />
               </div>
             </div>

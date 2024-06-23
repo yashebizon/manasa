@@ -58,10 +58,9 @@ const Dashboard = () => {
         <div>
         <Image src={modalAsset} alt="Mini Guide" />
         </div>
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Thanks for your feedback!</h2>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Thank you for completing the screening.</h2>
         <button onClick={closeModal}>close</button>
-        <p>By making your voice heard, you help us</p>
-        <p>improve Feastify</p>
+        <p>Your response has been submitted to your counselor.</p>
         <button>Go home</button>
       </Modal>
     );

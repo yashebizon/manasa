@@ -49,14 +49,14 @@ const ChatComponent = () => {
           <li className='light'>
             Tap on suggested question, or ask your own
           </li>
-          <li onClick={(e) => setInput('What can I do to challenge my worries?')}>
-            What can I do to challenge my worries?
+          <li onClick={(e) => setInput('I am feeling stressed about my exams.')}>
+            I am feeling stressed about my exams. 
           </li>
-          <li onClick={(e) => setInput('How do I know if my worries are true?')}>
-            How do I know if my worries are true?
+          <li onClick={(e) => setInput('I feel anxious when I talk to people.')}>
+            I feel anxious when I talk to people. 
           </li>
-          <li onClick={(e) => setInput('How can I challenge my worries?')}>
-            How can I challenge my worries?
+          <li onClick={(e) => setInput('I have been feeling down lately.')}>
+            I have been feeling down lately.
           </li>
         </ul>
     )

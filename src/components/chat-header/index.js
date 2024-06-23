@@ -163,7 +163,7 @@ const Header = () => {
               {renderAvatarModal()}
             <div className='userIcon' onClick={openAvatarModal}></div>
             <div className='userWrap'>
-              <div className='userText'>Test User</div>
+              <div className='userText'>Yoda AI</div>
               <div className='userActive'>Acive now</div>
             </div>
           </div>

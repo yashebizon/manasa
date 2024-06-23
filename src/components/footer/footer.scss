@@ -4,11 +4,13 @@
 .footer {
   background: #eee;
   position: fixed;
-  left: 0;
-  right: 0;
+  left: 8px;
+  right: 8px;
   bottom: 0;
-  padding: 8px 10px;
-  border-top: 1px solid #ccc;
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  margin-bottom: 10px;
   ul {
     display: flex;
     justify-content: space-between;
@@ -18,7 +20,7 @@
         flex-direction: column;
         align-items: center;
         width: 60px;  
-        svg {
+        svg, img {
           width: 25px;
         }  
       }

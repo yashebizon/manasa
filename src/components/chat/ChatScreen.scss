@@ -107,8 +107,7 @@
       max-width: 65%;
     }
   }
-  .user-response {
-    span {
+  .user-response span, li.light {
       &::after {
         content: "";
         width: 35px;
@@ -120,7 +119,12 @@
         position: absolute;
         left: 10px;
         top: 13px;
-      }
+    }
+  }
+  li.light {
+    position: relative;
+    &::after {
+      left: -42px;
     }
   }
   .chatBoxSuggestion {

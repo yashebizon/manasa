@@ -38,7 +38,7 @@ const MiniGuidCard = ({ url, title, time, heading }) => {
 
 export const DashboardMiniGuidCard = ({ url, title, time, heading, imgSrc }) => {
   return(
-        <li>
+        <li onClick={() => console.log('hello yash')}>
           <div className='image'>
             <Image src={`/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
           </div>

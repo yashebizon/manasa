@@ -33,3 +33,54 @@
         }
     }
 }
+#chatPopup {
+  max-width: 92%;
+  width: 400%;
+  border-radius: 15px !important;
+  text-align: center;
+  padding: 0 !important;
+  .imgWrap {
+    background-color: #ed9cbd;
+    margin-bottom: 20px;
+    padding: 20px;
+    img {
+      margin: 0 auto;
+    }    
+  }
+  button.closeBtn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: #e6576f;
+      background: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+          color: inherit;
+          width: 38px;
+          height: auto;      
+      }
+  }
+  .btnWrap {
+      margin: 20px 0;
+      a, button {
+          background: #e6576f;
+          color: #fff;
+          display: inline-block;
+          padding: 6px 35px;
+          font-weight: 500;
+          margin: 0 10px;
+          border-radius: 8px;
+          font-size: 16px;
+          border: none;
+      }
+      button {
+        background: #f8ebef;
+        color: #e6576f;
+      }
+  }
+}

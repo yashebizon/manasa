@@ -316,3 +316,7 @@ div#qsnModal {
     pointer-events: none; /* Disable pointer events to hide play button */
   }
 }
+
+.ReactModal__Overlay {
+  z-index: 9;
+}

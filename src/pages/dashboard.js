@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const renderMiniCard = () => {
     return(
-       MiniGuideLinks.map((card, index) => (
+      MiniGuideLinks.slice(0, 4).map((card, index) => (
         <MiniGuidCard
           key={index}
           title={card.title}
@@ -53,7 +53,6 @@ const renderMiniGuideList = () => {
   return (
     <>
     <Header />
-    <Container>
       <Box className="dashboardWrap">
         <div className='boxDasTop'>
           <TopCard />
@@ -68,7 +67,6 @@ const renderMiniGuideList = () => {
           { renderMiniGuideList() }
         </div>
       </Box>
-    </Container>
     <Footer />
     </>
   );

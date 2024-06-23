@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import GuidedChatComponent from '@/components/guided-session-chat/GuidedChatScreen';
-import Header from '@/components/header';
+import Header from '@/components/chat-header';
 
 const Chat = () => {
     return (

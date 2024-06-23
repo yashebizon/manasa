@@ -80,34 +80,6 @@
   }
 }
 
-// .boxDas3 {
-//   border: 1px solid #bbb;
-//   padding: 20px;
-//   background: #d4f4d5;
-//   border-radius: 25px;
-//   .radioGroup label {
-//     border: 1px solid #ddd;
-//     width: 100%;
-//     background: #fff;
-//     border-radius: 14px;
-//     margin: 6px 0;
-//   }
-// }
-
-// .boxDas4 {
-//   border: 1px solid #bbb;
-//   padding: 20px;
-//   background: #f3efcc;
-//   border-radius: 25px;
-//   .radioGroup label {
-//     border: 1px solid #ddd;
-//     width: 100%;
-//     background: #fff;
-//     border-radius: 14px;
-//     margin: 6px 0;
-//   }
-// }
-
 .mobileStepperWrap {
   position: absolute;
   top: 13px;
@@ -119,16 +91,43 @@
 .dashboardWrap {
   margin-top: 105px;
   padding-bottom: 75px;
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  main.miniGuideWrap {
+    padding: 0 0 20px;
+    margin-top: 0;
+  }
+  .boxDasActivity {
+      border-bottom: 1px dashed #555;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+  }
   h1 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 30px;
+    font-family: inherit;
+    text-align: center;
+    font-weight: 600;
+  }
+  .submitBtn {
+    text-align: center;
+    margin-top: 40px;
+    button {
+      border: 2px solid #73d896;
+      color: #73d896;
+      padding: 8px 22px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 18px;
+    }
   }
 }
 
 .boxDas {
   &Top {
     border-bottom: 1px dashed #555;
-    margin: 0 -14px;
+    margin: 0 -10px;
     padding: 0 5px 25px;
     margin-bottom: 20px;
   }
@@ -176,6 +175,7 @@ main.miniGuideWrap {
       h1 {
           font-size: 18px;
           font-weight: 600;
+          margin-bottom: 0;
       }
       .rlTitle p {
         font-size: 15px;
@@ -265,4 +265,54 @@ main.miniGuideWrap {
         }
       }
     }
+}
+
+div#qsnModal {
+  max-width: 92%;
+  border-radius: 15px !important;
+  text-align: center;
+  .imagWrap {
+    margin-bottom: 20px;
+    img {
+      margin: 0 auto;
+    }    
+  }
+  button.closeBtn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      svg {
+          color: #333;
+          width: 38px;
+          height: auto;      
+      }
+  }
+  button.goHome {
+      background: #295ddf;
+      color: #fff;
+      padding: 8px 30px;
+      border-radius: 20px;
+      border: none;
+      margin-top: 15px;
+      font-weight: 500;
+  }
+  h2 {
+      margin-bottom: 10px;
+      font-weight: 500;
+  }
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    pointer-events: none; /* Disable pointer events to hide play button */
+  }
 }

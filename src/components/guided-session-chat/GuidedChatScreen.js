@@ -5,10 +5,9 @@ import { Box, Button, TextField, Typography, Paper, List, ListItem, ListItemText
 import axios from 'axios';
 import './GuidedChatScreen.scss';
 import isEmpty from 'lodash/isEmpty';
-import Loader from '../../components/loader/loader';
-import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image';
 import img from '../../images/img2.jpg';
+import Link from 'next/link';
 
 const GuidedChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -51,9 +50,9 @@ const GuidedChatComponent = () => {
   const renderSubmitForm = () => {
     return(
       <div className='chatBoxBtn'>
+        <div className='chatBoxBtnInner'>
           <button className='closeBtn' onClick={() => resetInput()}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-2.9 2.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l2.9-2.9l-2.9-2.875q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l2.9 2.9l2.875-2.9q.275-.275.7-.275t.7.275q.3.3.3.713t-.3.687L13.375 12l2.9 2.9q.275.275.275.7t-.275.7q-.3.3-.712.3t-.688-.3z"/></svg>
-        </button>
+          </button>
         <TextField
           InputProps={{
             placeholder: 'Enter your message here...',
@@ -63,9 +62,10 @@ const GuidedChatComponent = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           sx={{ mr: 1 }} />
-        <button onClick={handleSend} className='sendBtn'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"/></svg>
-        </button>
+          <button onClick={handleSend} className='sendBtn'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"/></svg>
+          </button>
+        </div>
       </div>
     );
 }
@@ -118,18 +118,20 @@ const GuidedChatComponent = () => {
                           Guided Session
                         </li>
                         <li onClick={(e) => setInput('What can I do to challenge my worries?')}>
-                          What can I do to challenge my worries?
+                          For an explanation on how to make the most out of this session, tap on the card below
                         </li>
                         <li className='cardBox' onClick={(e) => setInput('How do I know if my worries are true?')}>
                           <div className='card'>
+                            <Link href="guided-session">
                             <Image src={img} alt='img' />
+                            </Link>
                             <div className='cardText'>
                               Intro to guided session
                             </div>
                           </div>
                         </li>
                         <li onClick={(e) => setInput('How can I challenge my worries?')}>
-                          How can I challenge my worries?
+                          Im here to help you work through a challenge or issue. What would you like to talk about today ? 
                         </li>
                       </ul>
                   )}

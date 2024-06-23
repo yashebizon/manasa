@@ -30,7 +30,7 @@ const GuidedSession = () => {
 
     useEffect(() => {
         if (step === 4) {
-            router.push('/dashboard');
+            router.push('/guided-session-chat');
         }
     }, [step]);
 

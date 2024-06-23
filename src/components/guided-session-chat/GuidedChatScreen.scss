@@ -6,48 +6,60 @@
       position: relative;
     }
     &Btn {
-      display: flex;
       position: fixed;
       background: #fff;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 15px 15px 25px;
+      padding: 15px 15px 20px;
       [type='text'] {
         background-color: #e8ebf4;
-        border-radius: 12px;
-        height: 40px;
+        border-radius: 30px;
+        height: 50px;
         box-sizing: border-box;
+        padding-left: 65px;
       }
       fieldset {
         border: none;
-      }
-      .closeBtn {
-          border-radius: 50%;
-          background: #50557d;
-          color: #fff;
-          min-width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 8px;
-          svg {
-            width: 40px;
-          }
       }
       .sendBtn {
         background-color: #e8ebf4;
         border-radius: 50%;
         border: none; 
-        color: #aaa;
+        color: #000;
         display: flex;
         align-items: center;
         justify-content: center;
         min-width: 40px;
-        height: 40px;
+        height: 35px;
         svg {
+          width: 30px;
+          margin-top: 8px;
+        }
+      }
+      &Inner {
+        display: flex;
+        position: relative;
+        .closeBtn {
+          background-image: url(../../images/close.png);
+          background-size: 100%;
+          background-repeat: no-repeat;
+          min-width: 25px;
           width: 25px;
+          height: 25px;
+          position: absolute;
+          left: 20px;
+          top: 13px;
+          z-index: 1;
+        }
+        .sendBtn {
+          position: absolute;
+          right: 8px;
+          top: 4px;
+          z-index: 1;
+        }
+        > div {
+          margin-right: 0;
         }
       }
     }  
@@ -61,6 +73,7 @@
         color: #000;
         padding: 8px 15px;
         border-radius: 10px;
+        font-size: 13.5px;
         &.cardBox {
           background: transparent;
           padding: 0;

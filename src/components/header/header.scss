@@ -1,13 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.header {
+.headerBox {
     display: flex;
     align-items: center;
     border-bottom: 1px dashed #555;
     margin: 0 0 25px;
     padding: 15px 15px 15px;
-    background: #eee;
+    background: #fbfbfb;
     position: fixed;
     left: 0;
     right: 0;
@@ -15,8 +15,14 @@
     z-index: 9;
     .lefSec {
       margin-right: auto;
+      display: flex;
       h2 {
         font-weight: 600;
+      }
+      .back {
+        svg {
+          width: 25px;
+        }
       }
     }
     .rightSec {

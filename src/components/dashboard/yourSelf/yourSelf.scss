@@ -35,6 +35,9 @@
       right: 0;
       left: unset;
   }
+  .splide__slide {
+    display: flex;
+  }
   .AssessCard {
     display: flex;
     align-items: center;
@@ -42,6 +45,7 @@
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 20px;
+    height: 100%;
     &.card2 {
       background: #dcedf9;
     }
@@ -61,6 +65,9 @@
             font-weight: 600;
             line-height: 1.2;
             margin-bottom: 10px;
+        }
+        p {
+          font-size: 15px;
         }
     }
   }

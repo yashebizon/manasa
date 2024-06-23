@@ -1,10 +1,6 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
 import '../../app/globals.scss';
-import miniGuide from '../../images/icon4.png'; 
-import img from '../../images/img.jpg';
-import img2 from '../../images/img2.jpg';
 
 const MiniGuidCard = ({ url, title, time, heading }) => {
     return(

@@ -86,7 +86,7 @@ const GuidedChatComponent = () => {
             <ListItemText
               primary={
                 <Typography variant="body1" component="span">
-                  <strong>{msg.sender === 'user' ? 'Parth' : 'Manoveda AI'}:</strong> 
+                  <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong> 
                     {(loading && msg.sender !== 'user') ? msg.text : msg.text}
                 </Typography>
               }

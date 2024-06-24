@@ -65,7 +65,7 @@ const Dashboard = () => {
           </div>
           <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Thank you for completing the screening.</h2>
           <p>Your response has been submitted to your counselor.</p>
-          <button className='goHome'>Go home</button>
+          <button className='goHome' onClick={() => router.push('/dashboard')}>Go home</button>
       </Modal>
     );
   }
@@ -115,7 +115,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Header />
+      <Header showBackButton={true}/>
       <Box sx={{ my: 4 }} className="dashboardWrap">
         <Typography variant="h4" component="h1" gutterBottom>
           { pageTitle }

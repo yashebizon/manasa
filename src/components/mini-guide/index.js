@@ -1,13 +1,24 @@
 "use client";
-import React from 'react';
+import React, { useState } from "react";
 import '../../app/globals.scss';
 import Image from 'next/image';
 
-const MiniGuidCard = ({ url, title, time, heading }) => {
+const MiniGuidCard = ({ url, title, time, heading, imgSrc }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpenPopup = () => {
+      setIsOpen(true);
+    };
+
+    const handleClosePopup = () => {
+      setIsOpen(false);
+    };
+
     return(
           <li>
-            <div className='image'>
-                <iframe 
+            <div className='image'  onClick={handleOpenPopup}>
+              <Image src={`/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
+                {/* <iframe 
                   width="280" 
                   height="157" 
                   src={url} 
@@ -16,7 +27,7 @@ const MiniGuidCard = ({ url, title, time, heading }) => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerpolicy="strict-origin-when-cross-origin" 
                   allowfullscreen>
-                </iframe>
+                </iframe> */}
             </div>
             <div className='rlContent'>
                 <div className='rlContentLf'>
@@ -31,6 +42,26 @@ const MiniGuidCard = ({ url, title, time, heading }) => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m10.65 15.75l4.875-3.125q.35-.225.35-.625t-.35-.625L10.65 8.25q-.375-.25-.763-.038t-.387.663v6.25q0 .45.388.663t.762-.038M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg>
                 </div>
             </div>
+            {isOpen && (
+              <div className="popupVid">
+                <div className="popup-inner">
+                  <button className="close-btn" onClick={handleClosePopup}>
+                    Close
+                  </button>
+                  <div className="videoContainer">
+                    <iframe
+                      width="560"
+                      height="315"
+                      src={url} 
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            )}
           </li>
     )
 };

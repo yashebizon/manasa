@@ -87,7 +87,7 @@ const renderDashboardMiniGuideList = () => {
 
   return (
     <>
-    <Header />
+    <Header showBackButton={false}/>
       <Box className="dashboardWrap">
         <div className='boxDasTop'>
           <TopCard />

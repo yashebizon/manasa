@@ -20,6 +20,7 @@ const MiniGuide = () => {
             time={card.time}
             url={card.link}
             heading={card.heading}
+            imgSrc={card.imgSrc}
           />
         ))
       )
@@ -27,7 +28,7 @@ const MiniGuide = () => {
 
   return (
     <>
-    <Header />
+    <Header showBackButton={true}/>
       <main className="miniGuideWrap">
         <div className='miniGuideTop'>
           <div className='lfIcon'>

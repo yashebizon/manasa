@@ -29,7 +29,7 @@ const ChatComponent = () => {
         input_message: input,
         chatHistory: messages,
         mode: mode,
-        user_id: "c01e4416-4550-4974-9ea7-1bebcc3fb1c0"
+        user_id: "0a1d9121-1c30-486a-b934-a84cb5f1d9eb"
       });
 
       console.log('yanu11', response);

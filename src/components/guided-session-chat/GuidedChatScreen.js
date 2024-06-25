@@ -12,7 +12,7 @@ import Link from 'next/link';
 const GuidedChatComponent = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [mode, setMode] = useState('Chat');
+  const [mode, setMode] = useState('practice');
   const [preselectQuestion, setPreselectQuestion] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [loading, isLoading] = useState(false);
@@ -30,6 +30,7 @@ const GuidedChatComponent = () => {
         prompt: input,
         chatHistory: messages,
         mode: mode,
+        user_id: "c01e4416-4550-4974-9ea7-1bebcc3fb1c0"
       });
 
       console.log('yanu11', response);

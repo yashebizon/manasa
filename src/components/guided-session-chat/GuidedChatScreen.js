@@ -26,7 +26,7 @@ const GuidedChatComponent = () => {
     isLoading(true);
 
     try {
-      const response = await axios.post('/api/guided-chat-yash', {
+      const response = await axios.post('/api/practice', {
         prompt: input,
         chatHistory: messages,
         mode: mode,

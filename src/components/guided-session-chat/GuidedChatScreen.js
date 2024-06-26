@@ -30,7 +30,7 @@ const GuidedChatComponent = () => {
         prompt: input,
         chatHistory: messages,
         mode: mode,
-        user_id: "eeb6bd9e-f60d-4375-9c96-5a02f73adeb8"
+        user_id: "4becb553-88b1-4bca-8836-fd29bdbefda4"
       });
 
       console.log('yanu11', response);

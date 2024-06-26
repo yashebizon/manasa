@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -7,6 +8,7 @@ import './ChatScreen.scss'
 import isEmpty from 'lodash/isEmpty';
 import Loader from '../../components/loader/loader';
 import CircularProgress from '@mui/material/CircularProgress';
+import ReactMarkdown from 'react-markdown';
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -29,7 +31,7 @@ const ChatComponent = () => {
         input_message: input,
         chatHistory: messages,
         mode: mode,
-        user_id: "eeb6bd9e-f60d-4375-9c96-5a02f73adeb8"
+        user_id: "4becb553-88b1-4bca-8836-fd29bdbefda4"
       });
 
       console.log('yanu11', response);
@@ -44,23 +46,23 @@ const ChatComponent = () => {
   };
 
   const renderStaticQuestions = () => {
-    return(
+    return (
       isVisible && (
         <ul className='chatBoxSuggestion'>
           <li className='light'>
             Tap on suggested question, or ask your own
           </li>
           <li onClick={(e) => setInput('I am feeling stressed about my exams.')}>
-            I am feeling stressed about my exams. 
+            I am feeling stressed about my exams.
           </li>
           <li onClick={(e) => setInput('I feel anxious when I talk to people.')}>
-            I feel anxious when I talk to people. 
+            I feel anxious when I talk to people.
           </li>
           <li onClick={(e) => setInput('I have been feeling down lately.')}>
             I have been feeling down lately.
           </li>
         </ul>
-    )
+      )
     );
   }
 
@@ -69,31 +71,31 @@ const ChatComponent = () => {
   }
 
   const renderSubmitForm = () => {
-        return(
-          <div className='chatBoxBtn'>
-            <div className='chatBoxBtnInner'>
-              <button className='closeBtn' onClick={() => resetInput()}>                
-              </button>
-              <TextField
-                  InputProps={{
-                    placeholder: 'Enter your message here...',
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  sx={{ mr: 1 }} />
-                <button onClick={handleSend} className='sendBtn'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"/></svg>
-                </button>
-            </div>
-          </div>
-        );
+    return (
+      <div className='chatBoxBtn'>
+        <div className='chatBoxBtnInner'>
+          <button className='closeBtn' onClick={() => resetInput()}>
+          </button>
+          <TextField
+            InputProps={{
+              placeholder: 'Enter your message here...',
+            }}
+            variant="outlined"
+            fullWidth
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            sx={{ mr: 1 }} />
+          <button onClick={handleSend} className='sendBtn'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z" /></svg>
+          </button>
+        </div>
+      </div>
+    );
   }
 
   const renderChat = () => {
-    return(
-        <List>
+    return (
+      <List>
         {messages.map((msg, index) => (
           <ListItem
             key={index}
@@ -107,35 +109,37 @@ const ChatComponent = () => {
             <ListItemText
               primary={
                 <Typography variant="body1" component="span">
-                  <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong> 
-                  {(loading && msg.sender !== 'user') ? msg.text : msg.text}
+                  <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
+
+                  {(loading && msg.sender !== 'user') ? <ReactMarkdown children={msg.text} /> : <ReactMarkdown children={msg.text} />}
                 </Typography>
               }
+              sx={{ whiteSpace: 'pre-wrap' }}
             />
           </ListItem>
         ))}
-        </List> 
+      </List>
     )
   }
 
   useEffect(() => {
 
-    if(!isEmpty(messages)){
+    if (!isEmpty(messages)) {
       setIsVisible(false);
     } else {
       setIsVisible(true);
     }
-  }, [messages]); 
+  }, [messages]);
 
   return (
 
-          <div className='chatBoxWrap'>
-              <div className='chatBox'>
-                  { renderChat() }
-                  { renderStaticQuestions() }
-              </div>
-                  { renderSubmitForm() }
-          </div>
+    <div className='chatBoxWrap'>
+      <div className='chatBox'>
+        {renderChat()}
+        {renderStaticQuestions()}
+      </div>
+      {renderSubmitForm()}
+    </div>
   );
 };
 

@@ -27,7 +27,7 @@ const GuidedChatComponent = () => {
 
     try {
       const response = await axios.post('/api/chat', {
-        prompt: input,
+        input_message: input,
         chatHistory: messages,
         mode: mode,
         user_id: "4becb553-88b1-4bca-8836-fd29bdbefda4"

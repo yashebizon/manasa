@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -8,15 +7,16 @@ import './ChatScreen.scss'
 import isEmpty from 'lodash/isEmpty';
 import Loader from '../../components/loader/loader';
 import CircularProgress from '@mui/material/CircularProgress';
-import ReactMarkdown from 'react-markdown';
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
+  const [userId, setUserId] = useState(null);
   const [input, setInput] = useState('');
   const [mode, setMode] = useState('Chat');
   const [preselectQuestion, setPreselectQuestion] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [loading, isLoading] = useState(false);
+
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -31,7 +31,7 @@ const ChatComponent = () => {
         input_message: input,
         chatHistory: messages,
         mode: mode,
-        user_id: "4becb553-88b1-4bca-8836-fd29bdbefda4"
+        user_id: userId
       });
 
       console.log('yanu11', response);
@@ -110,17 +110,36 @@ const ChatComponent = () => {
               primary={
                 <Typography variant="body1" component="span">
                   <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
-
-                  {(loading && msg.sender !== 'user') ? <ReactMarkdown children={msg.text} /> : <ReactMarkdown children={msg.text} />}
+                  {(loading && msg.sender !== 'user') ? msg.text : msg.text}
                 </Typography>
               }
-              sx={{ whiteSpace: 'pre-wrap' }}
             />
           </ListItem>
         ))}
       </List>
     )
   }
+  const generateSession = async () => {
+    try {
+      let userId = localStorage.getItem('userId');
+      if (!userId) {
+        const response = await axios.get('/api/create_session');
+        userId = response.data.user_id;
+        localStorage.setItem('userId', userId);
+
+      }
+      console.log("userId: ", userId);
+      setUserId(userId);
+
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+  useEffect(() => {
+    generateSession();
+
+  }, []);
 
   useEffect(() => {
 

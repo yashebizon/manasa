@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -7,6 +8,8 @@ import './ChatScreen.scss'
 import isEmpty from 'lodash/isEmpty';
 import Loader from '../../components/loader/loader';
 import CircularProgress from '@mui/material/CircularProgress';
+import ReactMarkdown from 'react-markdown';
+
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -110,9 +113,10 @@ const ChatComponent = () => {
               primary={
                 <Typography variant="body1" component="span">
                   <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
-                  {(loading && msg.sender !== 'user') ? msg.text : msg.text}
+                  {(loading && msg.sender !== 'user') ? <ReactMarkdown children={msg.text} /> : <ReactMarkdown children={msg.text} />}
                 </Typography>
               }
+              sx={{ whiteSpace: 'pre-wrap' }}
             />
           </ListItem>
         ))}

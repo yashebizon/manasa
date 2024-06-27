@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -8,6 +9,7 @@ import isEmpty from 'lodash/isEmpty';
 import Image from 'next/image';
 import img from '../../images/img2.jpg';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 
 const GuidedChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -113,8 +115,7 @@ const GuidedChatComponent = () => {
               primary={
                 <Typography variant="body1" component="span">
                   <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
-                  {(loading && msg.sender !== 'user') ? msg.text : msg.text}
-                </Typography>
+                  {(loading && msg.sender !== 'user') ? <ReactMarkdown children={msg.text} /> : <ReactMarkdown children={msg.text} />}                </Typography>
               }
             />
           </ListItem>

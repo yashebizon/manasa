@@ -21,7 +21,7 @@
 }
 .labelTitle {
   color: #000 !important;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-weight: 700;
   font-size: 18px;
   font-family: inherit;
@@ -35,6 +35,9 @@
   // background: #dcedf9;
   border-radius: 25px;
   margin-bottom: 20px;
+  > div {
+    width: 100%;
+  }
   .radioGroup label {
     border: 1px solid #ddd;
     width: 100%;
@@ -65,8 +68,8 @@
   }
   .countBox {
       position: absolute;
-      right: 0;
-      top: 0;
+      right: -5px;
+      top: -5px;
       border: 1px solid #333;
       border-radius: 50%;
       width: 45px;

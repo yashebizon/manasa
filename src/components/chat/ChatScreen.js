@@ -149,6 +149,7 @@ const ChatComponent = () => {
     )
   }
   const renderFormattedText = (text) => {
+    text = "\n" + text;
     let html = text.split('\n').map((line, index) => (
       <React.Fragment key={index}>
         {line.split('**').map((part, idx) => (
@@ -157,7 +158,6 @@ const ChatComponent = () => {
         <br /> {/* Render <br> for new lines */}
       </React.Fragment>
     ));
-    console.log(html);
     return html;
   };
   const generateSession = async () => {

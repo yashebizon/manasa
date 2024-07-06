@@ -165,6 +165,7 @@ const GuidedChatComponent = () => {
     )
   }
   const renderFormattedText = (text) => {
+    text = "\n" + text;
     let html = text.split('\n').map((line, index) => (
       <React.Fragment key={index}>
         {line.split('**').map((part, idx) => (

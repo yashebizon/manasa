@@ -12,7 +12,9 @@ import Image from 'next/image';
 import EmojiCard from '@/components/emoji-card';
 import withAuth from '@/components/auth/WithAuth';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next';
+import { toast } from 'react-hot-toast';
+
 
 const customStyles = {
   content: {
@@ -33,10 +35,16 @@ const Dashboard = () => {
   const [questions, setQuestions] = useState(null);
   const [pageTitle, setPageTitle] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [overallCount, setOverallCount] = useState(0);
+  const [lastSelectedIndex, setLastSelectedIndex] = useState(null);
+
 
   function openModal() {
-    setIsOpen(true);
-  }
+    if(overallCount === 25){
+       return setIsOpen(true);
+    }
+    toast.error('Please fill all responses to sumbit !!');
+    return null;  }
 
   function closeModal() {
     setIsOpen(false);
@@ -47,6 +55,13 @@ const Dashboard = () => {
   function afterOpenModal() {
     subtitle.style.color = '#f00';
   }
+
+  const handleRadioSelect = (index) => {
+    if (index !== lastSelectedIndex) {
+        setLastSelectedIndex(index);
+        setOverallCount(prevCount => prevCount + 1);
+    }
+};
 
   const renderModal = () => {
     return( 
@@ -124,7 +139,13 @@ const Dashboard = () => {
         </div>
         <div className='boxDasBox'>
             {questions.map((question, index) => (
-              <Card key={index} question={question} indx={index} countTotal={countTotal} />
+              <Card 
+              key={index} 
+              question={question} 
+              indx={index} 
+              countTotal={countTotal}                     
+              onRadioSelect={handleRadioSelect}
+              />
             ))}
         </div>
         <div className='submitBtn'>

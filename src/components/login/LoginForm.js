@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import fetchMutation from '../../util/request/fetchMutation';
+import fetchMutation,  {fetchUrlEncodedMutation} from '../../util/request/fetchMutation';
 import Loader from '../loader/loader'
 import { useRouter } from 'next/router';
 import { redirect } from 'next/navigation'
@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import './LoginForm.scss'
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
+import Cookies from 'universal-cookie';
+
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({});
@@ -34,14 +36,34 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const cookies = new Cookies();
     if (validateForm()) {
     setLoading(true);
     try {
-        const response = await fetchMutation('https://cf3434c2dd4147a7a251da22de5fab53.api.mockbin.io/', { data: formData });
-        console.log(response); // Log the response from the API
-        setAuthenticated(true);
+        const response = await fetchUrlEncodedMutation('/api/login', formData);
+        const {data, status, error, errors
+        } = response;
+        if(status && status === 200){
+          toast.success('Logged in Successfully');
+          const { jwtToken } = data;
+          cookies.set('userToken', jwtToken);
+          setAuthenticated(true);
+        }
+        else if(error) {
+            const {message} = error;
+            toast.error(message);
+        }
+        else if(errors){
+            const errObj = errors[0];
+            const { msg } = errObj;
+            toast.error(msg);
+        }
+        else{
+            toast.error('Something went wrong!');
+        }
     } catch (error) {
-        console.error('There was an error!', error);
+        toast.error('There was an error, please try again after sometime !');
+
     } finally {
         setTimeout(() => {
             setLoading(false);

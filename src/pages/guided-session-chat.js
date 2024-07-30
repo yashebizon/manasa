@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import GuidedChatComponent from '@/components/guided-session-chat/GuidedChatScreen';
 import Header from '@/components/chat-header';
+import withAuth from '@/components/auth/WithAuth';
 
 const Chat = () => {
     return (
         <div>
-          <Header />
+          <Header/>
           <Head>
             <title>Mental Health Chatbot</title>
             <meta name="description" content="Chat with GPT using Next.js and Material-UI" />

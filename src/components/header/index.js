@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import avatar from '../../images/gamer.png';
 import sosImg from '../../images/phone.png';
 import backAsset from '../../images/backAsset.png';
+import { useTranslation } from 'next-i18next'
 
 const customStyles = {
   content: {
@@ -20,6 +21,7 @@ const customStyles = {
 };
 
 const Header = ({ showBackButton }) => {
+  const { t } = useTranslation()
   const [modalIsOpen, setIsOpen] = useState(false);
   let subtitle;
 
@@ -64,11 +66,11 @@ const Header = ({ showBackButton }) => {
         <div className='imgWrap'>
           <Image src={backAsset} alt="Mini Guide" />
         </div>
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Are you sure?</h2>
-        <p>You want to cancel this screening ?</p>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{t("Are you sure?")}</h2>
+        <p>{t("You want to cancel this screening ?")}</p>
         <div className='btnWrap'>
-          <Link href="/dashboard">Yes</Link>
-          <button onClick={closeModal}>No</button>
+          <Link href="/dashboard">{t('Yes')}</Link>
+          <button onClick={closeModal}>{t('No')}</button>
         </div>
       </Modal>
     );
@@ -80,8 +82,8 @@ const Header = ({ showBackButton }) => {
               { renderBackButton() }
               {renderModal()}
             <div>
-              <h2>Hello Parth</h2>
-              <p>Welcome to your safe space!</p>
+              <h2>{t("Hello Parth")}</h2>
+              <p>{t("Welcome to your safe space!")}</p>
             </div>
           </div>
           <div className='rightSec'>
@@ -96,5 +98,6 @@ const Header = ({ showBackButton }) => {
         </header>
     );
   };
+  
   
   export default Header;

@@ -4,7 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import selfAssess from '../../../images/icon5.png'; 
 import assest_1 from '../../../images/assest-1.jpeg'
-import assest_2 from '../../../images/assest-2.png'
+import assest_2 from '../../../images/assest-2.png';
+import { useTranslation } from 'next-i18next';
+
 
 import './yourSelf.scss'
 // Default theme
@@ -18,6 +20,8 @@ import '@splidejs/react-splide/css/core';
 
 
 const YourSelf = () => {
+    const { t } = useTranslation()
+
     return(
         <div className='yourSelf'>
             <div className='yourSelfInner'>
@@ -25,8 +29,8 @@ const YourSelf = () => {
                     <Image src={selfAssess} alt="Self Assess<" />
                 </div>
                 <div className='yourSelfWrap'>
-                    <h2>General Screening Module</h2>
-                    <p>Pre screening for self reflection</p>
+                    <h2>{t("General Screening Module")}</h2>
+                    <p>{t("Pre screening for self reflection")}</p>
                 </div>
             </div>
             <Splide aria-label="My Favorite Images"   
@@ -43,8 +47,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>General Initial Screening</h3>
-                                <p>Next few questions will help to ascertain more about your mental well being.</p>
+                                <h3>{t("General Initial Screening")}</h3>
+                                <p>{t("Next few questions will help to ascertain more about your mental well being.")}</p>
                             </div>
                         </div>
                     </Link>
@@ -58,8 +62,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Strength Weaknesses Screening</h3>
-                                <p>Next few questions will help to conduct a screening of your overall strength and weaknesses and help your counselor help you better.</p>
+                                <h3>{t("Strength Weaknesses Screening")}</h3>
+                                <p>{t("Next few questions will help to conduct a screening of your overall strength and weaknesses and help your counselor help you better.")}</p>
                             </div>
                         </div>
                     </Link>
@@ -73,8 +77,8 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>Peer Parents Screening</h3>
-                                <p>Next few questions will help to assess an initial impact of the influence of your peers and parents on your mental wellbeing.</p>
+                                <h3>{t("Peer Parents Screening")}</h3>
+                                <p>{t("Next few questions will help to assess an initial impact of the influence of your peers and parents on your mental wellbeing.")}</p>
                             </div>
                         </div>
                     </Link>

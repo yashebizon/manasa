@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import ChatScreen from '../components/chat/ChatScreen';
 import Header from '@/components/chat-header';
+import withAuth from '@/components/auth/WithAuth';
 
 const Chat = () => {
     return (

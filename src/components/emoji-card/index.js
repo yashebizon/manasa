@@ -6,8 +6,10 @@ import icon2 from '../../images/emoji/icon2.png';
 import icon3 from '../../images/emoji/icon3.png';
 import icon4 from '../../images/emoji/icon4.png';
 import icon5 from '../../images/emoji/icon5.png';
+import { useTranslation } from 'next-i18next'
 
 const EmojiCard = () => {
+  const { t } = useTranslation()
   const [text, setText] = useState('');
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -18,7 +20,7 @@ const EmojiCard = () => {
 
   return (
     <div className='emojiCardWrap'>
-      <h3>How are you feeling today?</h3>
+      <h3>{t('How are you feeling today?')}</h3>
       <div className='emojiCard'>
         <div className='emojiCardIn'>
           <div
@@ -52,7 +54,7 @@ const EmojiCard = () => {
             <Image src={icon5} alt='icon5' />
           </div>
         </div>
-        <div className='emojiText'>{text}</div>
+        <div className='emojiText'>{t(text)}</div>
       </div>
     </div>
   );

@@ -12,11 +12,14 @@ import Image from 'next/image';
 import miniGuide from '../images/icon4.png'; 
 import { MiniGuideLinks } from '../constant/miniGuideSession';
 import { DashboardMiniGuideLinks } from '../constant/dashboardMiniGuide';
-import Loader from '../components/loader/loader'
+import Loader from '../components/loader/loader';
+import withAuth from '@/components/auth/WithAuth';
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 
 const Dashboard = () => {
-
+  const { t } = useTranslation()
 
   const renderMiniCard = () => {
     return(
@@ -74,8 +77,8 @@ const renderDashboardMiniGuideList = () => {
           <Image src={miniGuide} alt="Mini Guide" />
         </div>
         <div className='rlTitle'>
-          <h1>Learn more with Mini guide</h1>
-          <p>Self care made easy with podcast</p>
+          <h1>{t("Learn more with Mini guide")}</h1>
+          <h1>{t("Self care made easy with podcast")}</h1>
         </div>
       </div>
       <ul className='miniGuideCard'>
@@ -106,5 +109,15 @@ const renderDashboardMiniGuideList = () => {
     </>
   );
 };
+
+export async function getStaticProps({ locale }) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale)),
+			// Will be passed to the page component as props
+		},
+	}
+}
+
 
 export default Dashboard;

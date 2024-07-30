@@ -17,6 +17,8 @@ import avt7 from '../../images/avt7.png';
 import avt8 from '../../images/avt8.png';
 import avt9 from '../../images/avt9.png';
 import { TextField } from '@mui/material';
+import { useTranslation } from 'next-i18next'
+
 
 const customStyles = {
   content: {
@@ -34,6 +36,8 @@ const Header = () => {
   const [modalAvatarIsOpen, setAvatarIsOpen] = useState(false);
   const [name, setName] = useState('');
   let subtitle;
+  const { t } = useTranslation()
+
 
   const router = useRouter();
 
@@ -96,8 +100,8 @@ const Header = () => {
         <div className='imgWrap'>
           <Image src={backAsset} alt="Mini Guide" />
         </div>
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Are you sure?</h2>
-        <p>You want to cancel this chat ?</p>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{t("Are you sure?")}</h2>
+        <p>{t("You want to cancel this chat ?")}</p>
         <div className='btnWrap'>
           <Link href="dashboard">Yes</Link>
           <button onClick={closeModal}>No</button>

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.chartPage {
+    background: #f0f3f9;
+    padding: 0 50px 70px;
+    width: 100%;
+    .chartPageWrap {
+        margin-top: 50px;
+        display: flex;
+        .chartPageRight {
+            margin-left: auto;
+        }
+        .chartPageLeft {
+            flex: 1;
+            padding-right: 5%;
+        }
+    }
+    &TopSec {
+        display: flex;
+        justify-content: space-between;
+        .tpBox {
+            padding: 6px 13px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            background: #fff;
+            width: 22%;
+            img {
+                margin-right: 10px;
+            }
+        }
+        
+    }
+    &BotSec {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 50px;
+        .graph {
+            margin-bottom: 40px;
+            width: 46%;
+            background: #fff;
+            padding: 8px;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+    .react-calendar {
+        border: none;
+        height: 330px;
+    }
+}

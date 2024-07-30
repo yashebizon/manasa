@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.leftSideBar {
+    max-width: 300px;
+    flex: 0 0 300px;
+    padding: 80px 30px 20px;
+    ul {
+        li {
+            &.dashboard {
+                margin-bottom: 80px;
+                a {
+                    background: #6482fd;
+                    color: #fff;
+                    width: 170px;
+                    font-size: 15px;
+                    font-weight: normal;
+                    height: 48px;
+                    padding: 0 15px;
+                    text-align: center;
+                    border-radius: 12px;
+                }
+            }
+            a {
+                display: flex;
+                align-items: center;
+                padding: 15px 6px;
+                color: #999;
+                font-weight: 500;
+                background-image: url('../../images/page/roghtAwr.png');
+                background-repeat: no-repeat;
+                background-position: right 50px center;
+                svg {
+                    margin-right: 10px;
+                    width: auto;
+                    height: 25px;
+                }
+                img {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}

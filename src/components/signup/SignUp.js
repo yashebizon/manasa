@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import fetchMutation from '../../util/request/fetchMutation';
+import fetchMutation, {fetchUrlEncodedMutation} from '../../util/request/fetchMutation';
 import Loader from '../loader/loader'
 import { useRouter } from 'next/router';
 import { Container, TextField, Button, Avatar, Typography, Box, Grid } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import styles from './SignUp.module.scss'
+import styles from './SignUp.module.scss';
+import Cookies from 'universal-cookie';
+import { toast } from 'react-hot-toast';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({});
@@ -14,6 +16,7 @@ const SignUpForm = () => {
   const router = useRouter();
 
   const handleChange = (e) => {
+    // validateForm();
     setFormData({
         ...formData,
         [e.target.name]: e.target.value // Use the input name as the key
@@ -22,14 +25,14 @@ const SignUpForm = () => {
 
 const validateForm = () => {
   const newErrors = {};
-  if (!formData.firstName) newErrors.firstName = 'First Name is required';
+  if (!formData.name) newErrors.name = 'First Name is required';
   if (!formData.email) newErrors.email = 'Email is required';
   if (!formData.password) newErrors.password = 'Password is required';
-  if (!formData.school) newErrors.school = 'School is required';
-  if (!formData.class) newErrors.class = 'Class is required';
+  if (!formData.schoolId) newErrors.schoolId = 'School is required';
+  if (!formData.studentClass) newErrors.studentClass = 'Class is required';
   if (!formData.section) newErrors.section = 'Section is required';
-  if (!formData.guardian) newErrors.guardian = 'Guardian is required';
-  if (!formData.phone) newErrors.phone = 'Phone is required';
+  if (!formData.parentName) newErrors.parentName = 'Guardian is required';
+  if (!formData.parentNumber) newErrors.parentNumber = 'Phone is required';
 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
@@ -37,21 +40,40 @@ const validateForm = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  const cookies = new Cookies();
   if (validateForm()) {
   setLoading(true);
   try {
-      const response = await fetchMutation('https://cf3434c2dd4147a7a251da22de5fab53.api.mockbin.io/', { data: formData });
-      console.log(response); // Log the response from the API
-      setAuthenticated(true);
+      const response = await fetchUrlEncodedMutation('/api/user', formData );
+      const {data, status, error, errors
+      } = response;
+      if(status === 200){
+        toast.success('User Registered Successfully');
+        const { jwtToken } = data;
+        cookies.set('userToken', jwtToken);
+        setAuthenticated(true);
+      }
+      else if(error) {
+        const {message} = error;
+        toast.error(message);
+    }
+    else if(errors){
+        const errObj = errors[0];
+        const { msg } = errObj;
+        toast.error(msg);
+    }
+    else{
+        toast.error('Something went wrong!');
+    }
   } catch (error) {
-      console.error('There was an error!', error);
+     toast.error('Something went wrong!');
   } finally {
       setTimeout(() => {
           setLoading(false);
       }, 1500);
   }
 } else {
-  console.log('Missing fields');
+  toast.error('Please fill all the required fields!');
 }
 };
 
@@ -100,11 +122,11 @@ const renderSignUpForm = () => {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                name="firstName"
+                name="name"
                 autoFocus
-                error={!!errors.firstName}
-                helperText={errors.firstName}
-                value={formData.firstName}
+                error={!!errors.name}
+                helperText={errors.name}
+                value={formData.name}
                 onChange={handleChange}
                 />
               <TextField
@@ -141,12 +163,12 @@ const renderSignUpForm = () => {
                 margin="normal"
                 required
                 fullWidth
-                name="school"
+                name="schoolId"
                 label="School Name"
                 id="school"
-                error={!!errors.school}
-                helperText={errors.school}
-                value={formData.school}
+                error={!!errors.schoolId}
+                helperText={errors.schoolId}
+                value={formData.schoolId}
                 onChange={handleChange}
                 />
               <Grid container spacing={2}>
@@ -156,12 +178,12 @@ const renderSignUpForm = () => {
                 margin="normal"
                 required
                 fullWidth
-                name="class"
-                label="Class Name"
+                name="studentClass"
+                label="Class"
                 id="class"
-                error={!!errors.class}
-                helperText={errors.class}
-                value={formData.class}
+                error={!!errors.studentClass}
+                helperText={errors.studentClass}
+                value={formData.studentClass}
                 onChange={handleChange}
                 />
               </Grid>
@@ -186,12 +208,12 @@ const renderSignUpForm = () => {
                 margin="normal"
                 required
                 fullWidth
-                name="guardian"
+                name="parentName"
                 label="Guardian Name"
                 id="guardian"
-                error={!!errors.guardian}
-                helperText={errors.guardian}
-                value={formData.guardian}
+                error={!!errors.parentName}
+                helperText={errors.parentName}
+                value={formData.parentName}
                 onChange={handleChange}
                 />
               <TextField
@@ -199,12 +221,13 @@ const renderSignUpForm = () => {
                 margin="normal"
                 required
                 fullWidth
-                name="phone"
+                name="parentNumber"
                 label="Guardian Number"
                 id="Phone"
-                error={!!errors.phone}
-                helperText={errors.phone}
-                value={formData.phone}
+                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                error={!!errors.parentNumber}
+                helperText={errors.parentNumber}
+                value={formData.parentNumber}
                 onChange={handleChange}
                 />
               <Button

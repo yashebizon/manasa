@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+main.pageWrapMain {
+    height: 100%;
+}
+.studentList {
+    h2 {
+        font-weight: 600;
+        padding: 0 18px;
+        margin-bottom: 30px;
+    }
+    display: inline-block;
+    width: 100%;
+    &Table {
+        table {
+            text-align: left;
+            width: 100%;
+            tr {
+                th {
+                    white-space: nowrap;
+                    color: #666;
+                }
+                td, th {
+                    padding: 12px 20px;
+                }
+                td {
+                    font-size: 15px;
+                }
+                &:nth-child(2) {
+                    background-color: #fdf4f4;
+                }
+                &:nth-child(3) {
+                    background-color: #fdf0d9;
+                }
+                &:nth-child(4) {
+                    background-color: #fdf4f4;
+                }
+                &:nth-child(5) {
+                    background-color: #eb8c9d;
+                }
+                &:nth-child(6) {
+                    background-color: #e9fcf5;
+                }
+            }
+        }
+    }
+}

@@ -7,7 +7,8 @@ import MiniGuidCard from '../components/mini-guide/index';
 import Image from 'next/image';
 import miniGuide from '../images/icon4.png'; 
 import { MiniGuideLinks } from '../constant/miniGuideSession';
-import Loader from '../components/loader/loader'
+import Loader from '../components/loader/loader';
+import withAuth from '@/components/auth/WithAuth';
 
 const MiniGuide = () => {
 

@@ -27,7 +27,7 @@ const GuidedChatComponent = () => {
     isLoading(true);
 
     try {
-      const response = await axios.post('/api/chat', {
+      const response = await axios.post('/chat-api/chat', {
         // prompt: input,
         // // chatHistory: messages,
         // mode: mode,
@@ -60,7 +60,7 @@ const GuidedChatComponent = () => {
   };
   const retrySendChatMessage = async (input, messages, mode, newSessionId) => {
     try {
-      const response = await axios.post('/api/chat', {
+      const response = await axios.post('/chat-api/chat', {
         input_message: input,
         chatHistory: messages,
         mode: mode,
@@ -83,7 +83,7 @@ const GuidedChatComponent = () => {
 
   const generateSession = async () => {
     try {
-      const response = await axios.get('/api/create_session');
+      const response = await axios.get('/chat-api/create_session');
       let userId = response.data.user_id;
       localStorage.setItem('userId', userId);
       setUserId(userId);

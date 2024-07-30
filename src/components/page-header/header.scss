@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.pageHeader {
+    margin-top: 70px;
+    .pageHeaderWrap {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: #fff;
+        .serchWrap {
+          position: relative;
+          input.serchBox {
+              background: #f0f3f9;
+              border: none;
+              border-radius: 5px;
+              padding-left: 45px;
+              width: 240px;
+              font-size: 15px;
+          }
+          svg {
+            position: absolute;
+            color: #aaa;
+            width: 22px;
+            left: 12px;
+            top: 3px;
+          }
+        }
+    }
+    .user {
+        margin-left: 10px;
+        img {
+          width: 35px;
+      }
+    }
+    .userEmailWrap {
+        display: flex;
+        button {
+          margin: 0 10px;
+          svg {
+            width: 23px;
+            color: #666;
+          }
+        }
+    }
+    .wlcomText {
+        margin: 0 auto;
+        color: #999;
+        font-size: 15px;
+    }
+}

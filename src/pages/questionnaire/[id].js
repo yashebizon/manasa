@@ -43,7 +43,7 @@ const Dashboard = () => {
     if(overallCount === 25){
        return setIsOpen(true);
     }
-    toast.error('Please fill all responses to sumbit !!');
+    toast.error(t('Please fill all responses to sumbit !!'));
     return null;  }
 
   function closeModal() {

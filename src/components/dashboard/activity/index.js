@@ -5,11 +5,16 @@ import activity1 from '../../../images/img-1.jpeg';
 import activity2 from '../../../images/img-2.jpeg';
 import activity3 from '../../../images/img-3.jpeg';
 import activity4 from '../../../images/img-4.jpeg';
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router'
 
 
 const Activity = () => {
     const { t } = useTranslation()
+
+    const router = useRouter()
+
+    const { locale } = router;
 
     const [currentVideo, setCurrentVideo] = useState(null);
     const videoContainerRef = useRef(null);
@@ -61,10 +66,9 @@ const Activity = () => {
             <h2>{t("Activities designed for you")}</h2>
             <p>{t("Learning activities to improve your mental and emotional being")}</p>
             <div className='activityInner'>
-                <div className='activityBox' onClick={() => handleOpenPopup('lvgM39UgHbA?si=CV27f8fmkvufqdL6')}>
+                <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'lvgM39UgHbA?si=CV27f8fmkvufqdL6' : 'PG0aFJC6iBQ?si=2kAV2HKr6weV88CB')}>
                     <div class="video-container">
                         <Image src={activity1} alt="Self Assess<" />
-                        {/* <iframe width="280" height="157" src="https://www.youtube.com/embed/Gwed919jYhw?si=GCswAGNAN-04A-L8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
                     </div>
                     <div className='title'>{t("Healing Power")}</div>
                     <div className='timeAudio'>
@@ -72,10 +76,9 @@ const Activity = () => {
                         <span>Audio</span>
                     </div>
                 </div>  
-                <div className='activityBox' onClick={() => handleOpenPopup('75d_29QWELk?si=0pTPkWHrbPh8xgOg')}>
+                <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? '75d_29QWELk?si=0pTPkWHrbPh8xgOg' : 'Nlz8yKG0ySU?si=TatdWQYCZ3JAdVvx' )}>
                     <div class="video-container">
                         <Image src={activity2} alt="Self Assess<" />
-                        {/* <iframe width="280" height="157" src="https://www.youtube.com/embed/WPPPFqsECz0?si=Sjnep6imrTpb3mQe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
                     </div>
                     <div className='title'>{t("An Antidote")}</div>
                     <div className='timeAudio'>
@@ -83,10 +86,9 @@ const Activity = () => {
                         <span>Audio</span>
                     </div>
                 </div>  
-                <div className='activityBox' onClick={() => handleOpenPopup('WPPPFqsECz0?si=Sjnep6imrTpb3mQe')}>
+                <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'WPPPFqsECz0?si=Sjnep6imrTpb3mQe' : '3yABSZO7HIY?si=RsEKlX2qWqioJXHe')}>
                     <div class="video-container">
                         <Image src={activity3} alt="Self Assess<" />
-                        {/* <iframe width="280" height="157" src="https://www.youtube.com/embed/75d_29QWELk?si=0pTPkWHrbPh8xgOg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
                     </div>
                     <div className='title'>{t("Change Your Life")}</div>
                     <div className='timeAudio'>
@@ -94,10 +96,9 @@ const Activity = () => {
                         <span>Audio</span>
                     </div>
                 </div>  
-                <div className='activityBox' onClick={() => handleOpenPopup('Gwed919jYhw?si=GCswAGNAN-04A-L8')}>
+                <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'Gwed919jYhw?si=GCswAGNAN-04A-L8' : 'mtoXpoHPNuM?si=qJqzcb9jSO0z3Qqu')}>
                     <div class="video-container">
                         <Image src={activity4} alt="Self Assess<" />
-                        {/* <iframe width="280" height="157" src="https://www.youtube.com/embed/lvgM39UgHbA?si=CV27f8fmkvufqdL6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
                     </div>
                     <div className='title'>{t("Getting Better")}</div>
                     <div className='timeAudio'>
@@ -106,17 +107,6 @@ const Activity = () => {
                     </div>
                 </div>  
             </div>
-            {/* {currentVideo && (
-                <div ref={videoContainerRef} style={{ display: 'none', position: 'relative', width: '100%', paddingBottom: '56.25%' }}>
-                    <iframe
-                    ref={iframeRef}
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    src={`https://www.youtube.com/embed/${currentVideo}`}
-                    allow="fullscreen"
-                    onBlur={handleCloseVideo}
-                    ></iframe>
-                </div>
-        )} */}
               {isOpen && (
               <div className="popupVid">
                 <div className="popup-inner">

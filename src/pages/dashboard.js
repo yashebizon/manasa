@@ -16,10 +16,14 @@ import Loader from '../components/loader/loader';
 import withAuth from '@/components/auth/WithAuth';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 
 
 const Dashboard = () => {
   const { t } = useTranslation()
+  const router = useRouter()
+
+  const { locale } = router;
 
   const renderMiniCard = () => {
     return(
@@ -42,7 +46,7 @@ const renderDashboardMiniCard = () => {
         key={index}
         title={card.title}
         time={card.time}
-        url={card.link}
+        url={locale === 'en' ? card.link : card.hindilink}
         heading={card.heading}
         imgSrc={card.imgSrc}
       />

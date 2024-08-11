@@ -6,7 +6,12 @@ import activity2 from '../../../images/img-2.jpeg';
 import activity3 from '../../../images/img-3.jpeg';
 import activity4 from '../../../images/img-4.jpeg';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import hindiactivity1 from '../../../images/hindi-img-3.png';
+import hindiactivity2 from '../../../images/hindi-img-4.png';
+import hindiactivity3 from '../../../images/hindi-img-1.png';
+import hindiactivity4 from '../../../images/hindi-img-2.png';
+
 
 
 const Activity = () => {
@@ -68,7 +73,7 @@ const Activity = () => {
             <div className='activityInner'>
                 <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'lvgM39UgHbA?si=CV27f8fmkvufqdL6' : 'PG0aFJC6iBQ?si=2kAV2HKr6weV88CB')}>
                     <div class="video-container">
-                        <Image src={activity1} alt="Self Assess<" />
+                        <Image src={locale === 'en' ? activity1: hindiactivity1} alt="Self Assess<" />
                     </div>
                     <div className='title'>{t("Healing Power")}</div>
                     <div className='timeAudio'>
@@ -78,7 +83,7 @@ const Activity = () => {
                 </div>  
                 <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? '75d_29QWELk?si=0pTPkWHrbPh8xgOg' : 'Nlz8yKG0ySU?si=TatdWQYCZ3JAdVvx' )}>
                     <div class="video-container">
-                        <Image src={activity2} alt="Self Assess<" />
+                        <Image src={locale === 'en' ? activity2 : hindiactivity2} alt="Self Assess<" />
                     </div>
                     <div className='title'>{t("An Antidote")}</div>
                     <div className='timeAudio'>
@@ -88,7 +93,7 @@ const Activity = () => {
                 </div>  
                 <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'WPPPFqsECz0?si=Sjnep6imrTpb3mQe' : '3yABSZO7HIY?si=RsEKlX2qWqioJXHe')}>
                     <div class="video-container">
-                        <Image src={activity3} alt="Self Assess<" />
+                        <Image src={locale === 'en' ? activity3 : hindiactivity3} alt="Self Assess<" />
                     </div>
                     <div className='title'>{t("Change Your Life")}</div>
                     <div className='timeAudio'>
@@ -98,7 +103,7 @@ const Activity = () => {
                 </div>  
                 <div className='activityBox' onClick={() => handleOpenPopup(locale === 'en' ? 'Gwed919jYhw?si=GCswAGNAN-04A-L8' : 'mtoXpoHPNuM?si=qJqzcb9jSO0z3Qqu')}>
                     <div class="video-container">
-                        <Image src={activity4} alt="Self Assess<" />
+                        <Image src={locale === 'en' ? activity4 : hindiactivity4} alt="Self Assess<" />
                     </div>
                     <div className='title'>{t("Getting Better")}</div>
                     <div className='timeAudio'>

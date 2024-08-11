@@ -44,11 +44,11 @@ const renderDashboardMiniCard = () => {
     DashboardMiniGuideLinks.slice(0, 4).map((card, index) => (
       <DashboardMiniGuidCard
         key={index}
-        title={card.title}
+        title={locale === 'en' ? card.title : card.hindiTitle}
         time={card.time}
         url={locale === 'en' ? card.link : card.hindilink}
-        heading={card.heading}
-        imgSrc={card.imgSrc}
+        heading={locale === 'en' ? card.heading : card.hindiHeading}
+        imgSrc={locale === 'en' ? card.imgSrc : card.hindiImgSrc}
       />
     ))
   )

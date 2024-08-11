@@ -33,7 +33,7 @@ const Card = ({ question, indx, countTotal, onRadioSelect, options, questionId, 
                 key={index}
                 value={option._id}
                 control={<Radio />}
-                label={t`${option.response}`} // Assuming `t()` is a translation function, you can replace this with `t(option)` if needed
+                label={t(`${option.response}`)} // Assuming `t()` is a translation function, you can replace this with `t(option)` if needed
               />
             ))}
             </>

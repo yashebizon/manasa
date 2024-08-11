@@ -38,8 +38,6 @@ const GuidedChatComponent = () => {
         user_id: userId
       });
 
-      console.log('yanu11', response);
-
       const botMessage = { sender: 'bot', text: response.data.response_message };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
       isLoading(false);

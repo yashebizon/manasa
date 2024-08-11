@@ -4,6 +4,7 @@ async function fetchQuery(url = '', authToken = null) {
 
     if (authToken) {
         headers['Authorization'] = `Bearer ${authToken}`;
+        headers['token'] = `${authToken}`;
     }
 
     const response = await fetch(url, {

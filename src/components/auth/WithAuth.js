@@ -11,8 +11,6 @@ const withAuth = (WrappedComponent) => {
         const cookies = parseCookies(ctx);
         const userToken = cookies.userToken;
         
-        console.log('yanu77', userToken);
-
         if (!userToken) {
             if (typeof window === 'undefined') {
                 res.writeHead(302, { Location: '/login' });

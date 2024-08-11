@@ -7,6 +7,7 @@ async function fetchMutation(url = '', data = {}, authToken = null) {
 
     if (authToken) {
         headers['Authorization'] = `Bearer ${authToken}`;
+        headers['token'] = `${authToken}`;
     }
 
     const response = await fetch(url, {
@@ -29,6 +30,7 @@ export async function fetchUrlEncodedMutation(url = '', data = {}, authToken = n
 
     if (authToken) {
         headers['Authorization'] = `Bearer ${authToken}`;
+        headers['token'] = `${authToken}`;
     }
 
     // Convert the data object to URL-encoded string

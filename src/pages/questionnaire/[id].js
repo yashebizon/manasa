@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/questionnaire-card/cardLayout';
@@ -14,7 +15,10 @@ import withAuth from '@/components/auth/WithAuth';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { toast } from 'react-hot-toast';
+import fetchMutation,  {fetchUrlEncodedMutation} from '../../util/request/fetchMutation';
+import fetchQuery from '../../util/request/fetchQuery';
 
+import Cookies from 'universal-cookie';
 
 const customStyles = {
   content: {
@@ -32,16 +36,29 @@ const Dashboard = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const [questions, setQuestions] = useState(null);
+  const [questions, setQuestions] = useState([]);
   const [pageTitle, setPageTitle] = useState('');
+  const [questionnaireType, setQuestionnaireType] = useState(''); 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [overallCount, setOverallCount] = useState(0);
   const [lastSelectedIndex, setLastSelectedIndex] = useState(null);
+  const [optionValue, setOptionValue] = useState([]);
+  const [questionnaireResponse, setQuestionnaireResponse] = useState([]);
+  const [submitDisable, setSubmitDisable] = useState(false);
 
+  const cookies = new Cookies();
 
-  function openModal() {
-    if(overallCount === 25){
-       return setIsOpen(true);
+  const myCookie = cookies.get('userToken');
+
+  async function openModal() {
+    setSubmitDisable(true)
+    const userRespones = {questionnaires: questionnaireResponse}
+    if(questionnaireResponse.length === questions.length){
+      const questionnaireSubmit = await fetchMutation('/api/create-user-questionnaires', userRespones, myCookie)
+      if(questionnaireSubmit && questionnaireSubmit.status === 201){
+        setSubmitDisable(false)
+        return setIsOpen(true);
+      }
     }
     toast.error(t('Please fill all responses to sumbit !!'));
     return null;  }
@@ -56,12 +73,29 @@ const Dashboard = () => {
     subtitle.style.color = '#f00';
   }
 
-  const handleRadioSelect = (index) => {
-    if (index !== lastSelectedIndex) {
-        setLastSelectedIndex(index);
-        setOverallCount(prevCount => prevCount + 1);
-    }
-};
+  const handleRadioSelect = (responseId, questionId, category) => {
+    setQuestionnaireResponse(prevState => {
+      // Check if questionId already exists in the state
+      const existingResponseIndex = prevState.findIndex(response => response.questionId === questionId);
+  
+      const newResponse = {
+        responseId,
+        questionId,
+        category
+      };
+  
+      if (existingResponseIndex !== -1) {
+        // Update the existing response if questionId is found
+        const updatedResponse = [...prevState];
+        updatedResponse[existingResponseIndex] = newResponse;
+        return updatedResponse;
+      } else {
+        // Append the new response if questionId is not found
+        return [...prevState, newResponse];
+      }
+    });
+  
+  };
 
   const renderModal = () => {
     return( 
@@ -87,27 +121,68 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    if (id) {
-      let selectedQuestions;
-      let pageTitle;
-      switch (id) {
-        case '1':
-          selectedQuestions = questions1;
-          pageTitle = "General Initial Screening";
-          break;
-        case '2':
-          selectedQuestions = questions2;
-          pageTitle = "Strength Weaknesses Screening";
-          break;
-        default:
-          selectedQuestions = questions3;
-          pageTitle = "Peer Parents Screening";
-          break;
+    async function fetchData() {
+      if (id) {
+        let selectedQuestions;
+        let pageTitle;
+        let questionnaireType;
+  
+        switch (id) {
+          case '1':
+            selectedQuestions = questions1;
+            pageTitle = "General Initial Screening";
+            questionnaireType = "general";
+            break;
+          case '2':
+            selectedQuestions = questions2;
+            pageTitle = "Strength Weaknesses Screening";
+            questionnaireType = "strengthWeakness";
+            break;
+          default:
+            selectedQuestions = questions3;
+            pageTitle = "Peer Parents Screening";
+            questionnaireType = "peerParents";
+            break;
+        }
+  
+        setPageTitle(pageTitle);
+        setQuestionnaireType(questionnaireType);
+  
+        if (questionnaireType && myCookie) {
+          const categoryData = { category: questionnaireType };
+  
+          try {
+            const response = await fetchUrlEncodedMutation('/api/questionnaires', categoryData, myCookie);
+  
+            if (response && response.data) {
+              const { data } = response;
+              setQuestions(data);
+            } else {
+              console.error('No data returned from the API');
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        }
+
+        try {
+          const response = await fetchQuery('/api/questionnaires-response', myCookie);
+
+          if (response && response.data) {
+            const { data } = response;
+            setOptionValue(data);
+          } else {
+            console.error('No data returned from the API');
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
       }
-      setQuestions(selectedQuestions);
-      setPageTitle(pageTitle);
     }
+  
+    fetchData();
   }, [id]);
+
 
   if (!questions) {
     return (
@@ -125,7 +200,8 @@ const Dashboard = () => {
     );
   }
 
-  const countTotal = questions.length;  
+  const countTotal = questions.length;
+
 
   return (
     <Container>
@@ -141,15 +217,18 @@ const Dashboard = () => {
             {questions.map((question, index) => (
               <Card 
               key={index} 
-              question={question} 
+              question={question.question} 
               indx={index} 
               countTotal={countTotal}                     
               onRadioSelect={handleRadioSelect}
+              options={optionValue}
+              questionId={question._id}
+              category={questionnaireType}
               />
             ))}
         </div>
         <div className='submitBtn'>
-          <button onClick={openModal}>{t('Submit')}</button>
+          <button disabled={submitDisable} onClick={openModal}>{t('Submit')}</button>
             {renderModal()}
         </div>
       </Box>

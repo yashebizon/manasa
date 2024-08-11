@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {RadioGroup, Box, FormControl, FormControlLabel, FormLabel, Radio} from '@mui/material';
 import { useTranslation } from 'next-i18next'
 
-const Card = ({ question, indx, countTotal, onRadioSelect }) => {
+const Card = ({ question, indx, countTotal, onRadioSelect, options, questionId, category }) => {
     const { t } = useTranslation()
     const count = indx +1;
     const [selectedValue, setSelectedValue] = useState('');
@@ -10,7 +10,7 @@ const Card = ({ question, indx, countTotal, onRadioSelect }) => {
 
     const handleRadioChange = (event) => {
       setSelectedValue(event.target.value);
-      onRadioSelect(indx);
+      onRadioSelect(event.target.value, questionId, category);
   };
 
     return(
@@ -27,10 +27,16 @@ const Card = ({ question, indx, countTotal, onRadioSelect }) => {
             className='radioGroup'
             onChange={handleRadioChange}
           >
-            <FormControlLabel value="Never" control={<Radio />} label={t('Never')} />
-            <FormControlLabel value="Sometimes" control={<Radio />} label={t('Sometimes')} />
-            <FormControlLabel value="Often" control={<Radio />} label={t('Often')} />
-            <FormControlLabel value="Always" control={<Radio />} label={t('Always')} />
+            <>
+            {options.map((option, index) => (
+              <FormControlLabel
+                key={index}
+                value={option._id}
+                control={<Radio />}
+                label={t`${option.response}`} // Assuming `t()` is a translation function, you can replace this with `t(option)` if needed
+              />
+            ))}
+            </>
           </RadioGroup>
         </FormControl>
       </div>

@@ -24,6 +24,9 @@
           width: 25px;
         }
       }
+      .megaMenu {
+        margin-right: 10px;
+      }
     }
     .rightSec {
         display: flex;
@@ -82,5 +85,39 @@
         background: #f8ebef;
         color: #e6576f;
       }
+  }
+}
+
+.menuSideBar {
+  background: rgb(0 0 0 / 54%);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9;
+  &Inner {
+    background: #fff;
+    height: 100%;
+    width: 80%;
+    position: relative;
+    ul {
+      padding-top: 40px;
+      li {
+        border-top: 1px solid #ddd;
+        a {
+          padding: 6px 15px;
+          display: block;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    button.close-btn {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
   }
 }

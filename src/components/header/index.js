@@ -23,6 +23,8 @@ const customStyles = {
 const Header = ({ showBackButton }) => {
   const { t } = useTranslation()
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [menulIsOpen, setIsOpenMenu] = useState(false);
+
   let subtitle;
 
   function openModal() {
@@ -31,6 +33,10 @@ const Header = ({ showBackButton }) => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function toggleMegaMenu() {
+    setIsOpenMenu(!menulIsOpen);
   }
 
   function afterOpenModal() {
@@ -45,6 +51,14 @@ const Header = ({ showBackButton }) => {
     return(
       <button className='back' onClick={openModal}>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875t-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12t.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388t.375.875t-.375.875z"/></svg>
+      </button>
+    )
+  }
+
+  function renderMegaMenu() {
+    return(
+      <button className='megaMenu' onClick={toggleMegaMenu}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M8 9q-.425 0-.712-.288T7 8t.288-.712T8 7h12q.425 0 .713.288T21 8t-.288.713T20 9zm0 4q-.425 0-.712-.288T7 12t.288-.712T8 11h12q.425 0 .713.288T21 12t-.288.713T20 13zm0 4q-.425 0-.712-.288T7 16t.288-.712T8 15h12q.425 0 .713.288T21 16t-.288.713T20 17zM4 9q-.425 0-.712-.288T3 8t.288-.712T4 7t.713.288T5 8t-.288.713T4 9m0 4q-.425 0-.712-.288T3 12t.288-.712T4 11t.713.288T5 12t-.288.713T4 13m0 4q-.425 0-.712-.288T3 16t.288-.712T4 15t.713.288T5 16t-.288.713T4 17"/></svg>
       </button>
     )
   }
@@ -77,9 +91,11 @@ const Header = ({ showBackButton }) => {
   }
 
     return (
+      <>
         <header className='headerBox'>
           <div className='lefSec'>
               { renderBackButton() }
+              { renderMegaMenu() }
               {renderModal()}
             <div>
               <h2>{t("Hello Parth")}</h2>
@@ -96,6 +112,24 @@ const Header = ({ showBackButton }) => {
             <Image src={avatar} alt="Self Assess<" height={40} width={40} />
           </div>
         </header>
+          {menulIsOpen && (
+            <div className="menuSideBar">
+              <div className="menuSideBarInner">
+                <button className="close-btn" onClick={toggleMegaMenu}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-2.917 2.925q-.277.275-.704.275t-.704-.275q-.275-.275-.275-.7t.275-.7L10.6 12L7.675 9.108Q7.4 8.831 7.4 8.404t.275-.704q.275-.275.7-.275t.7.275L12 10.625L14.892 7.7q.277-.275.704-.275t.704.275q.3.3.3.713t-.3.687L13.375 12l2.925 2.917q.275.277.275.704t-.275.704q-.3.3-.712.3t-.688-.3z"></path></svg>
+                </button>
+                <ul>
+                  <li>
+                    <Link href="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link href="/privacy-policy">Privacy Policy</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </>
     );
   };
   

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Container, Typography, List, ListItem, ListItemText, Divider, Box } from '@mui/material';
+import '../app/globals.scss'
 
 function PrivacyPolicy() {
   return (
-    <Container maxWidth="md">
+    <main className='aboutUs'>
+    <Container>
+      <Box sx={{ my: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Privacy Policy for Manoveda
       </Typography>
@@ -190,7 +193,9 @@ function PrivacyPolicy() {
       <Typography variant="body1" paragraph>
         Address: PLOT NO 25, Phase I, Udyog Vihar, Gurugram 122016, India
       </Typography>
+      </Box>
     </Container>
+    </main>
   );
 }
 

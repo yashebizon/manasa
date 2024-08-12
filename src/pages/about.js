@@ -1,9 +1,14 @@
 import React from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
 import Link from 'next/link';
+import Image from 'next/image';
+import aboutImg1 from '../images/about-2.png';
+import aboutImg2 from '../images/about-1.png';
+import '../app/globals.scss'
 
 const About = () => {
   return (
+    <main className='aboutUs'>
     <Container>
       <Box sx={{ my: 4 }}>
       <div>
@@ -18,6 +23,8 @@ const About = () => {
         Manoveda is a pioneering AI-based mental health project developed by Intouch AI in association with Manoveda. This initiative is designed to address the growing mental health challenges faced by students. Recognizing the pressures of academic performance, social dynamics, and personal challenges, Manoveda aims to provide innovative solutions for mental well-being.
       </Typography>
 
+      <Image src={aboutImg1} alt="img1" height={1000} width={800} className='imgAbout'/>
+
       <Typography variant="h5" gutterBottom>
         Understanding the Landscape
       </Typography>
@@ -28,6 +35,8 @@ const About = () => {
       <Typography variant="h5" gutterBottom>
         Key Features of Manoveda
       </Typography>
+
+      <Image src={aboutImg2} alt="img2" height={1000} width={800} className='imgAbout'/>
 
       <Typography variant="h6" gutterBottom>
         1. Accessibility
@@ -105,6 +114,7 @@ const About = () => {
     </div>
       </Box>  
     </Container>
+    </main>
   );
 };
 

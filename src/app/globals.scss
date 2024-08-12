@@ -373,3 +373,35 @@ main.pageWrapMain {
   display: flex;
   height: 100vh;
 }
+img.imgAbout {
+  margin: 25px auto;
+}
+.aboutUs {
+  h1, h5, h6 {
+    font-weight: 600;
+  }
+  h1 {
+    margin-bottom: 30px;
+    @media (max-width: 767px) {     
+      font-size: 25px;
+    }
+  }
+  p {
+    margin-bottom: 30px;
+  }
+  ul li {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  @media (max-width: 767px) {    
+    h5 {
+      font-size: 22px;
+    }
+    h6 {
+      font-size: 18px;
+    }  
+    p {
+      margin-bottom: 20px;
+    }
+  }
+}

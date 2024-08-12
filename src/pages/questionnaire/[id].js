@@ -58,6 +58,10 @@ const Dashboard = () => {
       if(questionnaireSubmit && questionnaireSubmit.status === 201){
         setSubmitDisable(false)
         return setIsOpen(true);
+      } else {
+      return(  
+          toast.error(t('Something went wrong!!! Please try again after sometime'))
+        );
       }
     }
     toast.error(t('Please fill all responses to sumbit !!'));

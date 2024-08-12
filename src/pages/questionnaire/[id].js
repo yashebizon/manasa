@@ -54,11 +54,11 @@ const Dashboard = () => {
     setSubmitDisable(true)
     const userRespones = {questionnaires: questionnaireResponse}
     if(questionnaireResponse.length === questions.length){
+      setIsOpen(true);
       const questionnaireSubmit = await fetchMutation('/api/create-user-questionnaires', userRespones, myCookie)
       if(questionnaireSubmit && questionnaireSubmit.status === 201){
-        setSubmitDisable(false)
-        return setIsOpen(true);
-      } else {
+        return setSubmitDisable(false)
+     } else {
       return(  
           toast.error(t('Something went wrong!!! Please try again after sometime'))
         );

@@ -1,30 +1,28 @@
+import { useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import Router from 'next/router';
+import Loader from '../loader/loader'
 
 const withAuth = (WrappedComponent) => {
     const Wrapper = (props) => {
-        return <WrappedComponent {...props} />;
-    };
+        const [loading, setLoading] = useState(true);
 
-    Wrapper.getInitialProps = async (ctx) => {
-        const { req, res } = ctx;
-        const cookies = parseCookies(ctx);
-        const userToken = cookies.userToken;
-        
-        if (!userToken) {
-            if (typeof window === 'undefined') {
-                res.writeHead(302, { Location: '/login' });
-                res.end();
-            } else {
+        useEffect(() => {
+            const cookies = parseCookies();
+            const userToken = cookies.userToken;
+
+            if (!userToken) {
                 Router.push('/login');
+            } else {
+                setLoading(false); // User is authenticated, stop loading
             }
+        }, []);
+
+        if (loading) {
+            return <Loader/>; 
         }
 
-        const componentProps =
-            WrappedComponent.getInitialProps &&
-            (await WrappedComponent.getInitialProps(ctx));
-
-        return { ...componentProps, userToken };
+        return <WrappedComponent {...props} />;
     };
 
     return Wrapper;

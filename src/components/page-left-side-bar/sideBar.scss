@@ -5,6 +5,11 @@
     max-width: 300px;
     flex: 0 0 300px;
     padding: 80px 30px 20px;
+    @media (max-width: 1800px) {   
+        max-width: 170px;
+        flex: 0 0 170px;
+        padding: 8px 16px 20px;
+    }
     ul {
         li {
             &.dashboard {
@@ -19,6 +24,9 @@
                     padding: 0 15px;
                     text-align: center;
                     border-radius: 12px;
+                    @media (max-width: 1800px) {  
+                        width: auto;
+                    }
                 }
             }
             a {
@@ -37,6 +45,9 @@
                 }
                 img {
                     margin-right: 8px;
+                }
+                @media (max-width: 1800px) {   
+                    background-position: right 5px center;
                 }
             }
         }

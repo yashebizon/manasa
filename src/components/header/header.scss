@@ -89,28 +89,33 @@
 }
 
 .menuSideBar {
-  background: rgb(0 0 0 / 54%);
+  // background: rgb(0 0 0 / 54%);
   position: fixed;
-  left: 0;
-  right: 0;
+  left: -85%;
   top: 0;
   bottom: 0;
   z-index: 9;
+  width: 85%;
+  transition: left 0.3s ease;
+  &.openMenu {
+    display: block;
+    left: 0;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  }
   &Inner {
     background: #fff;
     height: 100%;
-    width: 80%;
+    width: 100%;
     position: relative;
     ul {
       padding-top: 40px;
       li {
-        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
         a {
-          padding: 6px 15px;
+          padding: 10px 15px;
           display: block;
-        }
-        &:last-child {
-          border-bottom: none;
+          text-transform: uppercase;
+          font-weight: 500;
         }
       }
     }

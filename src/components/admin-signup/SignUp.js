@@ -8,8 +8,8 @@ import styles from './SignUp.module.scss';
 import Cookies from 'universal-cookie';
 import { toast } from 'react-hot-toast';
 
-const SignUpForm = () => {
-  const [formData, setFormData] = useState({userRole: 'student'});
+const AdminSignUpForm = () => {
+  const [formData, setFormData] = useState({userRole: 'teacher'});
   const [loading, setLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [errors, setErrors] = useState({});
@@ -26,15 +26,13 @@ const SignUpForm = () => {
 const validateForm = () => {
   const newErrors = {};
   if (!formData.name) newErrors.name = 'First Name is required';
+  if (!formData.lastName) newErrors.lastName = 'Last Name is required';
   if (!formData.email) newErrors.email = 'Email is required';
   if (!formData.password) newErrors.password = 'Password is required';
   if (!formData.schoolId) newErrors.schoolId = 'School is required';
   if (!formData.studentClass) newErrors.studentClass = 'Class is required';
   if (!formData.section) newErrors.section = 'Section is required';
-  if (!formData.parentName) newErrors.parentName = 'Guardian is required';
-  if (!formData.parentNumber) newErrors.parentNumber = 'Phone is required';
   if (!formData.gender) newErrors.gender = 'Gender is required';
-  if (!formData.parentEmail) newErrors.parentEmail = 'Parent Email is required';
 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
@@ -136,6 +134,20 @@ const renderSignUpForm = () => {
                 margin="normal"
                 required
                 fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoFocus
+                error={!!errors.lastName}
+                helperText={errors.lastName}
+                value={formData.lastName}
+                onChange={handleChange}
+                />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
                 id="gender"
                 label="Gender"
                 name="gender"
@@ -219,46 +231,6 @@ const renderSignUpForm = () => {
                 />
               </Grid>
               </Grid>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="parentName"
-                label="Guardian Name"
-                id="guardian"
-                error={!!errors.parentName}
-                helperText={errors.parentName}
-                value={formData.parentName}
-                onChange={handleChange}
-                />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="parentEmail"
-                label="Parent Email"
-                id="parentEmail"
-                error={!!errors.parentEmail}
-                helperText={errors.parentEmail}
-                value={formData.parentEmail}
-                onChange={handleChange}
-                />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="parentNumber"
-                label="Guardian Number"
-                id="Phone"
-                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                error={!!errors.parentNumber}
-                helperText={errors.parentNumber}
-                value={formData.parentNumber}
-                onChange={handleChange}
-                />
               <Button
                 type="submit"
                 fullWidth
@@ -282,4 +254,4 @@ const renderSignUpForm = () => {
 
 };
 
-export default SignUpForm;
+export default AdminSignUpForm;

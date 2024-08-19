@@ -18,8 +18,12 @@ import graph4hindi from '../../../src/images/graphs/graph4hindi.jpeg';
 import Header from '../page-header';
 import StudentList from '../student-list';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router'
-
+import { useRouter } from 'next/router';
+import { PieChart } from '@mui/x-charts/PieChart';
+import { LineChart } from '@mui/x-charts/LineChart';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 
 const ChartPage = () => {
@@ -28,8 +32,6 @@ const ChartPage = () => {
   const router = useRouter()
 
   const { locale } = router;
-
-  console.log('yash', locale);
 
   const onChange = (newValue) => {
     setValue(newValue);
@@ -87,21 +89,84 @@ const ChartPage = () => {
           </div>
           <div className='chartPageBotSec'>
             <div className='graph'>
-              <Image src={Graph1image[locale] || Graph1image['en']} alt="Class Image" />
+              <h3>Screening Completed Per Modules</h3>
+              <div className='graphRight'>
+                <div className='blue'>General Assessment 87%</div>
+                <div className='org'>Strenght and Weaknesses 57</div>  
+                <div className='grn'>Parent Peer Pressure 16%</div>
+              </div>
+              <PieChart
+                series={[
+                  {
+                    data: [{ value: 120 }, { value: 120 }, { value: 120 }],
+                    innerRadius: 20,
+                    outerRadius: 80,
+                    paddingAngle: 0,  // Set paddingAngle to 0 to avoid gaps
+                    cornerRadius: 5,
+                    startAngle: 0,    // Start at 0 degrees
+                    endAngle: 360,    // End at 360 degrees to make a full circle
+                    cx: 84,
+                    cy: 140,
+                  }
+                ]}
+                height={270}
+              />
             </div>
             <div className='graph'>
-              <Image src={Graph2image[locale] || Graph2image['en']} alt="Class Image" />
+              <h3>Chat Usage Rate</h3>
+              <LineChart
+                  xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+                  series={[
+                    {
+                      data: [2, 5.5, 2, 8.5, 1.5, 5],
+                    },
+                  ]}
+                  height={270}
+                />
+              </div>
+              <div className='graph'>
+                <h3>Learning Modules Completed</h3>
+                <div className='graphRight'>
+                  <div className='blue'>General Assessment 87%</div>
+                  <div className='org'>Strenght and Weaknesses 57</div>  
+                  <div className='grn'>Parent Peer Pressure 16%</div>
+                </div>
+                <PieChart
+                  series={[
+                    {
+                      data: [{ value: 120 }, { value: 120 }, { value: 120 }],
+                      innerRadius: 20,
+                      outerRadius: 80,
+                      paddingAngle: 0,  // Set paddingAngle to 0 to avoid gaps
+                      cornerRadius: 5,
+                      startAngle: 0,    // Start at 0 degrees
+                      endAngle: 360,    // End at 360 degrees to make a full circle
+                      cx: 84,
+                      cy: 140,
+                    }
+                  ]}
+                  height={270}
+                />
             </div>
             <div className='graph'>
-              <Image src={Graph3image[locale] || Graph3image['en']} alt="Class Image" />
-            </div>
-            <div className='graph'>
-              <Image src={Graph4image[locale] || Graph4image['en']} alt="Class Image" />
-            </div>
+              <h3>Practice session Usage</h3>
+              <div className='graphRight2'>Weekly</div>
+              <LineChart
+                  xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+                  series={[
+                    {
+                      data: [2, 5.5, 2, 8.5, 1.5, 5],
+                    },
+                  ]}
+                  height={270}
+                />
+              </div>
           </div>
         </div>
         <div className='chartPageRight'>
-          <Calendar onChange={onChange} value={value} />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateCalendar />
+        </LocalizationProvider>
         </div>
       </div>
       <StudentList />

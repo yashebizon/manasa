@@ -7,6 +7,9 @@ import './ChatScreen.scss'
 import isEmpty from 'lodash/isEmpty';
 import Loader from '../../components/loader/loader';
 import CircularProgress from '@mui/material/CircularProgress';
+import fetchMutation,  {fetchUrlEncodedMutation} from '../../util/request/fetchMutation';
+import Cookies from 'universal-cookie';
+
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -17,8 +20,19 @@ const ChatComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [loading, isLoading] = useState(false);
 
+  const cookies = new Cookies();
+
+  const userToken = cookies.get('userToken');
 
   const handleSend = async () => {
+    const questionFormData = {
+      question: input,
+      chatType: 'chat'
+    };
+    const createQuestionBackend = await fetchUrlEncodedMutation('/api/create-question', questionFormData, userToken);
+
+    const {data: {_id}} = createQuestionBackend;
+
     if (!input.trim()) return;
 
     const userMessage = { sender: 'user', text: input };
@@ -36,6 +50,11 @@ const ChatComponent = () => {
 
       const botMessage = { sender: 'assistant', text: response.data.response_message };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
+      const responseFormData = {
+        questionId: _id,
+        response: botMessage?.text
+      }
+      const createResponseBackend = await fetchUrlEncodedMutation('/api/add-response', responseFormData, userToken);
       isLoading(false);
     } catch (error) {
       if (error.response) {

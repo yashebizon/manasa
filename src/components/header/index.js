@@ -7,7 +7,10 @@ import Modal from 'react-modal';
 import avatar from '../../images/gamer.png';
 import sosImg from '../../images/phone.png';
 import backAsset from '../../images/backAsset.png';
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next';
+import Cookies from 'universal-cookie';
+import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 const customStyles = {
   content: {
@@ -24,6 +27,12 @@ const Header = ({ showBackButton }) => {
   const { t } = useTranslation()
   const [modalIsOpen, setIsOpen] = useState(false);
   const [menulIsOpen, setIsOpenMenu] = useState(false);
+
+  const cookies = new Cookies();
+
+  const userName = cookies.get('userName');
+
+  const router = useRouter();
 
   let subtitle;
 
@@ -63,6 +72,14 @@ const Header = ({ showBackButton }) => {
     )
   }
 
+  const handleLogout = (e) => {
+    e.preventDefault(); // Prevent the default link behavior
+    cookies.set('userToken', '');
+    cookies.set('userName', '');
+    toast.success('Logged out Successfully');
+    router.push('/login');
+};
+
 
   const renderModal = () => {
     return( 
@@ -89,7 +106,11 @@ const Header = ({ showBackButton }) => {
       </Modal>
     );
   }
-
+ 
+  let lefMenuClass = 'menuSideBar';
+  if(menulIsOpen) {
+    lefMenuClass = 'menuSideBar openMenu'
+  }
     return (
       <>
         <header className='headerBox'>
@@ -98,7 +119,7 @@ const Header = ({ showBackButton }) => {
               { renderMegaMenu() }
               {renderModal()}
             <div>
-              <h2>{t("Hello Parth")}</h2>
+              <h2>{t(`Hello ${userName}`)}</h2>
               <p>{t("Welcome to your safe space!")}</p>
             </div>
           </div>
@@ -112,8 +133,7 @@ const Header = ({ showBackButton }) => {
             <Image src={avatar} alt="Self Assess<" height={40} width={40} />
           </div>
         </header>
-          {menulIsOpen && (
-            <div className="menuSideBar">
+            <div className={lefMenuClass}>
               <div className="menuSideBarInner">
                 <button className="close-btn" onClick={toggleMegaMenu}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-2.917 2.925q-.277.275-.704.275t-.704-.275q-.275-.275-.275-.7t.275-.7L10.6 12L7.675 9.108Q7.4 8.831 7.4 8.404t.275-.704q.275-.275.7-.275t.7.275L12 10.625L14.892 7.7q.277-.275.704-.275t.704.275q.3.3.3.713t-.3.687L13.375 12l2.925 2.917q.275.277.275.704t-.275.704q-.3.3-.712.3t-.688-.3z"></path></svg>
@@ -125,10 +145,12 @@ const Header = ({ showBackButton }) => {
                   <li>
                     <Link href="/privacy-policy">Privacy Policy</Link>
                   </li>
+                  <li>
+                    <Link onClick={handleLogout} href="#">Logout</Link>
+                  </li>
                 </ul>
               </div>
             </div>
-          )}
         </>
     );
   };

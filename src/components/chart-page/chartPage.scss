@@ -5,15 +5,24 @@
     background: #f0f3f9;
     padding: 0 50px 70px;
     width: 100%;
+    @media (max-width: 1800px) {   
+        padding: 0 25px 70px; 
+    }
     .chartPageWrap {
         margin-top: 50px;
         display: flex;
         .chartPageRight {
             margin-left: auto;
+            .MuiDateCalendar-root {
+                background: #fff;
+            }
         }
         .chartPageLeft {
             flex: 1;
             padding-right: 5%;
+            @media (max-width: 1800px) {   
+                padding-right: 2%; 
+            }
         }
     }
     &TopSec {
@@ -42,9 +51,41 @@
             width: 46%;
             background: #fff;
             padding: 8px;
+            position: relative;
             img {
                 width: 100%;
                 height: auto;
+            }
+            h3 {
+                color: #4E6D93;
+                font-weight: 600;
+                padding: 8px 15px 0;
+            }
+            &Right {
+                position: absolute;
+                right: 0;
+                top: 44%;
+                font-size: 14px;
+                right: 25px;
+                .blue {
+                    color: #8C52FF;
+                }
+                .org {
+                    color: #FF914D;
+                }
+                .grn {
+                    color: #00BF63;
+                }
+                &2 {
+                    position: absolute;
+                    right: 12px;
+                    top: 11px;
+                    font-size: 14px;
+                    color: #4E6D93;
+                }
+            }
+            @media (max-width: 1800px) {   
+                width: 48%;
             }
         }
     }

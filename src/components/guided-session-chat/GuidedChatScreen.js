@@ -8,6 +8,9 @@ import isEmpty from 'lodash/isEmpty';
 import Image from 'next/image';
 import img from '../../images/img2.jpg';
 import Link from 'next/link';
+import fetchMutation,  {fetchUrlEncodedMutation} from '../../util/request/fetchMutation';
+import Cookies from 'universal-cookie';
+
 
 const GuidedChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -18,7 +21,20 @@ const GuidedChatComponent = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [loading, isLoading] = useState(false);
 
+  const cookies = new Cookies();
+
+  const userToken = cookies.get('userToken');
+
   const handleSend = async () => {
+
+    const questionFormData = {
+      question: input,
+      chatType: 'guidedSessionChat'
+    };
+    const createQuestionBackend = await fetchUrlEncodedMutation('/api/create-question', questionFormData, userToken);
+
+    const {data: {_id}} = createQuestionBackend;
+
     if (!input.trim()) return;
 
     const userMessage = { sender: 'user', text: input };
@@ -40,6 +56,11 @@ const GuidedChatComponent = () => {
 
       const botMessage = { sender: 'bot', text: response.data.response_message };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
+      const responseFormData = {
+        questionId: _id,
+        response: botMessage?.text
+      }
+      const createResponseBackend = await fetchUrlEncodedMutation('/api/add-response', responseFormData, userToken);
       isLoading(false);
     } catch (error) {
       if (error.response) {

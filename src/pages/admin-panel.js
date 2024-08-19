@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Header from '@/components/page-header';
 import SideBar from '@/components/page-left-side-bar';
@@ -9,6 +11,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Chat = () => {
   const { t } = useTranslation()
+  const router = useRouter();
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      // Option 1: Redirect to another page
+      router.push('/dashboard');
+      
+    }
+  }, [router]);
 
     return (
         <div className='pageWrap'>

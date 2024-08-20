@@ -13,6 +13,7 @@ const AdminSignUpForm = () => {
   const [loading, setLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [errors, setErrors] = useState({});
+  const [values, setValues] = useState([]);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -23,6 +24,33 @@ const AdminSignUpForm = () => {
     });
 };
 
+const handleAddValue = () => {
+  const concatenatedValue = `${formData.studentClass} - ${formData.section}`;
+  if (formData.studentClass && formData.section && formData.studentClass.trim() !== '' && formData.section.trim() !== '') {
+    setValues((prevValues) => {
+      const updatedValues = [...prevValues, concatenatedValue];
+      
+      // Ensure the formData is updated with the latest 'classes' state
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        studentClass: '',
+        section: ''
+      }));
+      return updatedValues;
+    });
+  } else {
+    // Handle errors if necessary
+    setErrors({
+      studentClass: formData.studentClass ? '' : 'Class is required',
+      section: formData.section ? '' : 'Section is required',
+    });
+  }
+};
+
+const handleRemoveValue = (index) => {
+  setValues(values.filter((_, i) => i !== index));
+};
+
 const validateForm = () => {
   const newErrors = {};
   if (!formData.name) newErrors.name = 'First Name is required';
@@ -30,9 +58,9 @@ const validateForm = () => {
   if (!formData.email) newErrors.email = 'Email is required';
   if (!formData.password) newErrors.password = 'Password is required';
   if (!formData.schoolId) newErrors.schoolId = 'School is required';
-  if (!formData.studentClass) newErrors.studentClass = 'Class is required';
-  if (!formData.section) newErrors.section = 'Section is required';
-  if (!formData.gender) newErrors.gender = 'Gender is required';
+  if (!formData.classes && !formData.studentClass) newErrors.studentClass = 'Class is required';
+  if (!formData.classes && !formData.section ) newErrors.section = 'Section is required';
+  if (!formData.gender ) newErrors.gender = 'Gender is required';
 
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
@@ -85,6 +113,13 @@ useEffect(() => {
     }
 }, [authenticated]); // Run whenever 'authenticated' state changes
 
+useEffect(() => {
+  setFormData((prevFormData) => ({
+    ...prevFormData,
+    classes: values
+    }));
+}, [values]); // Run whenever 'authenticated' state changes
+
 const renderSignUpForm = () => {
   if(loading){
       return(
@@ -114,7 +149,7 @@ const renderSignUpForm = () => {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -231,11 +266,26 @@ const renderSignUpForm = () => {
                 />
               </Grid>
               </Grid>
+              <Button variant="contained" color="primary" onClick={handleAddValue}>
+                Add
+               </Button>
+               <ul>
+                  {values.map((value, index) => (
+                    <li key={index}>
+                      {value}
+                      <Button variant="outlined" color="secondary" onClick={() => handleRemoveValue(index)}>
+                        Remove
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit}
               >
                 Sign Up
               </Button>

@@ -3,3 +3,44 @@
   padding: 20px 25px;
   border-radius: 20px;
 }
+.addButton {
+  background-color: #444 !important;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.addListData {
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin-top: 12px;
+  &:empty {
+    display: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    border: 1px solid #aaa;
+    padding: 5px 5px 5px 10px;
+    margin: 3px 7px 3px 0px;
+    border-radius: 21px;
+    background: #ccc;
+    button {
+      background: #555;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-left: 5px;
+      svg {
+        width: 16px;
+      }
+    }
+  }
+}

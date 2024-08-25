@@ -139,7 +139,7 @@ const Dashboard = () => {
             break;
           case '2':
             selectedQuestions = questions2;
-            pageTitle = "Strength Weaknesses Screening";
+            pageTitle = "Strength & Weakness Screening";
             questionnaireType = "strengthWeakness";
             break;
           default:

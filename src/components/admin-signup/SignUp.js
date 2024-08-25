@@ -7,6 +7,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import styles from './SignUp.module.scss';
 import Cookies from 'universal-cookie';
 import { toast } from 'react-hot-toast';
+import {classNames, classSections, genders, schools} from './constant';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 
 const AdminSignUpForm = () => {
   const [formData, setFormData] = useState({userRole: 'teacher'});
@@ -71,6 +76,7 @@ const handleSubmit = async (e) => {
   const cookies = new Cookies();
   if (validateForm()) {
   setLoading(true);
+  console.log('yanu12', formData);
   try {
       const response = await fetchUrlEncodedMutation('/api/user', formData );
       const {data, status, error, errors
@@ -178,7 +184,9 @@ const renderSignUpForm = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 />
-              <TextField
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
                 variant="outlined"
                 margin="normal"
                 required
@@ -191,7 +199,14 @@ const renderSignUpForm = () => {
                 helperText={errors.gender}
                 value={formData.gender}
                 onChange={handleChange}
-                />
+                >
+                {genders.map((gender, index) => (
+                  <MenuItem key={index} value={gender}>
+                    {gender}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -221,7 +236,9 @@ const renderSignUpForm = () => {
                 value={formData.password || null}
                 onChange={handleChange}
                 />
-              <TextField
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">School</InputLabel>
+                <Select
                 variant="outlined"
                 margin="normal"
                 required
@@ -233,49 +250,68 @@ const renderSignUpForm = () => {
                 helperText={errors.schoolId}
                 value={formData.schoolId}
                 onChange={handleChange}
-                />
-              <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="studentClass"
-                label="Class"
-                id="class"
-                error={!!errors.studentClass}
-                helperText={errors.studentClass}
-                value={formData.studentClass}
-                onChange={handleChange}
-                />
-              </Grid>
-                <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="section"
-                label="Section Name"
-                id="section"
-                error={!!errors.section}
-                helperText={errors.section}
-                value={formData.section}
-                onChange={handleChange}
-                />
-              </Grid>
-              </Grid>
-              <Button variant="contained" color="primary" onClick={handleAddValue}>
-                Add
+                >
+                {schools.map((school, index) => (
+                  <MenuItem key={index} value={school.id}>
+                    {school.name}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Class</InputLabel>
+                  <Select
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="studentClass"
+                    label="Class"
+                    id="class"
+                    error={!!errors.studentClass}
+                    helperText={errors.studentClass}
+                    value={formData.studentClass}
+                    onChange={handleChange}
+                  >
+                  {classNames.map((className, index) => (
+                    <MenuItem key={index} value={className}>
+                      {className}
+                    </MenuItem>
+                  ))}
+                  </Select>
+                </FormControl>
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Section</InputLabel>
+                <Select
+                 variant="outlined"
+                 margin="normal"
+                 required
+                 fullWidth
+                 name="section"
+                 label="Section Name"
+                 id="section"
+                 error={!!errors.section}
+                 helperText={errors.section}
+                 value={formData.section}
+                 onChange={handleChange}
+                >
+                {classSections.map((classSection, index) => (
+                  <MenuItem key={index} value={classSection}>
+                    {classSection}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
+              <Button onClick={handleAddValue} className={styles.addButton}>
+                + Add
                </Button>
-               <ul>
+               <ul className={styles.addListData}>
                   {values.map((value, index) => (
                     <li key={index}>
                       {value}
-                      <Button variant="outlined" color="secondary" onClick={() => handleRemoveValue(index)}>
-                        Remove
-                      </Button>
+                      <button onClick={() => handleRemoveValue(index)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></svg>
+                      </button>
                     </li>
                   ))}
                 </ul>

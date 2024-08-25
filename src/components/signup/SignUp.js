@@ -7,6 +7,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import styles from './SignUp.module.scss';
 import Cookies from 'universal-cookie';
 import { toast } from 'react-hot-toast';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import {classNames, classSections, genders, schools} from './constant';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({userRole: 'student'});
@@ -131,7 +136,9 @@ const renderSignUpForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 />
-              <TextField
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <Select
                 variant="outlined"
                 margin="normal"
                 required
@@ -144,7 +151,14 @@ const renderSignUpForm = () => {
                 helperText={errors.gender}
                 value={formData.gender}
                 onChange={handleChange}
-                />
+                >
+                {genders.map((gender, index) => (
+                  <MenuItem key={index} value={gender}>
+                    {gender}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -153,6 +167,7 @@ const renderSignUpForm = () => {
                 id="email"
                 label="Email Address"
                 name="email"
+                type="email"
                 autoFocus
                 error={!!errors.email}
                 helperText={errors.email}
@@ -174,7 +189,9 @@ const renderSignUpForm = () => {
                 value={formData.password || null}
                 onChange={handleChange}
                 />
-              <TextField
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">School</InputLabel>
+                <Select
                 variant="outlined"
                 margin="normal"
                 required
@@ -186,39 +203,58 @@ const renderSignUpForm = () => {
                 helperText={errors.schoolId}
                 value={formData.schoolId}
                 onChange={handleChange}
-                />
-              <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="studentClass"
-                label="Class"
-                id="class"
-                error={!!errors.studentClass}
-                helperText={errors.studentClass}
-                value={formData.studentClass}
-                onChange={handleChange}
-                />
-              </Grid>
-                <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="section"
-                label="Section Name"
-                id="section"
-                error={!!errors.section}
-                helperText={errors.section}
-                value={formData.section}
-                onChange={handleChange}
-                />
-              </Grid>
-              </Grid>
+                >
+                {schools.map((school, index) => (
+                  <MenuItem key={index} value={school.id}>
+                    {school.name}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Class</InputLabel>
+                  <Select
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="studentClass"
+                    label="Class"
+                    id="class"
+                    error={!!errors.studentClass}
+                    helperText={errors.studentClass}
+                    value={formData.studentClass}
+                    onChange={handleChange}
+                  >
+                  {classNames.map((className, index) => (
+                    <MenuItem key={index} value={className}>
+                      {className}
+                    </MenuItem>
+                  ))}
+                  </Select>
+                </FormControl>
+                <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Section</InputLabel>
+                <Select
+                 variant="outlined"
+                 margin="normal"
+                 required
+                 fullWidth
+                 name="section"
+                 label="Section Name"
+                 id="section"
+                 error={!!errors.section}
+                 helperText={errors.section}
+                 value={formData.section}
+                 onChange={handleChange}
+                >
+                {classSections.map((classSection, index) => (
+                  <MenuItem key={index} value={classSection}>
+                    {classSection}
+                  </MenuItem>
+                ))}
+                </Select>
+              </FormControl>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -251,13 +287,21 @@ const renderSignUpForm = () => {
                 required
                 fullWidth
                 name="parentNumber"
+                type="email"
                 label="Guardian Number"
                 id="Phone"
-                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                inputProps={{ 
+                  inputMode: 'numeric', 
+                  pattern: '[0-9]*', 
+                  maxLength: 10  // Restricts input to 10 characters
+                }}
                 error={!!errors.parentNumber}
                 helperText={errors.parentNumber}
                 value={formData.parentNumber}
                 onChange={handleChange}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+                }}
                 />
               <Button
                 type="submit"

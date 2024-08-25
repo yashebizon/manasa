@@ -62,7 +62,7 @@ const YourSelf = () => {
                                 </div>
                             </div>
                             <div className='AssessCardRight'>
-                                <h3>{t("Strength Weaknesses Screening")}</h3>
+                                <h3>{t("Strength & Weakness Screening")}</h3>
                                 <p>{t("Next few questions will help to conduct a screening of your overall strength and weaknesses and help your counselor help you better.")}</p>
                             </div>
                         </div>

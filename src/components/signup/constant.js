@@ -6,23 +6,23 @@ export const genders = ['Male', 'Female', 'Other'];
 
 export const schools = [
     {
-        id: '66b8d85078fe4ef37c0bf945',
+        id: '66cb6cd3c4f8d9db008f91bb',
         name: 'Gurukul School'
     },
     {
-        id: '66b8d85078fe4ef37c0bf949',
+        id: '66cb6cd3c4f8d9db008f91bf',
         name: 'Indus Valley Public School'
     },
     {
-        id: '66b8d85078fe4ef37c0bf94d',
+        id: '66cb6cd3c4f8d9db008f91c3',
         name: 'Kaveri Public School'
     },
     {
-        id: '66b8d85078fe4ef37c0bf951',
+        id: '66cb6cd3c4f8d9db008f91c7',
         name: 'Indore Public School'
     },
     {
-        id: '66b8d85078fe4ef37c0bf955',
+        id: '66cb6cd3c4f8d9db008f91cb',
         name: 'G.D.Goenka Public School'
     },
 ];

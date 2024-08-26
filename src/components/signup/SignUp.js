@@ -274,7 +274,7 @@ const renderSignUpForm = () => {
                 required
                 fullWidth
                 name="parentEmail"
-                label="Parent Email"
+                label="Parent's Email"
                 id="parentEmail"
                 error={!!errors.parentEmail}
                 helperText={errors.parentEmail}

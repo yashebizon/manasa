@@ -1,10 +1,70 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './studentList.scss';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
+import { fetchUrlEncodedMutation } from '../../util/request/fetchMutation';
+import Cookies from 'universal-cookie';
+import Loader from '../loader/loader'
+
 
 const StudentList = () => {
-  const { t } = useTranslation()
+  const [studentsData, setStudentsData] = useState([]);
+
+  const { t } = useTranslation();
+
+  const cookies = new Cookies();
+
+  const myCookie = cookies.get('userToken');
+
+  useEffect(() => {
+    async function fetchStudentList() {
+
+      const payload = {
+        limit: '500'
+      };
+
+      try {
+        const response = await fetchUrlEncodedMutation('/api/teacher-student-list', payload, myCookie);
+
+        if (response && response.data) {
+          const { data } = response;
+          setStudentsData(data);
+        } else {
+          console.error('No data returned from the API');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    
+  }
+  
+    fetchStudentList();
+
+  }, [myCookie]);
+
+  const renderStudentRows = (studentsData, t) => {
+    if (studentsData.length === 0) {
+      return(
+        <tr>
+        <td colSpan="6" style={{ textAlign: 'center' }}>
+            <Loader/>
+        </td>
+      </tr>
+      )
+    }
+  
+    return studentsData.map((student, index) => (
+      <tr key={index}>
+        <td>{t(student.name)}</td>
+        <td>{t(student.gender)}</td>
+        <td>{t(student.email)}</td>
+        <td>{t(student.timeZone)}</td>
+        <td>{t(student.parentNumber)}</td>
+        <td>{t(student.status)}</td>
+      </tr>
+    ));
+  };
+
     return (
         <div className='studentList'>
           <h2>{t('Student List')}</h2>
@@ -20,46 +80,7 @@ const StudentList = () => {
                     <th>{t('Tags')}</th>
                     <th>{t('Comments')}</th>
                   </tr>
-                  <tr>
-                    <td>{t('Shrirang Patel')}</td>
-                    <td>{t('A3545')}</td>
-                    <td>{t('Yes')}</td>
-                    <td>{t('2024-06-25')}</td>
-                    <td>{t('Anxiety, Stress')}</td>
-                    <td>{t('Academic pressure: Lack of preparedness causing anxiety and Parental pressure: Pressure from family on lack of contribution at home')}</td>
-                  </tr>
-                  <tr>
-                    <td>{t('Pallavi Jaiswal')}</td>
-                    <td>{t('A3545')}</td>
-                    <td>{t('Yes')}</td>
-                    <td>{t('2024-06-25')}</td>
-                    <td>{t('Peer Pressure')}</td>
-                    <td>{t('Peer Pressure: Loneliness at school because of lack of friends')}</td>
-                  </tr>
-                  <tr>
-                    <td>{t('Shantanu Malhotra')}</td>
-                    <td>{t('A3545')}</td>
-                    <td>{t('Yes')}</td>
-                    <td>{t('2024-06-25')}</td>
-                    <td>{t('Performance Anxiety')}</td>
-                    <td>{t('Academic pressure: Not able to memorise chemistry theorems for organic chemistry')}</td>
-                  </tr>
-                  <tr>
-                    <td>{t('Nikhil Bhatt')}</td>
-                    <td>{t('A3545')}</td>
-                    <td>{t('Yes')}</td>
-                    <td>{t('2024-06-25')}</td>
-                    <td>{t('Body Image Issue')}</td>
-                    <td>{t('Body Image Issue: Lack of confidence because of body size. Bullied by classmates due to recent increase in weight. Self image issues because of criticism from parents, thinking of being violent to himself.')}</td>
-                  </tr>
-                  <tr>
-                    <td>{t('Manasvi Joshi')}</td>
-                    <td>{t('A3545')}</td>
-                    <td>{t('Yes')}</td>
-                    <td>{t('2024-06-25')}</td>
-                    <td>{t('Gratitude Workshop')}</td>
-                    <td>{t('Went through gratitude workshop and recorded steps to implement in her life')}</td>
-                  </tr>
+                  {renderStudentRows(studentsData, t)}
                   </tbody>
                   <tfoot></tfoot>
               </table>

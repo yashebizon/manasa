@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './chartPage.scss';
-import Link from 'next/link';
 import Image from 'next/image'; 
 import img from '../../../src/images/page/std.jpg';
 import std1 from '../../../src/images/page/std1.jpg';
 import std2 from '../../../src/images/page/std2.jpg';
-import graph1 from '../../../src/images/graphs/graph1.jpg';
-import graph2 from '../../../src/images/graphs/graph2.jpg';
-import graph3 from '../../../src/images/graphs/graph3.jpg';
-import graph4 from '../../../src/images/graphs/graph4.jpg';
-import graph1hindi from '../../../src/images/graphs/graph1hindi.jpeg';
-import graph2hindi from '../../../src/images/graphs/graph2hindi.jpeg';
-import graph3hindi from '../../../src/images/graphs/graph3hindi.jpeg';
-import graph4hindi from '../../../src/images/graphs/graph4hindi.jpeg';
 import Header from '../page-header';
 import StudentList from '../student-list';
 import { useTranslation } from 'next-i18next';
@@ -89,8 +79,6 @@ const ChartPage = () => {
     fetchGraphDetails();
   }, [myCookie]);
 
-  console.log('yanu12', graphData, teacherClasses, studentCount);
-
   const renderChartPageTopSec = () => {
     return (
       <div className='chartPageTopSec'>
@@ -118,6 +106,10 @@ const ChartPage = () => {
   };
 
   const renderScreeningPieChart = () => {
+
+    const { screeningModule = {} } = graphData;
+    const {generalAssessment = 0, parentPeerPressure = 0, strengthWeakness = 0} = screeningModule;
+
     const screeningPieChartData = [
       { value: 120 },
       { value: 120 },
@@ -128,9 +120,9 @@ const ChartPage = () => {
       <div className='graph'>
         <h3>Screening Completed Per Modules</h3>
         <div className='graphRight'>
-          <div className='blue'>General Assessment 87%</div>
-          <div className='org'>Strength and Weaknesses 57%</div>  
-          <div className='grn'>Parent Peer Pressure 16%</div>
+          <div className='blue'>Handle Peer Pressure 87%</div>
+          <div className='org'>Manage Social Media 57%</div>  
+          <div className='grn'>Manage Study Pattern 16%</div>
         </div>
         <PieChart
           series={[
@@ -153,6 +145,10 @@ const ChartPage = () => {
   };
 
   const renderLearningPieChart = () => {
+
+    const { learningModule = {} } = graphData;
+    const {handlePeerPressure = 0, manageSocialMedia = 0, manageStudyPattern = 0} = learningModule;
+
     const learningPieChartData = [
       { value: 120 },
       { value: 120 },

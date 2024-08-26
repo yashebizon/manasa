@@ -22,7 +22,7 @@ const MiniGuidCard = ({ url, title, time, heading, imgSrc }) => {
             <div className='image'  onClick={handleOpenPopup}>
               <Image src={`/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
             </div>
-            <div className='rlContent'>
+            <div className='rlContent'  onClick={handleOpenPopup}>
                 <div className='rlContentLf'>
                     <h3>{t(heading)}</h3>
                     <p>{title}</p>
@@ -78,7 +78,7 @@ export const DashboardMiniGuidCard = ({ url, title, time, heading, imgSrc }) => 
           <div className='image' onClick={handleOpenPopup}>
             <Image src={`/${imgSrc}`} alt="Mini Guide" width={280} height={157}/>
           </div>
-          <div className='rlContent'>
+          <div className='rlContent' onClick={handleOpenPopup}>
               <div className='rlContentLf'>
                   <h3>{t(heading)}</h3>
                   <p>{t(title)}</p>

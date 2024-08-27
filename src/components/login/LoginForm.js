@@ -45,11 +45,12 @@ const LoginForm = () => {
         } = response;
         if(status && status === 200){
           toast.success('Logged in Successfully');
-          const { jwtToken, name, email, gender } = data;
+          const { jwtToken, name, email, gender, userRole } = data;
           cookies.set('userToken', jwtToken);
           cookies.set('userName', name);
           cookies.set('userEmail', email);
           cookies.set('userGender', gender);
+          cookies.set('userRole', userRole);
           setAuthenticated(true);
         }
         else if(error) {

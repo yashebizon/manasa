@@ -44,7 +44,6 @@ const ChartPage = () => {
 
           if (response && response.data) {
             const { data } = response;
-            console.log('yanu11', data);
             setTeacherClasses(data[0]);
             setStudentCount(data[1].studentsCount);
           } else {

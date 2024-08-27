@@ -56,11 +56,11 @@ const StudentList = () => {
     return studentsData.map((student, index) => (
       <tr key={index}>
         <td>{t(student.name)}</td>
-        <td>{t(student.gender)}</td>
-        <td>{t(student.email)}</td>
-        <td>{t(student.timeZone)}</td>
-        <td>{t(student.parentNumber)}</td>
-        <td>{t(student.status)}</td>
+        <td>{t(student.uniquePattern)}</td>
+        <td>{t(student.assessmentCompleted)}</td>
+        <td>{t(student.lastChatUsed)}</td>
+        <td>{t(student.tags)}</td>
+        <td>{t(student.comments)}</td>
       </tr>
     ));
   };

@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from '@/components/page-header';
 import SideBar from '@/components/page-left-side-bar';
 import PageDetails from '@/components/page-details';
-import '../app/globals.scss';
+import '../../app/globals.scss';
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -36,6 +36,13 @@ const Chat = () => {
           </main>
         </div>
       );  
+}
+
+export async function getStaticPaths() {
+  // Define the paths to pre-render based on the IDs available
+  const paths = [];
+
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ locale }) {

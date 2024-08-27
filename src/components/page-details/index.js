@@ -7,11 +7,15 @@ import Header from '../page-header';
 import { useTranslation } from 'next-i18next';
 import { fetchUser } from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
+import { useRouter } from 'next/router';
 
 
 
 const PageDetails = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+  const { id } = router.query;
+
   const [studentData, setStudentData] = useState({});
 
   const cookies = new Cookies();
@@ -19,10 +23,10 @@ const PageDetails = () => {
   const myCookie = cookies.get('userToken');
 
   useEffect(() => {
-    const userId = '66cd61251a7c53c39b5d341d';
     async function fetchUserDetails() {
+      if(id){
         try {
-          const response = await fetchUser('/api/user', myCookie, userId);
+          const response = await fetchUser('/api/user', myCookie, id);
 
           if (response && response.data) {
             const { data } = response;
@@ -35,6 +39,7 @@ const PageDetails = () => {
         }
       
     }
+  }
     fetchUserDetails();
   }, [myCookie]);
 
@@ -57,7 +62,7 @@ const PageDetails = () => {
                       <Image src={userImg} alt="User Icon" />
                     </div>
                     <div className='userIcnRtl'>
-                      <div>{t('Shrirang Patel')}</div>
+                      <div>{t(name)}</div>
                       <div>{t('Id')} #: {uniquePattern} | {t(`Class: ${studentClass}-${section}`)}</div>
                       <div><Link href="#">{t('Assessment Completed:')}</Link> {t(assessmentCompleted)}</div>
                       <div><Link href="#">{t('Chat Used:')}</Link>  {t(lastChatUsed)} </div>

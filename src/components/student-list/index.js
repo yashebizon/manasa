@@ -55,7 +55,7 @@ const StudentList = () => {
   
     return studentsData.map((student, index) => (
       <tr key={index}>
-        <td>{t(student.name)}</td>
+        <td><Link href={`student-dashboard/${student._id}`}>{t(student.name)}</Link></td>
         <td>{t(student.uniquePattern)}</td>
         <td>{t(student.assessmentCompleted)}</td>
         <td>{t(student.lastChatUsed)}</td>

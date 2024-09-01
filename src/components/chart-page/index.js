@@ -78,19 +78,37 @@ const ChartPage = () => {
     fetchGraphDetails();
   }, [myCookie]);
 
+  function getClassSectionString(classesArray) {
+    if (!Array.isArray(classesArray) || classesArray.length === 0) {
+      return ""; // Return an empty string if the input is not a valid array or is empty
+    }
+  
+    // Flatten the array to create the desired format
+    return classesArray.flatMap(item => {
+      const className = item.class.trim(); // Trim any extra spaces
+      return item.section.map(section => `${className}-${section.trim()}`);
+    }).join(', ');
+  }
+
   const renderChartPageTopSec = () => {
     return (
       <div className='chartPageTopSec'>
         <div className='tpBox'>
           <Image src={img} alt="Class Image" width={50} height={50} />
-          {t('Class 9-C')}
+          {`Classes: ${getClassSectionString(teacherClasses?.classes)}`}
         </div>
         <div className='tpBox'>
           <Image src={img} alt="Total Students" width={50} height={50} />
-          { studentCount } <br /> {/* Assuming 30 is the static student count */}
-          {t('Total Students')}
+          Total Students <br /> {/* Assuming 30 is the static student count */}
+          { studentCount }
         </div>
-        <div className='tpBox'>
+         <div className='tpBox'>
+          <Image src={std1} alt="Appointments" width={50} height={50} />
+          School Name <br />
+          {t('Ramjas')}
+        </div>
+        {/* Future Release */}
+        {/* <div className='tpBox'>
           <Image src={std1} alt="Appointments" width={50} height={50} />
           21 <br />
           {t('Appointment')}
@@ -99,7 +117,7 @@ const ChartPage = () => {
           <Image src={std2} alt="Unread Mail" width={50} height={50} />
           10 <br />
           {t('Unread Mail')}
-        </div>
+        </div> */}
       </div>
     );
   };

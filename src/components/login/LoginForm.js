@@ -17,6 +17,7 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [errors, setErrors] = useState({});
+  const [userRole, setUserRole] = useState('');
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -46,6 +47,7 @@ const LoginForm = () => {
         if(status && status === 200){
           toast.success('Logged in Successfully');
           const { jwtToken, name, email, gender, userRole } = data;
+          setUserRole(userRole);
           cookies.set('userToken', jwtToken);
           cookies.set('userName', name);
           cookies.set('userEmail', email);
@@ -83,7 +85,12 @@ useEffect(() => {
     // Check if authentication state changes
     if (authenticated) {
         // Once authenticated, navigate to the dashboard
-        router.push('/dashboard');
+        if(userRole && userRole === 'teacher'){
+            router.push('/admin-panel');
+        }
+        else{
+            router.push('/dashboard');
+        }
     }
 }, [authenticated]); // Run whenever 'authenticated' state changes
 

@@ -18,7 +18,8 @@ import avt8 from '../../images/avt8.png';
 import avt9 from '../../images/avt9.png';
 import { TextField } from '@mui/material';
 import { useTranslation } from 'next-i18next'
-
+import fetchMutation from '@/util/request/fetchMutation';
+import Cookies from 'universal-cookie';
 
 const customStyles = {
   content: {
@@ -40,6 +41,12 @@ const Header = () => {
 
 
   const router = useRouter();
+
+  const cookies = new Cookies();
+
+  const myCookie = cookies.get('userToken');
+  const userId = localStorage.getItem('userId');
+
 
   function openModal() {
     setIsOpen(true);
@@ -84,6 +91,14 @@ const Header = () => {
     console.log(e.target); // Display the image URL when the image is clicked
   };
 
+  const saveChatHistory = async () => {
+    const payload = {user_id: userId}
+    router.push('/dashboard');
+    closeModal();
+    await fetchMutation('/api/save-chat-history', payload, myCookie);
+
+  };
+
   const renderModal = () => {
     return( 
         <Modal
@@ -103,7 +118,7 @@ const Header = () => {
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{t("Are you sure?")}</h2>
         <p>{t("You want to cancel this chat ?")}</p>
         <div className='btnWrap'>
-          <Link href="dashboard">Yes</Link>
+          <button onClick={() => saveChatHistory()}>{t('Yes')}</button>
           <button onClick={closeModal}>No</button>
         </div>
       </Modal>

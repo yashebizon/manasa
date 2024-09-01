@@ -20,7 +20,23 @@ const PageDetails = () => {
 
   const cookies = new Cookies();
 
+  const userName = cookies.get('userName');
   const myCookie = cookies.get('userToken');
+
+  function getFormattedDate(dateString) {
+    if (!dateString) {
+      return "NA"; // Return "NA" for empty values
+    }
+  
+    const date = new Date(dateString);
+    
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      return "NA"; // Return "NA" for invalid date values
+    }
+  
+    return date.toISOString().split('T')[0];
+  }
 
   useEffect(() => {
     async function fetchUserDetails() {
@@ -48,7 +64,8 @@ const PageDetails = () => {
           assessmentCompleted = '', 
           lastChatUsed = '', 
           studentClass = '', 
-          section = ''
+          section = '',
+          comments= ''
         } = studentData;
 
     return (
@@ -56,16 +73,15 @@ const PageDetails = () => {
           <Header />
           <div className='pageDetailsTopUser'>
               <div className='pageDetailsTopUserLf'>
-                  <div className='stdName'>{t(name)}</div>   
                   <div className='stdBoxWrap'>
                     <div className='userIcn'>
                       <Image src={userImg} alt="User Icon" />
                     </div>
                     <div className='userIcnRtl'>
-                      <div>{t(name)}</div>
+                      <div><strong>{t(name)}</strong></div>
                       <div>{t('Id')} #: {uniquePattern} | {t(`Class: ${studentClass}-${section}`)}</div>
                       <div><Link href="#">{t('Assessment Completed:')}</Link> {t(assessmentCompleted)}</div>
-                      <div><Link href="#">{t('Chat Used:')}</Link>  {t(lastChatUsed)} </div>
+                      <div><Link href="#">{t('Last Chat Used:')}</Link>  {getFormattedDate(lastChatUsed)} </div>
                     </div>
                   </div>
               </div>
@@ -76,12 +92,9 @@ const PageDetails = () => {
 
           <div className='pageDetailsShrirangPatel'>
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
-            <div><strong>{t(name)}</strong></div>
             <div><strong>{t('June 2024')}</strong></div>
             <div>
-            {t('Chat Summary L2 : ')}
-            {t('Academic Pressure: Did not complete the summer assignments on time causing last minute pressure. Shrirang is anxious and facing performance anxiety to be able to perform well in upcoming unit tests because of lack of preparation during summer time. Parental Pressure: Feels unloved and unheard from parents, and feels pressurised by them to contribute in house activities. They blame him for the reason of their fights. He blames himself and thinks as a burden to his family')}
-              {t('Peer Pressure: Shrirang best friends are constantly asking him to bunk classes, and he feels pressure to agree to make them happy. He does not want to miss his classes. He gets cornered by his friends if he does not agree')}
+            {t(comments)}
             </div>
             <div><br />
             {t('Feedback from Yoda:')} <br />

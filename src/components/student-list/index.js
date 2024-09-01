@@ -42,6 +42,29 @@ const StudentList = () => {
 
   }, [myCookie]);
 
+  function getFormattedDate(dateString) {
+    if (!dateString) {
+      return "NA"; // Return "NA" for empty values
+    }
+  
+    const date = new Date(dateString);
+    
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      return "NA"; // Return "NA" for invalid date values
+    }
+  
+    return date.toISOString().split('T')[0];
+  }
+
+  function tagsToCommaSeparatedString(arr) {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      return "NA"; // Return an empty string for empty arrays or invalid input
+    }
+  
+    return arr.join(', ');
+  }
+
   const renderStudentRows = (studentsData, t) => {
     if (studentsData.length === 0) {
       return(
@@ -54,12 +77,12 @@ const StudentList = () => {
     }
   
     return studentsData.map((student, index) => (
-      <tr key={index}>
+        <tr key={index} style={{ backgroundColor: student?.colorCode }}>
         <td><Link href={`student-dashboard/${student._id}`}>{t(student.name)}</Link></td>
         <td>{t(student.uniquePattern)}</td>
         <td>{t(student.assessmentCompleted)}</td>
-        <td>{t(student.lastChatUsed)}</td>
-        <td>{t(student.tags)}</td>
+        <td>{getFormattedDate(student?.lastChatUsed)}</td>
+        <td>{tagsToCommaSeparatedString(student?.tags)}</td>
         <td>{t(student.comments)}</td>
       </tr>
     ));

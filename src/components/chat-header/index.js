@@ -45,8 +45,6 @@ const Header = () => {
   const cookies = new Cookies();
 
   const myCookie = cookies.get('userToken');
-  const userId = localStorage.getItem('userId');
-
 
   function openModal() {
     setIsOpen(true);
@@ -92,6 +90,7 @@ const Header = () => {
   };
 
   const saveChatHistory = async () => {
+    const userId = localStorage.getItem('userId');
     const payload = {user_id: userId}
     router.push('/dashboard');
     closeModal();

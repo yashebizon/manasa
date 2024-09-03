@@ -5,7 +5,7 @@ import Image from 'next/image';
 import userImg from '../../../src/images/page/student1.png';
 import Header from '../page-header';
 import { useTranslation } from 'next-i18next';
-import { fetchUser } from '@/util/request/fetchQuery';
+import { fetchUser, fetchQuery } from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
 
@@ -17,6 +17,7 @@ const PageDetails = () => {
   const { id } = router.query;
 
   const [studentData, setStudentData] = useState({});
+  const [chatHistory, setChatHistory] = useState({});
 
   const cookies = new Cookies();
 
@@ -56,8 +57,29 @@ const PageDetails = () => {
       
     }
   }
+
+  async function fetchChatHistory() {
+    if(id){
+      try {
+        const response = await fetchUser('/api/chat-history', myCookie);
+
+        if (response && response.data) {
+          const { data } = response;
+          setChatHistory(data);
+        } else {
+          console.error('No data returned from the API');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    
+  }
+}
     fetchUserDetails();
+    fetchChatHistory();
   }, [myCookie]);
+
+  console.log('yanu11', chatHistory, studentData);
 
   const { name='', 
           uniquePattern='', 

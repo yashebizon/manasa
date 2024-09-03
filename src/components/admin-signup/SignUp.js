@@ -115,7 +115,7 @@ useEffect(() => {
     // Check if authentication state changes
     if (authenticated) {
         // Once authenticated, navigate to the dashboard
-        router.push('/intro');
+        router.push('/admin-panel');
     }
 }, [authenticated]); // Run whenever 'authenticated' state changes
 

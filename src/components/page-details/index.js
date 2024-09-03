@@ -79,7 +79,30 @@ const PageDetails = () => {
     fetchChatHistory();
   }, [myCookie]);
 
-  console.log('yanu11', chatHistory, studentData);
+  console.log('yanu112', chatHistory);
+
+  const ChatSummary = () => {
+    if (chatHistory === null) {
+        // If chatHistory is null, return nothing
+        return null;
+    }
+
+    if (Array.isArray(chatHistory) && chatHistory.length > 0) {
+        // If chatHistory is a non-empty array, map over it and render l1Summary
+        return (
+            <>
+                {chatHistory.map((item, index) => (
+                    <p key={index}>
+                        {item.l1Summary || "No summary available."}
+                    </p>
+                ))}
+            </>
+        );
+    }
+
+    // If chatHistory is an empty array or not defined, show a loading message
+    return <p>Loading....</p>;
+};
 
   const { name='', 
           uniquePattern='', 
@@ -116,12 +139,17 @@ const PageDetails = () => {
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
             <div><strong>{t('June 2024')}</strong></div>
             <div>
-            {t(comments)}
+            {t(comments?.analysis?.detailedSummary)}
             </div>
             <div><br />
             {t('Feedback from Yoda:')} <br />
 
-            {t('Shrirang is facing similar issues for the last 3 months and its recommended for him to go see a counselor.')} 
+            {t(comments?.advice)} 
+            </div>
+            <br/> 
+            <p>Chat transcript</p>
+            <div>
+                {ChatSummary()}
             </div>
           </div>
         </div>

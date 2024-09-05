@@ -18,7 +18,7 @@ import fetchQuery from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { fetchUrlEncodedMutation } from '../../util/request/fetchMutation';
 import { getPercentageCompletion, calculatePieChartPortions, extractUsage } from '../../util/common/common';
-
+import Loader from '../loader/loader';
 
 const ChartPage = () => {
   const { t } = useTranslation()
@@ -164,10 +164,13 @@ const ChartPage = () => {
 
   const renderLearningPieChart = () => {
 
-    console.log('yanu33', graphData, studentCount);
-
     const { screeningModule = {} } = graphData;
     const {generalAssessment = 0, parentPeerPressure = 0, strengthWeakness = 0} = screeningModule;
+
+      // Check if the screeningModule is empty
+  if (!graphData) {
+    return <Loader />; // Return loader if the data is empty
+  }
 
       // Example usage
     const values = [generalAssessment, parentPeerPressure, strengthWeakness];

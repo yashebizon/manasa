@@ -10,6 +10,7 @@ import { fetchUser, fetchQuery } from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
 import { convertToHtml } from '../../util/common/common';
+import Loader from '../loader/loader';
 
 
 
@@ -84,11 +85,17 @@ const PageDetails = () => {
   const MarkdownConverter = ({ text }) => {
     const htmlContent = convertToHtml(text);
   
+    // Check if the HTML content is empty
+    const isContentEmpty = !htmlContent.trim(); // Check if content is empty or contains only whitespace
+  
     return (
-      <div 
-        className="markdown-content"
-        dangerouslySetInnerHTML={{ __html: htmlContent }} 
-      />
+      <div className="markdown-content">
+        {isContentEmpty ? (
+          <Loader /> // Show loader if content is empty
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        )}
+      </div>
     );
   };
   
@@ -113,7 +120,7 @@ const PageDetails = () => {
     }
 
     // If chatHistory is an empty array or not defined, show a loading message
-    return <p>Loading....</p>;
+    return <Loader /> ;
 };
 
   const { name='', 

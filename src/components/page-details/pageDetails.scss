@@ -4,10 +4,19 @@
 .pageDetails {
     background: #f0f3f9;
     padding: 0 50px;
+    width: 100%;
     &TopUser {
-        margin: 60px 0 35px;
+        padding: 40px 40px;
+        margin-top: 60px;
         display: flex;
         align-items: center;
+        background: #fff;
+        border-radius: 50px 50px 0 0;
+        .stName {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
         &Lf {
             .stdName {
                 font-size: 14px;
@@ -17,8 +26,12 @@
                 display: flex;
                 align-items: center;
                 font-size: 13px;
+                font-weight: 500;
                 .userIcnRtl {
                     padding-left: 12px;
+                    a {
+                        color: #6482fd;
+                    }
                 }
             }
         }
@@ -32,14 +45,14 @@
                 padding: 0 30px;
                 text-align: center;
                 border-radius: 25px;
+                font-weight: 600;
             }
         }
     }
     &ShrirangPatel {
         background: #fdf4f4;
-        padding: 40px 60px;
+        padding: 40px;
         font-size: 14px;
-        margin: 0 -50px;
         position: relative;
         .reqChatBtn {
             background: #6482fd;
@@ -52,6 +65,7 @@
             position: absolute;
             right: 50px;
             top: 15px;
+            font-weight: 600;
         }
     }
 }

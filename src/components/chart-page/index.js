@@ -17,6 +17,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import fetchQuery from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { fetchUrlEncodedMutation } from '../../util/request/fetchMutation';
+import { getPercentageCompletion, calculatePieChartPortions, extractUsage } from '../../util/common/common';
 
 
 const ChartPage = () => {
@@ -163,22 +164,28 @@ const ChartPage = () => {
 
   const renderLearningPieChart = () => {
 
-    const { learningModule = {} } = graphData;
-    const {handlePeerPressure = 0, manageSocialMedia = 0, manageStudyPattern = 0} = learningModule;
+    console.log('yanu33', graphData, studentCount);
 
+    const { screeningModule = {} } = graphData;
+    const {generalAssessment = 0, parentPeerPressure = 0, strengthWeakness = 0} = screeningModule;
+
+      // Example usage
+    const values = [generalAssessment, parentPeerPressure, strengthWeakness];
+    const total = 360;
+    const portions = calculatePieChartPortions(values, total);
     const learningPieChartData = [
-      { value: 120 },
-      { value: 120 },
-      { value: 120 },
+      { value: portions[0] },
+      { value: portions[1] },
+      { value: portions[2] },
     ];
   
     return (
       <div className='graph'>
       <h3>Learning Modules Completed</h3>
       <div className='graphRight'>
-        <div className='blue'>General Assessment 87%</div>
-        <div className='org'>Strenght and Weaknesses 57</div>  
-        <div className='grn'>Parent Peer Pressure 16%</div>
+        <div className='blue'>General Assessment {getPercentageCompletion(generalAssessment, studentCount)} %</div>
+        <div className='org'>Strenght and Weaknesses {getPercentageCompletion(parentPeerPressure, studentCount)} %</div>  
+        <div className='grn'>Parent Peer Pressure {getPercentageCompletion(strengthWeakness, studentCount)} %</div>
       </div>
         <PieChart
           series={[
@@ -201,14 +208,16 @@ const ChartPage = () => {
   };
 
   const renderChatUsageRate = () => {
+    const { chatUsage } = graphData;
+    const ChatNumbers = extractUsage(chatUsage)
     return (
       <div className='graph'>
         <h3>Chat Usage Rate</h3>
         <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12] }]}
           series={[
             {
-              data: [2, 5.5, 2, 8.5, 1.5, 5],
+              data: ChatNumbers,
             },
           ]}
           height={270}
@@ -218,15 +227,17 @@ const ChartPage = () => {
   };
 
   const renderSessionChatUsageRate = () => {
+    const { chatSession } = graphData;
+    const practiceSessionNumbers = extractUsage(chatSession)
     return (
       <div className='graph'>
       <h3>Practice session Usage</h3>
       <div className='graphRight2'>Weekly</div>
       <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12] }]}
           series={[
             {
-              data: [2, 5.5, 2, 8.5, 1.5, 5],
+              data: practiceSessionNumbers,
             },
           ]}
           height={270}

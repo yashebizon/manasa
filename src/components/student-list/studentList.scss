@@ -5,10 +5,12 @@ main.pageWrapMain {
     height: 100%;
 }
 .studentList {
+    border-radius: 50px;
+    background: #ffff;
+    padding: 10px 0 0;
     h2 {
         font-weight: 600;
-        padding: 0 18px;
-        margin-bottom: 30px;
+        padding: 10px 20px 15px;
     }
     display: inline-block;
     width: 100%;
@@ -20,12 +22,17 @@ main.pageWrapMain {
                 th {
                     white-space: nowrap;
                     color: #666;
+                    text-transform: uppercase;
                 }
                 td, th {
                     padding: 12px 20px;
                 }
                 td {
                     font-size: 15px;
+                    height: 70px;
+                    &.tag {
+                        min-width: 200px;
+                    }
                 }
                 &:nth-child(2) {
                     background-color: #fdf4f4;

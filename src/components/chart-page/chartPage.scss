@@ -13,8 +13,11 @@
         display: flex;
         .chartPageRight {
             margin-left: auto;
+            padding-bottom: 40px;
             .MuiDateCalendar-root {
                 background: #fff;
+                height: 100%;
+                max-height: unset;
             }
         }
         .chartPageLeft {

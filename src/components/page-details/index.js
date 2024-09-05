@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import './pageDetails.scss';
 import Link from 'next/link';
 import Image from 'next/image'; 
-import userImg from '../../../src/images/page/student1.png';
+import maleUserImg from '../../../src/images/boy.png';
+import femaleUserImg from '../../../src/images/human.png';
 import Header from '../page-header';
 import { useTranslation } from 'next-i18next';
 import { fetchUser, fetchQuery } from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
+import { convertToHtml } from '../../util/common/common';
 
 
 
@@ -79,7 +81,17 @@ const PageDetails = () => {
     fetchChatHistory();
   }, [myCookie]);
 
-  console.log('yanu112', chatHistory);
+  const MarkdownConverter = ({ text }) => {
+    const htmlContent = convertToHtml(text);
+  
+    return (
+      <div 
+        className="markdown-content"
+        dangerouslySetInnerHTML={{ __html: htmlContent }} 
+      />
+    );
+  };
+  
 
   const ChatSummary = () => {
     if (chatHistory === null) {
@@ -113,6 +125,9 @@ const PageDetails = () => {
           comments= ''
         } = studentData;
 
+  let { gender= ''
+  } = studentData;
+
     return (
         <div className='pageDetails'>
           <Header />
@@ -120,7 +135,12 @@ const PageDetails = () => {
               <div className='pageDetailsTopUserLf'>
                   <div className='stdBoxWrap'>
                     <div className='userIcn'>
-                      <Image src={userImg} alt="User Icon" />
+                    <Image 
+                        src={gender === 'Male' ? maleUserImg : femaleUserImg} 
+                        alt="User Icon" 
+                        height={50}  
+                        width={50}  
+                      />                    
                     </div>
                     <div className='userIcnRtl'>
                       <div><strong>{t(name)}</strong></div>
@@ -139,7 +159,7 @@ const PageDetails = () => {
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
             <div><strong>{t('June 2024')}</strong></div>
             <div>
-            {t(comments?.analysis?.detailedSummary)}
+            <MarkdownConverter text={comments?.detailedSummary} />
             </div>
             <div><br />
             {t('Feedback from Yoda:')} <br />
@@ -147,7 +167,7 @@ const PageDetails = () => {
             {t(comments?.advice)} 
             </div>
             <br/> 
-            <p>Chat transcript</p>
+            <p><strong>Chat transcript</strong></p>
             <div>
                 {ChatSummary()}
             </div>

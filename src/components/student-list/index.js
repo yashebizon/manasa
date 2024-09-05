@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import { fetchUrlEncodedMutation } from '../../util/request/fetchMutation';
 import Cookies from 'universal-cookie';
-import Loader from '../loader/loader'
+import Loader from '../loader/loader';
+import { convertToHtml } from '../../util/common/common';
 
 
 const StudentList = () => {
@@ -65,6 +66,57 @@ const StudentList = () => {
     return arr.join(', ');
   }
 
+  const MarkdownConverter = ({ text }) => {
+    const htmlContent = convertToHtml(text);
+  
+    return (
+      <div 
+        className="markdown-content"
+        dangerouslySetInnerHTML={{ __html: htmlContent }} 
+      />
+    );
+  };
+
+  const useShowMore = (text = '', limit = 100) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    
+    // Function to toggle between 'Show More' and 'Show Less'
+    const toggle = () => setIsExpanded(!isExpanded);
+  
+    // Ensure the text is valid, falling back to an empty string
+    const validText = text || '';
+    
+    // If expanded, show the full text; otherwise, truncate
+    const displayedText = isExpanded ? validText : `${validText.slice(0, limit)}...`;
+  
+    return {
+      isExpanded,
+      displayedText,
+      toggle,
+    };
+  };
+
+  const ShowMoreText = ({ text, limit = 100 }) => {
+    const { isExpanded, displayedText, toggle } = useShowMore(text, limit);
+  
+    // Check if the text length is greater than the limit
+    const isLongText = text && text.length > limit;
+  
+    return (
+      <div>
+        {/* Use MarkdownConverter to convert the truncated or full text */}
+        <MarkdownConverter text={displayedText} />
+        
+        {/* Show 'Show More'/'Show Less' button only if the text exceeds the limit */}
+        {isLongText && (
+          <button onClick={toggle}>
+            {isExpanded ? 'Show Less' : 'Show More'}
+          </button>
+        )}
+      </div>
+    );
+  };
+
   const renderStudentRows = (studentsData, t) => {
     if (studentsData.length === 0) {
       return(
@@ -82,16 +134,18 @@ const StudentList = () => {
         <td>{t(student.uniquePattern)}</td>
         <td>{t(student.assessmentCompleted)}</td>
         <td>{getFormattedDate(student?.lastChatUsed)}</td>
-        <td>{tagsToCommaSeparatedString(student?.tags)}</td>
-        <td>{t(student?.comments?.summary)}</td>
-      </tr>
+        <td className='tag'>{tagsToCommaSeparatedString(student?.tags)}</td>
+        <td><ShowMoreText text={student?.comments?.summary} limit={250} /></td>
+        </tr>
     ));
   };
 
     return (
         <div className='studentList'>
-          <h2>{t('Student List')}</h2>
-          <div className='studentListTable'>
+          <h2 style={{ textAlign: 'center', marginLeft: '20px', marginRight: '20px' }}>
+            {t('Students List')}
+          </h2>          
+              <div className='studentListTable'>
               <table>
               <thead></thead>
                   <tbody>

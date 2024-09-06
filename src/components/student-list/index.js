@@ -142,7 +142,7 @@ const StudentList = () => {
 
     return (
         <div className='studentList'>
-          <h2 style={{ textAlign: 'center', marginLeft: '20px', marginRight: '20px' }}>
+          <h2>
             {t('Students List')}
           </h2>          
               <div className='studentListTable'>

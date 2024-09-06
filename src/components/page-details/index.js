@@ -140,6 +140,7 @@ const PageDetails = () => {
           <Header />
           <div className='pageDetailsTopUser'>
               <div className='pageDetailsTopUserLf'>
+                  <div className='stName'>Student name</div>
                   <div className='stdBoxWrap'>
                     <div className='userIcn'>
                     <Image 

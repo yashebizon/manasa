@@ -3,6 +3,7 @@ import 'react-calendar/dist/Calendar.css';
 import './chartPage.scss';
 import Image from 'next/image'; 
 import img from '../../../src/images/page/std.jpg';
+import cls from '../../../src/images/page/cls.jpg';
 import std1 from '../../../src/images/page/std1.jpg';
 import std2 from '../../../src/images/page/std2.jpg';
 import Header from '../page-header';
@@ -95,18 +96,18 @@ const ChartPage = () => {
     return (
       <div className='chartPageTopSec'>
         <div className='tpBox'>
-          <Image src={img} alt="Class Image" width={50} height={50} />
+          <Image src={std1} alt="Appointments" width={50} height={50} />
+          School Name <br />
+          {t('Ramjas')}
+        </div>
+        <div className='tpBox'>
+          <Image src={cls} alt="Class Image" width={50} height={50} />
           {`Classes: ${getClassSectionString(teacherClasses?.classes)}`}
         </div>
         <div className='tpBox'>
           <Image src={img} alt="Total Students" width={50} height={50} />
           Total Students <br /> {/* Assuming 30 is the static student count */}
           { studentCount }
-        </div>
-         <div className='tpBox'>
-          <Image src={std1} alt="Appointments" width={50} height={50} />
-          School Name <br />
-          {t('Ramjas')}
         </div>
         {/* Future Release */}
         {/* <div className='tpBox'>
@@ -156,7 +157,7 @@ const ChartPage = () => {
               cy: 140,
             }
           ]}
-          height={270}
+          height={240}
         />
       </div>
     );
@@ -204,7 +205,7 @@ const ChartPage = () => {
               cy: 140,
             }
             ]}
-            height={270}
+            height={240}
         />
       </div>
     );
@@ -223,7 +224,7 @@ const ChartPage = () => {
               data: ChatNumbers,
             },
           ]}
-          height={270}
+          height={240}
         />
       </div>
     );
@@ -243,7 +244,7 @@ const ChartPage = () => {
               data: practiceSessionNumbers,
             },
           ]}
-          height={270}
+          height={240}
         />
       </div>
     );

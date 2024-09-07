@@ -166,6 +166,7 @@ const PageDetails = () => {
           <div className='pageDetailsShrirangPatel'>
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
             <div><strong>{t('June 2024')}</strong></div>
+            <div><strong>{t('Screening Summary')}</strong></div>
             <div>
             <MarkdownConverter text={comments?.detailedSummary} />
             </div>

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './chartPage.scss';
 import Image from 'next/image'; 
-import img from '../../../src/images/page/std.jpg';
+import img from '../../../src/images/page/std1.jpg';
 import cls from '../../../src/images/page/cls.jpg';
-import std1 from '../../../src/images/page/std1.jpg';
+import std1 from '../../../src/images/page/gd_goenka_logo.webp';
 import std2 from '../../../src/images/page/std2.jpg';
 import Header from '../page-header';
 import StudentList from '../student-list';
@@ -98,7 +98,7 @@ const ChartPage = () => {
         <div className='tpBox'>
           <Image src={std1} alt="Appointments" width={50} height={50} />
           School Name <br />
-          {t('Ramjas')}
+          {t('GD Goenka')}
         </div>
         <div className='tpBox'>
           <Image src={cls} alt="Class Image" width={50} height={50} />
@@ -257,10 +257,10 @@ const ChartPage = () => {
         <div className='chartPageLeft'>
             { renderChartPageTopSec() }
           <div className='chartPageBotSec'>
-            { renderScreeningPieChart() }
-            { renderChatUsageRate() }
-            { renderLearningPieChart() }
-            { renderSessionChatUsageRate() }
+            {graphData ? renderScreeningPieChart() : <Loader />}
+            {graphData ? renderChatUsageRate() : <Loader />}
+            {graphData ? renderLearningPieChart() : <Loader />}
+            {graphData ? renderSessionChatUsageRate() : <Loader />}
           </div>
         </div>
         <div className='chartPageRight'>

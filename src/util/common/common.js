@@ -6,7 +6,7 @@ export const convertToHtml = (text) => {
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   
     // Convert newlines to <br> tags
-    html = html.replace(/\n/g, '<br>');
+    // html = html.replace(/\n/g, '<br>');
   
     // Convert bullet points (starting with `- ` to <li> tags)
     html = html.replace(/^\s*-\s*(.*)$/gm, '<li>$1</li>');

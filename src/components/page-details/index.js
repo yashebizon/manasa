@@ -251,7 +251,7 @@ const renderYearSelect = () => {
               </div>
           </div>
 
-          <div className='pageDetailsShrirangPatel'>
+          <div className='pageDetailsShrirangPatel' style={{ backgroundColor: comments?.color_code }}>
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
             <div><strong>{t(currentMonthName + " " + currentYear)}</strong></div>
             <div><strong>{t('Screening Summary')}</strong></div>

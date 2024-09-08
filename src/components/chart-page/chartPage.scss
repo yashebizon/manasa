@@ -31,7 +31,6 @@
     }
     &TopSec {
         display: flex;
-        justify-content: space-between;
         .tpBox {
             padding: 6px 13px;
             display: flex;
@@ -39,6 +38,7 @@
             font-size: 12px;
             background: #fff;
             width: 22%;
+            margin-right: 35px;
             img {
                 margin-right: 10px;
             }
@@ -71,7 +71,7 @@
                 right: 0;
                 top: 44%;
                 font-size: 14px;
-                right: 60px;
+                left: 205px;
                 .blue {
                     color: #8C52FF;
                 }

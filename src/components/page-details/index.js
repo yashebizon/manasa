@@ -6,13 +6,16 @@ import maleUserImg from '../../../src/images/boy.png';
 import femaleUserImg from '../../../src/images/human.png';
 import Header from '../page-header';
 import { useTranslation } from 'next-i18next';
-import { fetchUser, fetchQuery } from '@/util/request/fetchQuery';
+import { fetchUser, fetchQuery, fetchChatHistory } from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
 import { useRouter } from 'next/router';
 import { convertToHtml } from '../../util/common/common';
 import Loader from '../loader/loader';
-
-
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { months, years } from './constant';
 
 const PageDetails = () => {
   const { t } = useTranslation();
@@ -21,6 +24,10 @@ const PageDetails = () => {
 
   const [studentData, setStudentData] = useState({});
   const [chatHistory, setChatHistory] = useState({});
+  const [isChatLoading, setChatloading]  = useState(false);
+  const [isSummaryLoading, setSummaryloading]  = useState(false);
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('2024');
 
   const cookies = new Cookies();
 
@@ -45,12 +52,14 @@ const PageDetails = () => {
   useEffect(() => {
     async function fetchUserDetails() {
       if(id){
+        setSummaryloading(true);
         try {
           const response = await fetchUser('/api/user', myCookie, id);
 
           if (response && response.data) {
             const { data } = response;
             setStudentData(data);
+            setSummaryloading(false);
           } else {
             console.error('No data returned from the API');
           }
@@ -61,14 +70,21 @@ const PageDetails = () => {
     }
   }
 
-  async function fetchChatHistory() {
+    fetchUserDetails();
+  }, [myCookie]);
+
+  useEffect(() => {
+
+  async function fetchChat() {
     if(id){
+      setChatloading(true);
       try {
-        const response = await fetchUser('/api/chat-history', myCookie);
+        const response = await fetchChatHistory('/api/chat-history', myCookie, id, month, year);
 
         if (response && response.data) {
           const { data } = response;
           setChatHistory(data);
+          setChatloading(false);
         } else {
           console.error('No data returned from the API');
         }
@@ -78,12 +94,16 @@ const PageDetails = () => {
     
   }
 }
-    fetchUserDetails();
-    fetchChatHistory();
-  }, [myCookie]);
+fetchChat();
+  }, [myCookie, month, year]);
 
   const MarkdownConverter = ({ text }) => {
-    const htmlContent = convertToHtml(text);
+    if(isSummaryLoading){
+      return(
+        <Loader/>
+      )
+  }
+  const htmlContent = convertToHtml(text);
   
     // Check if the HTML content is empty
     const isContentEmpty = !htmlContent.trim(); // Check if content is empty or contains only whitespace
@@ -91,7 +111,7 @@ const PageDetails = () => {
     return (
       <div className="markdown-content">
         {isContentEmpty ? (
-          <Loader /> // Show loader if content is empty
+          <p>No summary available for the student</p>
         ) : (
           <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
         )}
@@ -101,9 +121,10 @@ const PageDetails = () => {
   
 
   const ChatSummary = () => {
-    if (chatHistory === null) {
-        // If chatHistory is null, return nothing
-        return null;
+    if(isChatLoading){
+        return(
+          <Loader/>
+        )
     }
 
     if (Array.isArray(chatHistory) && chatHistory.length > 0) {
@@ -112,15 +133,77 @@ const PageDetails = () => {
             <>
                 {chatHistory.map((item, index) => (
                     <p key={index}>
-                        {item.l1Summary || "No summary available."}
+                        <p>{getFormattedDate(item.createdAt)}</p>   
+                        <p> <MarkdownConverter text={item.l1Summary} /></p>
+                        <p> <MarkdownConverter text={item.l2Summary} /></p>
                     </p>
                 ))}
             </>
         );
     }
 
-    // If chatHistory is an empty array or not defined, show a loading message
-    return <Loader /> ;
+    if (!chatHistory || chatHistory.length === 0) {
+      // If chatHistory is null or an empty array, return the message
+      return (
+          <p>No Chat Transcript available for selected month.</p>
+      );
+  }
+};
+
+const handleMonthChange = (event) => {
+  const { name, value } = event.target;
+  setMonth(value);
+};
+
+const renderMonthSelect = () => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">Month</InputLabel>
+      <Select
+        variant="outlined"
+        margin="normal"
+        id="month"
+        label="Month"
+        name="month"
+        value={month}
+        onChange={handleMonthChange}
+      >
+        {months.map((obj, index) => (
+          <MenuItem key={index} value={obj.id}>
+            {obj.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
+
+const handleYearChange = (event) => {
+  const { name, value } = event.target;
+  setYear(value);
+};
+
+const renderYearSelect = () => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">Year</InputLabel>
+      <Select
+        variant="outlined"
+        margin="normal"
+        id="year"
+        label="Year"
+        name="year"
+        value={year}
+        onChange={handleYearChange}
+      >
+        {years.map((obj, index) => (
+          <MenuItem key={index} value={obj.id}>
+            {obj.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
 };
 
   const { name='', 
@@ -168,17 +251,22 @@ const PageDetails = () => {
             <div><strong>{t('June 2024')}</strong></div>
             <div><strong>{t('Screening Summary')}</strong></div>
             <div>
-            <MarkdownConverter text={comments?.detailedSummary} />
+            <MarkdownConverter text={comments?.analysis?.detailedSummary} />
             </div>
             <div><br />
             {t('Feedback from Yoda:')} <br />
-
-            {t(comments?.advice)} 
+            <MarkdownConverter text={comments?.advice} />
             </div>
             <br/> 
+          </div>
+          <div className='pageDetailsShrirangPatel' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '50px 50px 0 0' }}>
+          <div>
             <p><strong>Chat transcript</strong></p>
-            <div>
-                {ChatSummary()}
+              { renderMonthSelect() }
+              { renderYearSelect() }
+              <div>
+                  {ChatSummary()}
+              </div>
             </div>
           </div>
         </div>

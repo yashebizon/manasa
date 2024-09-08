@@ -135,7 +135,7 @@ const StudentList = () => {
         <td>{t(student.assessmentCompleted)}</td>
         <td>{getFormattedDate(student?.lastChatUsed)}</td>
         <td className='tag'>{tagsToCommaSeparatedString(student?.tags)}</td>
-        <td><ShowMoreText text={student?.comments?.summary} limit={250} /></td>
+        <td><ShowMoreText text={student?.comments?.analysis?.summary} limit={250} /></td>
         </tr>
     ));
   };

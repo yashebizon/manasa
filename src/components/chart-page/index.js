@@ -17,7 +17,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import fetchQuery from '@/util/request/fetchQuery';
 import Cookies from 'universal-cookie';
-import { fetchUrlEncodedMutation } from '../../util/request/fetchMutation';
+import { fetchUrlEncodedMutation, fetchGraphMutation } from '../../util/request/fetchMutation';
 import { getPercentageCompletion, calculatePieChartPortions, extractUsage } from '../../util/common/common';
 import Loader from '../loader/loader';
 
@@ -46,8 +46,8 @@ const ChartPage = () => {
 
           if (response && response.data) {
             const { data } = response;
-            setTeacherClasses(data[0]);
-            setStudentCount(data[1].studentsCount);
+            setTeacherClasses(data[1]);
+            setStudentCount(data[2].studentsCount);
           } else {
             console.error('No data returned from the API');
           }
@@ -56,17 +56,18 @@ const ChartPage = () => {
         }
       
     }
-    async function fetchGraphDetails() {
+    async function fetchGraphDetails(param) {
 
-      const payload = {
-        filter: ''
-      };
+      const payload = param;
       try {
-        const response = await fetchUrlEncodedMutation('/api/teacher-dashboard-graph', payload, myCookie);
+        const response = await fetchGraphMutation('/api/teacher-dashboard-graph', payload, myCookie);
 
         if (response && response.data) {
           const { data } = response;
-          setGraphData(data[0]);
+          setGraphData(prevData => ({
+            ...prevData,
+            [param]: data
+          }));
         } else {
           console.error('No data returned from the API');
         }
@@ -77,7 +78,10 @@ const ChartPage = () => {
   }
   
     fetchDashboardDetails();
-    fetchGraphDetails();
+    fetchGraphDetails('learningModule');
+    fetchGraphDetails('chatUsage');
+    fetchGraphDetails('chatSession');
+    fetchGraphDetails('screeningModule');
   }, [myCookie]);
 
   function getClassSectionString(classesArray) {
@@ -168,11 +172,6 @@ const ChartPage = () => {
     const { screeningModule = {} } = graphData;
     const {generalAssessment = 0, parentPeerPressure = 0, strengthWeakness = 0} = screeningModule;
 
-      // Check if the screeningModule is empty
-  if (!graphData) {
-    return <Loader />; // Return loader if the data is empty
-  }
-
       // Example usage
     const values = [generalAssessment, parentPeerPressure, strengthWeakness];
     const total = 360;
@@ -217,6 +216,7 @@ const ChartPage = () => {
     return (
       <div className='graph'>
         <h3>Chat Usage Rate</h3>
+        <div className='graphRight2'>Daily</div>
         <LineChart
           xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12] }]}
           series={[

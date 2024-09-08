@@ -56,7 +56,7 @@ const Dashboard = () => {
     if(questionnaireResponse.length === questions.length){
       setIsOpen(true);
       const questionnaireSubmit = await fetchMutation('/api/create-user-questionnaires', userRespones, myCookie)
-      if(questionnaireSubmit && questionnaireSubmit.status === 201){
+      if(questionnaireSubmit && questionnaireSubmit.status === 200 || questionnaireSubmit.status === 201){
         return setSubmitDisable(false)
      } else {
       return(  

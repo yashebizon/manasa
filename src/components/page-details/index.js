@@ -15,7 +15,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import { months, years } from './constant';
+import { months, years, monthNames } from './constant';
 
 const PageDetails = () => {
   const { t } = useTranslation();
@@ -33,6 +33,11 @@ const PageDetails = () => {
 
   const userName = cookies.get('userName');
   const myCookie = cookies.get('userToken');
+
+  const date = new Date();
+  
+  const currentMonthName = monthNames[date.getMonth()];
+  const currentYear = date.getFullYear();
 
   function getFormattedDate(dateString) {
     if (!dateString) {
@@ -158,7 +163,7 @@ const handleMonthChange = (event) => {
 const renderMonthSelect = () => {
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Month</InputLabel>
+      <InputLabel id="demo-simple-select-label">Select Month</InputLabel>
       <Select
         variant="outlined"
         margin="normal"
@@ -248,7 +253,7 @@ const renderYearSelect = () => {
 
           <div className='pageDetailsShrirangPatel'>
             <button className='reqChatBtn'>{t('Request Chat Transcript')}</button>
-            <div><strong>{t('June 2024')}</strong></div>
+            <div><strong>{t(currentMonthName + " " + currentYear)}</strong></div>
             <div><strong>{t('Screening Summary')}</strong></div>
             <div>
             <MarkdownConverter text={comments?.analysis?.detailedSummary} />

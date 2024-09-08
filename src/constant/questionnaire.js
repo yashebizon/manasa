@@ -18,7 +18,7 @@ export const questions1 = [
     "I get a lot of headaches, stomach-aches or sickness",
     "My friends are pressurise me to do things I don't want to",
     "Going through my social media pages makes me feel disappointed in myself",
-    "I feel bad about myself, or don't like mtself",
+    "I feel bad about myself, or don't like myself",
     "I feel upset when my parents value what others think about me",
     "I spend most of my time in school with friends discussing academic work/revising for examination",
     "I worry when I think I have done poorly at something",

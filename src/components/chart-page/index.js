@@ -28,6 +28,7 @@ const ChartPage = () => {
   const [graphData, setGraphData] = useState({});
   const [teacherClasses, setTeacherClasses] = useState([]);
   const [studentCount, setStudentCount] = useState(0);
+  const [loading, isLoading] = useState(false);
 
   const cookies = new Cookies();
 
@@ -60,6 +61,7 @@ const ChartPage = () => {
 
       const payload = param;
       try {
+        isLoading(true)
         const response = await fetchGraphMutation('/api/teacher-dashboard-graph', payload, myCookie);
 
         if (response && response.data) {
@@ -68,6 +70,7 @@ const ChartPage = () => {
             ...prevData,
             [param]: data
           }));
+          isLoading(false)
         } else {
           console.error('No data returned from the API');
         }
@@ -162,6 +165,7 @@ const ChartPage = () => {
             }
           ]}
           height={240}
+          loading={loading}
         />
       </div>
     );
@@ -205,6 +209,7 @@ const ChartPage = () => {
             }
             ]}
             height={240}
+            loading={loading}
         />
       </div>
     );
@@ -218,13 +223,24 @@ const ChartPage = () => {
         <h3>Chat Usage Rate</h3>
         <div className='graphRight2'>Daily</div>
         <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12] }]}
+          xAxis={[
+            { 
+              data: [1, 2, 3, 5, 8, 10, 12], 
+              label: 'Previous 7 Days'
+            }
+                ]}
+          yAxis={[
+            {
+              label: 'No. of Students',
+            },
+          ]}
           series={[
             {
               data: ChatNumbers,
             },
           ]}
           height={240}
+          loading={loading}
         />
       </div>
     );
@@ -238,13 +254,25 @@ const ChartPage = () => {
       <h3>Practice session Usage</h3>
       <div className='graphRight2'>Weekly</div>
       <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10, 12] }]}
+          xAxis={[
+            { 
+              data: [1, 2, 3, 5, 8, 10, 12], 
+              label: 'Previous 7 Weeks' 
+            }
+                ]}
+          yAxis={[
+            {
+              label: 'No. of Students'
+            },
+          ]}
           series={[
             {
               data: practiceSessionNumbers,
             },
           ]}
           height={240}
+          loading={loading} 
+          loadingOverlay={<Loader/>}
         />
       </div>
     );

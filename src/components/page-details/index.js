@@ -137,11 +137,11 @@ fetchChat();
         return (
             <>
                 {chatHistory.map((item, index) => (
-                    <p key={index}>
-                        <p>{getFormattedDate(item.createdAt)}</p>   
+                    <div key={index}>
+                        <p className='date'>{getFormattedDate(item.createdAt)}</p>   
                         <p> <MarkdownConverter text={item.l1Summary} /></p>
                         <p> <MarkdownConverter text={item.l2Summary} /></p>
-                    </p>
+                    </div>
                 ))}
             </>
         );
@@ -259,20 +259,20 @@ const renderYearSelect = () => {
             <MarkdownConverter text={comments?.analysis?.detailedSummary} />
             </div>
             <div><br />
-            {t('Feedback from Yoda:')} <br />
+            <strong>{t('Feedback from Yoda:')}</strong> <br />
             <MarkdownConverter text={comments?.advice} />
             </div>
             <br/> 
           </div>
-          <div className='pageDetailsShrirangPatel' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '50px 50px 0 0' }}>
-          <div>
-            <p><strong>Chat transcript</strong></p>
-              { renderMonthSelect() }
-              { renderYearSelect() }
-              <div>
-                  {ChatSummary()}
+          <div className='pageDetailsShrirangPatel accodian' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '50px 50px 0 0' }}>
+            <div className='chatTranscript'>
+                <p><strong>Chat transcript</strong></p>
+                { renderMonthSelect() }
+                { renderYearSelect() }
+                <div className='summary'>
+                    {ChatSummary()}
+                </div>
               </div>
-            </div>
           </div>
         </div>
     );

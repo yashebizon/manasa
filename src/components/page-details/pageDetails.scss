@@ -67,5 +67,33 @@
             top: 15px;
             font-weight: 600;
         }
+        &.accodian {
+            margin: 40px 0;
+        }
     }
+
+    .chatTranscript {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        > div {
+            width: 12%;
+            margin: 0 15px;
+        }
+        > p {min-width: 130px;padding-top: 10px;}
+        > .summary {
+            width: 100%;
+            margin-top: 30px;
+            > div {
+                margin-bottom: 30px;
+                .date {
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+        fieldset.MuiOutlinedInput-notchedOutline {
+            border-radius: 20px;
+        }
+    }    
 }

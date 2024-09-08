@@ -371,7 +371,7 @@ div#qsnModal {
 
 main.pageWrapMain {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 img.imgAbout {
   margin: 25px auto;

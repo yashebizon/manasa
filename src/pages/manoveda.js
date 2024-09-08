@@ -25,7 +25,7 @@ const Login = () => {
             <div className='topBannerLeft'>
                 <div className='subTitle'>THE MOST TRUSTED AI  MENTAL WELLBEING PROGRAM FOR CHILDREN</div>
                 <h1>AI that Empowers Minds, Making Mental Healthcare Personal</h1>
-                <div className='tpDes'>Empowering students, supporting educators and parents, and fostering mental well-being for a brighter future with Manoveda's AI-driven care.</div>
+                <div className='tpDes'>Empowering students, supporting educators and parents, and fostering mental well-being for a brighter future with Manoveda AI-driven care.</div>
                 <Link href="#" className='blkBtn learn'>Learn more</Link>
             </div>
             <div className='topBannerRight'>

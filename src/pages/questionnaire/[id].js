@@ -51,13 +51,13 @@ const Dashboard = () => {
   const myCookie = cookies.get('userToken');
 
   async function openModal() {
-    setSubmitDisable(true)
+    setSubmitDisable(false)
     const userRespones = {questionnaires: questionnaireResponse}
     if(questionnaireResponse.length === questions.length){
       setIsOpen(true);
       const questionnaireSubmit = await fetchMutation('/api/create-user-questionnaires', userRespones, myCookie)
       if(questionnaireSubmit && questionnaireSubmit.status === 200 || questionnaireSubmit.status === 201){
-        return setSubmitDisable(false)
+        return setSubmitDisable(true)
      } else {
       return(  
           toast.error(t('Something went wrong!!! Please try again after sometime'))

@@ -57,10 +57,11 @@ const handleSubmit = async (e) => {
       } = response;
       if(status === 200){
         toast.success('User Registered Successfully');
-        const { jwtToken, userRole } = data;
+        const { jwtToken, userRole, name } = data;
         setUserRole(userRole);
         cookies.set('userToken', jwtToken);
         cookies.set('userRole', userRole);
+        cookies.set('userName', name);
         setAuthenticated(true);
       }
       else if(error) {
@@ -275,7 +276,7 @@ const renderSignUpForm = () => {
                 required
                 fullWidth
                 name="parentEmail"
-                label="Parent's Email"
+                label="Guardian's Email"
                 id="parentEmail"
                 error={!!errors.parentEmail}
                 helperText={errors.parentEmail}

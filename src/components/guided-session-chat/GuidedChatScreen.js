@@ -24,6 +24,7 @@ const GuidedChatComponent = () => {
   const cookies = new Cookies();
 
   const userToken = cookies.get('userToken');
+  const userName = cookies.get('userName');
 
   const handleSend = async () => {
 
@@ -169,7 +170,7 @@ const GuidedChatComponent = () => {
                   //   </span>
                   // </Typography>
                   <Typography variant="body1" component="span">
-                    <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
+                    <strong>{msg.sender === 'user' ? userName : 'Yoda AI'}:</strong>
                     {msg.sender === 'bot' ? (
                       loading ? renderFormattedText(msg.text) : renderFormattedText(msg.text)
                     ) : (

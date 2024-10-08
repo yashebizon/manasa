@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Button, TextField, Typography, Paper, List, ListItem, ListItemText, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import axios from 'axios';
 import './ChatScreen.scss'
@@ -19,10 +19,15 @@ const ChatComponent = () => {
   const [preselectQuestion, setPreselectQuestion] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [loading, isLoading] = useState(false);
+  const chatContainerRef = useRef(null);
+  const [containerHeight, setContainerHeight] = useState(800); // Default height
+
 
   const cookies = new Cookies();
 
   const userToken = cookies.get('userToken');
+  const userName = cookies.get('userName');
+
 
   const handleSend = async () => {
     const questionFormData = {
@@ -139,9 +144,35 @@ const ChatComponent = () => {
     );
   }
 
+
+  // Scroll to bottom whenever messages array changes
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // Update container height dynamically based on screen size
+  useEffect(() => {
+    const updateHeight = () => {
+      const screenHeight = window.innerHeight;
+      setContainerHeight(screenHeight * 0.8); // Set to 80% of the screen height
+    };
+
+    updateHeight(); // Set initially
+    window.addEventListener('resize', updateHeight); // Update on window resize
+
+    return () => {
+      window.removeEventListener('resize', updateHeight); // Cleanup event listener
+    };
+  }, []);
+
   const renderChat = () => {
     return (
-      <List>
+      <List
+        ref={chatContainerRef}
+        style={{ maxHeight: `${containerHeight}px`, overflowY: 'auto' }}
+      >
         {messages.map((msg, index) => (
           <ListItem
             key={index}
@@ -155,16 +186,20 @@ const ChatComponent = () => {
             <ListItemText
               primary={
                 <Typography variant="body1" component="span">
-                  <strong>{msg.sender === 'user' ? 'Parth' : 'Yoda AI'}:</strong>
-                  {(loading && msg.sender !== 'user') ? renderFormattedText(msg.text) : renderFormattedText(msg.text)}
+                  <strong>{msg.sender === 'user' ? userName : 'Yoda AI'}:</strong>
+                  {loading && msg.sender !== 'user'
+                    ? renderFormattedText(msg.text)
+                    : renderFormattedText(msg.text)}
                 </Typography>
               }
             />
           </ListItem>
         ))}
       </List>
-    )
-  }
+    );
+  };
+
+
   const renderFormattedText = (text) => {
     text = "\n" + text;
     let html = text.split('\n').map((line, index) => (

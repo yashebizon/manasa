@@ -12,10 +12,10 @@ const nextConfig = {
     },
     async rewrites() {
       return [
-        // {
-        //   source: '/api/:path*',
-        //   destination: 'https://www.manoveda.health/api/:path*', // Proxy to Backend
-        // },
+        {
+          source: '/api/:path*',
+          destination: 'https://api.manoveda.health/api/:path*', // Proxy to Backend
+        },
         {
           source: '/chat-api/:path*',
           destination: 'https://mentalhealth123.pythonanywhere.com/:path*', // Proxy to Backend

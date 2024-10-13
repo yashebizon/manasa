@@ -41,7 +41,7 @@ const LoginForm = () => {
     if (validateForm()) {
     setLoading(true);
     try {
-        const response = await fetchUrlEncodedMutation('https://api.manoveda.health/api/login', formData);
+        const response = await fetchUrlEncodedMutation('/api/login', formData);
         const {data, status, error, errors
         } = response;
         if(status && status === 200){

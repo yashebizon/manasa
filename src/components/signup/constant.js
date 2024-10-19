@@ -7,7 +7,7 @@ export const genders = ['Male', 'Female', 'Other'];
 export const schools = [
     {
         id: '67076cb9a80a97fb561e7790',
-        name: 'St. Columbus Public School'
+        name: 'St. Columbo Public School'
     },
     {
         id: '66cb6cd3c4f8d9db008f91bb',

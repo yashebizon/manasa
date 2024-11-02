@@ -23,7 +23,7 @@ export const schools = [
     },
     {
         id: '66cb6cd3c4f8d9db008f91c7',
-        name: 'Indore Public School'
+        name: 'Cane Grover Public School'
     },
     {
         id: '66cb6cd3c4f8d9db008f91cb',
